@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAI SWARNA AUTOMOTIVES</title>
+<link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"  rel="stylesheet">
+<link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN">
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+<style>
+:root {--primary: #17365d;--secondary: #0d6efd;--light-bg: #f4f7fb;--border: #d9e1ea;}
+html {overflow-x: hidden;}
+body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;color: #263238;overflow-x: hidden;}
+.container-main {max-width: 1250px;margin: 25px auto;}
+.application-card {background: #fff;border-radius: 12px;box-shadow: 0 4px 20px rgba(0,0,0,.08);overflow: hidden;}
+.form-header {background:linear-gradient(135deg,#0d6efd,#ffffff);color: var(--primary);padding: 12px 20px;display: flex;align-items: center;gap: 20px;border-bottom: 1px solid #d9e1ea;}
+.header-logo {flex: 0 0 auto;width: 120px;height: 70px;display: flex;align-items: center;justify-content: center;background: transparent;border-radius: 8px;padding: 5px;}
+.header-logo img {max-width: 100%;max-height: 100%;width: auto;height: auto;object-fit: contain;}
+.header-content {flex: 1 1 auto;min-width: 0;}
+.header-content h2 {margin: 0;font-weight: 700;font-size: 26px;overflow-wrap: break-word;}
+.header-content p {margin: 5px 0 0;opacity: .9;font-size: 15px;overflow-wrap: break-word;}
+.section-title {background: #edf3f9;border-left: 5px solid var(--primary);padding: 10px 14px;margin: 20px 0 15px;font-size: 17px;font-weight: 700;color: var(--primary);}
+.form-label {font-weight: 600;font-size: 14px;margin-bottom: 4px;}
+.form-label .te {font-weight: 500;}
+.form-control,.form-select {min-height: 40px;border: 1px solid var(--border);border-radius: 6px;}
+.form-control:focus,.form-select:focus {border-color: var(--secondary);box-shadow:0 0 0 .15rem rgba(13,110,253,.12);}
+.required::after {content: " *";color: red;}
+.address-box {min-height: 90px;resize: vertical;}
+.repeat-card {border: 1px solid #dce3eb;border-radius: 8px;padding: 15px;margin-bottom: 12px;background: #fbfcfe;}
+.repeat-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 12px;}
+.repeat-title {font-weight: 700;color: var(--primary);}
+.document-row {border: 1px solid #dee2e6;border-radius: 7px; padding: 12px; margin-bottom: 8px; background: #fff;}
+.document-row label {font-weight: 600;}
+.photo-box { width: 150px; height: 180px; border: 2px dashed #adb5bd; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f8f9fa; margin-bottom: 10px;}
+.photo-box img {width: 100%;height: 100%;object-fit: cover;}
+.signature-box {width: 300px;height: 120px;border: 2px dashed #adb5bd;border-radius: 8px;display: flex;align-items: center;justify-content: center;overflow: hidden;background: #f8f9fa;margin-bottom: 10px;}
+.signature-box img {width: 100%;height: 100%;object-fit: contain;}
+.file-size-info {font-size: 12px;color: #6c757d;margin-top: 4px;}
+.compression-status {font-size: 12px;font-weight: 600;margin-top: 4px;}
+.submit-area {background: #f5f7fa;padding: 20px;margin-top: 25px;border-top: 1px solid #dee2e6;}
+.footer {text-align: center;padding: 15px;font-size: 13px;color: #6c757d;}
+.upload-section {width: 300px;max-width: 100%;text-align: center;}
+.photo-box,.signature-box {width: 200px;max-width: 100%;height: 180px;margin: 0 auto 10px auto;border: 2px dashed #adb5bd;border-radius: 8px;display: flex;align-items: center;justify-content: center;overflow: hidden;background: #f8f9fa;}
+.photo-box {height: 300px;}
+.signature-box {height: 300px;}
+.photo-box img {width: 100%; height: 100%; object-fit: cover;}
+.signature-box img {width: 100%;height: 100%;object-fit: contain;}
+.upload-input {width: 300px !important; max-width: 100%; margin: 0 auto;}
+.upload-section .compression-status {width: 300px;max-width: 100%;margin: 5px auto 0;}
+@media (max-width: 767px) {.upload-section {width: 100%;}.photo-box,.signature-box,.upload-input,.upload-section .compression-status {width: 100% !important;}.photo-box,.signature-box {height: 250px;}}
+@media(max-width:767px) {.container-main {margin: 0;max-width: 100%;}.application-card {border-radius: 0;}.form-header {padding: 10px 8px;gap: 6px;flex-wrap: nowrap;}.header-logo {width: 46px;height: 42px;padding: 2px;}.header-content {min-width: 0;padding: 0 2px;}.header-content h2 {font-size: 14px;line-height: 1.2;}.header-content p {font-size: 9.5px;line-height: 1.3;}.signature-box {width: 100%;}.photo-box {width: 140px;height: 170px;}}
+@media (max-width: 360px) {.form-header {padding: 8px 6px;gap: 4px;}.header-logo {width: 38px;height: 36px;}.header-content h2 {font-size: 12.5px;}.header-content p {font-size: 9px;}}
+@media (max-width: 767px) {.submit-area {display: flex;flex-direction: column;align-items: stretch;gap: 10px;padding: 16px;}.submit-area button {width: 100%;margin-left: 0 !important;margin-right: 0 !important;padding-left: 12px;padding-right: 12px;white-space: normal;}}
+</style>
+</head>
+<body>
+<script>
+/* =========================================================
+   PAGE LOCK: disable right-click, view-source & DevTools shortcuts
+   NOTE: This is a deterrent for casual users only. No client-side
+   script can fully block DevTools on the web platform — anyone can
+   still open it from the browser's own menu, use a different
+   browser, or disable JavaScript. Never rely on this to protect
+   secrets; it only discourages casual tampering/copying.
+========================================================= */
+(function () {
+  "use strict";
+
+  // Block right-click context menu
+  document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
+  // Block common "view source" / "inspect" / "save page" key combinations
+  document.addEventListener("keydown", function (e) {
+    const k = e.key;
+    const isDevToolsKey =
+      k === "F12" ||
+      (e.ctrlKey && e.shiftKey && ["I", "i", "J", "j", "C", "c", "K", "k"].includes(k)) || // DevTools / console panels
+      (e.ctrlKey && !e.shiftKey && ["u", "U", "s", "S"].includes(k)) || // View Source / Save As
+      (e.metaKey && e.altKey && ["I", "i", "J", "j", "C", "c"].includes(k)); // Mac Cmd+Opt+I/J/C
+    if (isDevToolsKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  });
+
+  // Block selecting/dragging content outside form fields (so text can't be easily copied out)
+  document.addEventListener("dragstart", function (e) { e.preventDefault(); });
+  document.addEventListener("selectstart", function (e) {
+    const tag = e.target.tagName;
+    if (tag !== "INPUT" && tag !== "TEXTAREA") e.preventDefault();
+  });
+
+  // Best-effort DevTools-open detector (window size heuristic). Not foolproof.
+  let warned = false;
+  function checkDevToolsOpen() {
+    const threshold = 160;
+    const widthGap = window.outerWidth - window.innerWidth;
+    const heightGap = window.outerHeight - window.innerHeight;
+    if (!warned && (widthGap > threshold || heightGap > threshold)) {
+      warned = true;
+      document.documentElement.innerHTML =
+        '<div style="display:flex;align-items:center;justify-content:center;height:100vh;' +
+        'font-family:\'Segoe UI\',Arial,sans-serif;text-align:center;padding:24px;background:#f4f7fb;color:#17365d;">' +
+        "<h2>Developer Tools are disabled on this page.<br>Please close DevTools and reload to continue.</h2></div>";
+    }
+  }
+  setInterval(checkDevToolsOpen, 1000);
+})();
+</script>
+<div class="container-main">
+<div class="application-card">
+<div class="form-header">
+<div class="header-logo"><img id="companyLogoImg" src="https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN" alt="Sai Swarna Automotives Logo"></div>
+<div class="header-content text-center">
+<h2>JOB APPLICATION FORM</h2>
+<p>Employee Recruitment / Joining Application<br><span lang="te">ఉద్యోగ నియామకం / చేరిక దరఖాస్తు</span></p>
+</div>
+<div class="header-logo header-logo-right"><img src="https://lh3.googleusercontent.com/d/1we99lgGaprFz6s65IYbkIHwaKqykg9KF" alt="Hundai Logo"></div>
+</div>
+<form id="applicationForm" novalidate>
+<div class="p-3 p-md-4">
+<div class="section-title">1. Application Details /దరఖాస్తు వివరాలు</div>
+<div class="row g-1">
+<div class="col-lg-4 col-md-6"><label class="form-label required">Division /<span class="te">విభాగం</span></label>
+<select class="form-select" id="division" name="division" required>
+<option value="">Select Division / విభాగాన్ని ఎంచుకోండి</option>
+<option value="Sales">Sales / సేల్స్</option>
+<option value="Service">Service / సర్వీస్</option>
+<option value="True Value">True Value / ట్రూ వ్యాల్యూ</option>
+<option value="Spare Parts">Spare Parts / స్పేర్ పార్ట్స్</option>
+<option value="Accessories">Accessories / యాక్సెసరీస్</option>
+<option value="Administration">Administration / పరిపాలన</option>
+<option value="Finance">Finance / ఫైనాన్స్</option>
+<option value="HR">HR / మానవ వనరులు</option>
+<option value="IT">IT / ఐటీ</option>
+<option value="Common">Common / సాధారణ</option>
+</select>
+</div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Designation /<span class="te">హోదా</span></label>
+<select class="form-select" id="designation" name="designation" required><option value="">Select Designation / హోదాను ఎంచుకోండి</option></select>
+</div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Location /<span class="te"> ప్రాంతం</span></label>
+<select class="form-select" id="Location" name="Location" required><option value="">Select Location / ప్రాంతం ఎంచుకోండి</option><option value="MVP">MVP Colony</option><option value="Paradesipalem">Paradesipalem</option></select>
+</div>
+</div>
+<div class="section-title"> 2. Personal Details / వ్యక్తిగత వివరాలు </div>
+<div class="row g-1">
+<div class="col-lg-4 col-md-6"><label class="form-label required">Full Name / పూర్తి పేరు</label><input type="text" class="form-control" name="fullName" placeholder="Enter full name / పూర్తి పేరు నమోదు చేయండి" required></div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Aadhaar Number / ఆధార్ నంబర్</label><input type="text" class="form-control" name="aadhaar" maxlength="12" inputmode="numeric" placeholder="12 digit Aadhaar / 12 అంకెల ఆధార్" required></div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Date of Birth / పుట్టిన తేదీ</label><input type="date" class="form-control" name="dob" required></div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Mobile Number / మొబైల్ నంబర్</label><input type="tel" class="form-control" name="mobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile / 10 అంకెల మొబైల్" required></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Email / ఇమెయిల్</label><input type="email" class="form-control" name="email" placeholder="example@email.com / ఇమెయిల్ నమోదు చేయండి"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">PAN Number / పాన్ నంబర్</label><input type="text" class="form-control text-uppercase" name="pan" maxlength="10" placeholder="ABCDE1234F / పాన్ నంబర్"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Caste / కులం</label><select class="form-select" name="caste" required><option value="">Select Caste / కులాన్ని ఎంచుకోండి</option><option>General</option><option>OBC</option><option>SC</option><option>ST</option><option>Other</option><option>Prefer Not to Say</option></select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Sub-Caste / ఉప కులం</label><input type="text" class="form-control" name="subCaste" placeholder="Enter sub-caste / ఉప కులం"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Blood Group / రక్త వర్గం</label><select class="form-select" name="bloodGroup"><option value="">Select Blood Group / రక్త వర్గాన్ని ఎంచుకోండి</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Marital Status / వైవాహిక స్థితి</label><select class="form-select" name="maritalStatus"><option value="">Select Status / స్థితిని ఎంచుకోండి</option><option>Single / అవివాహితులు</option><option>Married / వివాహితులు</option><option>Divorced / విడాకులు పొందినవారు</option><option>Widowed / వితంతువు</option></select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Father's Name / తండ్రి పేరు</label><input type="text" class="form-control" name="fatherName" placeholder="Enter father's name / తండ్రి పేరు"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Father Occupation / తండ్రి వృత్తి</label><select class="form-select" name="fatherOccupation"><option value="">Select Occupation / వృత్తిని ఎంచుకోండి</option><option>Employee / ఉద్యోగి</option><option>Business / వ్యాపారం</option><option>Agriculture / వ్యవసాయం</option><option>Professional / వృత్తి</option><option>Retired / పదవీ విరమణ</option><option>Other / ఇతర</option></select></div>
+</div>
+<div class="section-title">3. Address Details / చిరునామా వివరాలు</div>
+<div class="row g-1">
+<div class="col-lg-6"><label class="form-label required">Present Address / ప్రస్తుత చిరునామా</label><textarea class="form-control address-box" name="presentAddress" placeholder="Enter present address / ప్రస్తుత చిరునామా నమోదు చేయండి" required></textarea></div>
+<div class="col-lg-6"><label class="form-label required">Permanent Address / శాశ్వత చిరునామా</label><textarea class="form-control address-box" name="permanentAddress" id="permanentAddress" placeholder="Enter permanent address / శాశ్వత చిరునామా నమోదు చేయండి" required></textarea>
+<div class="form-check mt-2"><input class="form-check-input" type="checkbox" id="sameAddress"><label class="form-check-label" for="sameAddress">Same as Present Address / ప్రస్తుత చిరునామానే శాశ్వత చిరునామాగా ఉపయోగించండి</label></div></div></div>
+<div class="section-title">4. Bank & Statutory Details / బ్యాంక్ & చట్టపరమైన వివరాలు</div>
+<div class="row g-1">
+<div class="col-lg-4 col-md-6"><label class="form-label">Bank Name / బ్యాంక్ పేరు</label><input type="text" class="form-control" name="bankName" placeholder="Enter bank name / బ్యాంక్ పేరు"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Bank A/c Number / బ్యాంక్ ఖాతా నంబర్</label><input type="text" class="form-control" name="accountNumber" inputmode="numeric" placeholder="Account number / ఖాతా నంబర్"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">IFSC Number / IFSC నంబర్</label><input type="text" class="form-control text-uppercase" name="ifsc" maxlength="11" placeholder="SBIN0001234 / IFSC నంబర్"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Bank Branch / బ్యాంక్ శాఖ</label><input type="text" class="form-control" name="bankBranch" placeholder="Branch name / శాఖ పేరు"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">UAN Number / UAN నంబర్</label><input type="text" class="form-control" name="uan" maxlength="12" inputmode="numeric" placeholder="UAN number / UAN నంబర్"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">ESIC Number / ESIC నంబర్</label><input type="text" class="form-control" name="esic" inputmode="numeric" placeholder="ESIC number / ESIC నంబర్"></div></div>
+<div class="section-title">5. About You / Career Information / మీ గురించి / కెరీర్ సమాచారం</div>
+<div class="row g-1">
+<div class="col-lg-6"><label class="form-label">Describe About You / మీ గురించి వివరించండి</label><textarea class="form-control address-box" name="aboutYou" placeholder="Briefly describe yourself / మీ గురించి సంక్షిప్తంగా వివరించండి"></textarea></div>
+<div class="col-lg-6"><label class="form-label">Your Last Achievement / మీ చివరి సాధన</label><textarea class="form-control address-box" name="achievement" placeholder="Mention your major achievement / మీ ముఖ్యమైన సాధనను పేర్కొనండి"></textarea></div>
+<div class="col-lg-6"><label class="form-label">About Your Job Roles / Responsibilities / మీ ఉద్యోగ బాధ్యతలు</label><textarea class="form-control address-box" name="activities" placeholder="Mention your job roles and responsibilities / మీ ఉద్యోగ బాధ్యతలు పేర్కొనండి"></textarea></div>
+<div class="col-lg-6"><label class="form-label">Goals / Ambitions / లక్ష్యాలు / ఆశయాలు</label><textarea class="form-control address-box" name="goals" placeholder="Describe your career goals / మీ కెరీర్ లక్ష్యాలను వివరించండి"></textarea></div></div>
+<div class="section-title">6. References / సూచన వ్యక్తుల వివరాలు</div><h6 class="fw-bold mt-1">Reference - 1 / సూచన - 1</h6>
+<div class="row g-1">
+<div class="col-lg-3 col-md-6"><label class="form-label">Name / పేరు</label><input type="text" class="form-control" name="ref1Name" placeholder="Name / పేరు"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Working Organisation / సంస్థ</label><input type="text" class="form-control" name="ref1Org" placeholder="Organisation / సంస్థ"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Designation / హోదా</label><input type="text" class="form-control" name="ref1Designation" placeholder="Designation / హోదా"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Mobile / మొబైల్</label><input type="tel" class="form-control" name="ref1Mobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile / 10 అంకెల మొబైల్"></div></div>
+<h6 class="fw-bold mt-4">Reference - 2 / సూచన - 2</h6>
+<div class="row g-1">
+<div class="col-lg-3 col-md-6"><label class="form-label">Name / పేరు</label><input type="text" class="form-control" name="ref2Name" placeholder="Name / పేరు"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Working Organisation / సంస్థ</label><input type="text" class="form-control" name="ref2Org" placeholder="Organisation / సంస్థ"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Designation / హోదా</label><input type="text" class="form-control" name="ref2Designation" placeholder="Designation / హోదా"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Mobile / మొబైల్</label><input type="tel" class="form-control" name="ref2Mobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile / 10 అంకెల మొబైల్"></div></div>
+<div class="section-title">7. Educational Qualifications / విద్యార్హతలు</div>
+<div id="educationContainer"></div>
+<button type="button" class="btn btn-outline-primary btn-sm" onclick="addEducation()">+ Add Education / విద్యార్హతను జోడించండి</button>
+<div class="section-title">8. Family Details /కుటుంబ వివరాలు</div>
+<div id="familyContainer"></div><button type="button" class="btn btn-outline-primary btn-sm" onclick="addFamily()">+ Add Family Member /కుటుంబ సభ్యుడిని జోడించండి</button>
+<div class="section-title">9. Previous Employment Details / గత ఉద్యోగ వివరాలు</div>
+<div id="employmentContainer"></div><button type="button" class="btn btn-outline-primary btn-sm" onclick="addEmployment()">+ Add Previous Employment / గత ఉద్యోగాన్ని జోడించండి</button>
+<div class="section-title">10. Documents Submitted / సమర్పించిన పత్రాలు</div>
+<div class="alert alert-info py-2"><strong>File Size / ఫైల్ పరిమాణం:</strong>Image files will be automatically compressed.<br>Images other than Photo:<strong>Maximum 200 KB</strong><br>Photo: <strong>Maximum 500 KB</strong></div>
+<div class="row">
+<div class="col-lg-6">
+<div class="document-row">
+<div class="form-check"><input class="form-check-input document-check" type="checkbox" id="docAadhar" name="docAadhar"><label class="form-check-label" for="docAadhar">Documents (Aadhaar) / ఆధార్ పత్రం</label></div>
+<input type="file" class="form-control mt-2 document-file" name="aadharFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="aadharStatus"></div></div>
+<div class="document-row">
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docPan" name="docPan"><label class="form-check-label" for="docPan">Documents (PAN) / పాన్ పత్రం</label></div>
+<input type="file" class="form-control mt-2 document-file" name="panFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="panStatus"></div></div>
+<div class="document-row">
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docDob" name="docDob"><label class="form-check-label" for="docDob"> Documents (Date of Birth) / పుట్టిన తేదీ పత్రం</label></div>
+<input type="file" class="form-control mt-2 document-file" name="dobFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="dobStatus"></div></div></div>
+<div class="col-lg-6">
+<div class="document-row">
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docResidence" name="docResidence"><label class="form-check-label" for="docResidence">Documents (Residence) / నివాస ధృవీకరణ పత్రం</label></div>
+<input type="file" class="form-control mt-2 document-file" name="residenceFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="residenceStatus"></div></div>
+<div class="document-row">
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docEducation" name="docEducation"><label class="form-check-label" for="docEducation">Documents (Educational) / విద్యా పత్రాలు</label></div>
+<input type="file" class="form-control mt-2 document-file" name="educationFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200">
+<div class="compression-status" id="educationStatus"></div></div>
+<div class="document-row">
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docDriving" name="docDriving"><label class="form-check-label" for="docDriving">Documents (Driving License) / డ్రైవింగ్ లైసెన్స్</label></div>
+<input type="file" class="form-control mt-2 document-file" name="drivingFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200">
+<div class="compression-status" id="drivingStatus"></div></div></div></div>
+<div class="section-title">11. Photo & Signature / ఫోటో & సంతకం</div>
+<div class="row justify-content-center g-4">
+<div class="col-lg-4 col-md-6 d-flex justify-content-center">
+<div class="upload-section">
+<label class="form-label required text-center d-block">Photo / ఫోటో</label>
+<div class="photo-box mx-auto"><img id="photoPreview"  src=""  alt="Photo Preview"  style="display:none;"><span id="photoText">Photo Preview / ఫోటో ప్రివ్యూ</span></div>
+<input type="file" class="form-control upload-input" id="photo" name="photo" accept="image/jpeg,image/png" capture="user" required>
+<div id="photoStatus" class="compression-status text-center"></div></div></div>
+<div class="col-lg-4 col-md-6 d-flex justify-content-center">
+<div class="upload-section">
+<label class="form-label required text-center d-block">Signature / సంతకం</label>
+<div class="signature-box mx-auto">
+<img id="signaturePreview"  src="" alt="Signature Preview" style="display:none;"><span id="signatureText">Signature Preview / సంతకం ప్రివ్యూ</span></div>
+<input type="file"   class="form-control upload-input"   id="signature"   name="signature"   accept="image/jpeg,image/png"   capture="environment"   required>
+<div id="signatureStatus"  class="compression-status text-center"></div></div></div></div>
+<div class="section-title">12. Last Salary Drawn / చివరి జీతం వివరాలు</div>
+<div class="alert alert-light border py-2 small">Enter the monthly salary components from your last drawn salary. PF and ESIC are deductions; Gross and Net Salary are calculated automatically.</div>
+<div class="row g-2">
+<div class="col-lg-3 col-md-4"><label class="form-label">Basic</label><input type="number" class="form-control salary-earning" name="last_basic" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">HRA</label><input type="number" class="form-control salary-earning" name="last_hra" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">CEA</label><input type="number" class="form-control salary-earning" name="last_cea" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">WA / Washing Allowance</label><input type="number" class="form-control salary-earning" name="last_wa" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">Conveyance</label><input type="number" class="form-control salary-earning" name="last_conveyance" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">LTA</label><input type="number" class="form-control salary-earning" name="last_lta" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">Medical</label><input type="number" class="form-control salary-earning" name="last_medical" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">Bonus</label><input type="number" class="form-control salary-earning" name="last_bonus" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">Incentive</label><input type="number" class="form-control salary-earning" name="last_incentive" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">Others / Special Allowance</label><input type="number" class="form-control salary-earning" name="last_others" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">PF Deduction</label><input type="number" class="form-control salary-deduction" name="last_pf" min="0" step="0.01" value="0"></div>
+<div class="col-lg-3 col-md-4"><label class="form-label">ESIC Deduction</label><input type="number" class="form-control salary-deduction" name="last_esic" min="0" step="0.01" value="0"></div>
+<div class="col-lg-4 col-md-4"><label class="form-label fw-bold">Gross Earnings</label><input type="number" class="form-control bg-light fw-bold" id="lastGross" name="last_gross" readonly></div>
+<div class="col-lg-4 col-md-4"><label class="form-label fw-bold">Total Deductions</label><input type="number" class="form-control bg-light fw-bold" id="lastDeductions" name="last_deductions" readonly></div>
+<div class="col-lg-4 col-md-4"><label class="form-label fw-bold">Net Salary Drawn</label><input type="number" class="form-control bg-light fw-bold" id="lastNet" name="last_net" readonly></div>
+</div>
+<div class="section-title">13. Declaration / ప్రకటన</div>
+<div class="border rounded p-3 bg-light">
+<div class="form-check"><input class="form-check-input" type="checkbox" id="declaration" required><label class="form-check-label" for="declaration">I hereby declare that the information provided in this application is true and correct to the best of my knowledge and belief.<br>నేను ఈ దరఖాస్తులో అందించిన సమాచారం నా జ్ఞానం మరియు నమ్మకం మేరకు నిజమైనది మరియు సరైనదని ఇందుమూలంగా ప్రకటిస్తున్నాను.<br><br>
+I understand that any false information may result in rejection of my application or termination of employment.<br>ఏదైనా తప్పుడు సమాచారం అందించినట్లయితే నా దరఖాస్తు తిరస్కరించబడవచ్చు లేదా ఉద్యోగం రద్దు చేయబడవచ్చని నేను అర్థం చేసుకున్నాను.</label></div></div>
+<div class="submit-area text-center">
+<button type="submit" class="btn btn-primary btn-lg px-5"> Submit Application / దరఖాస్తును సమర్పించండి </button>
+<button type="reset" class="btn btn-outline-secondary btn-lg px-5 ms-2"> Reset / రీసెట్</button></div>
+<div id="successMessage" class="alert alert-success mt-3 d-none">Application submitted successfully.</div></div>
+</form>
+<div class="footer">Designed By: B Bhujanga Rao</div></div></div>
+<script>
+const designations = {
+"Sales": ["Sales Consultant","Team Leader - Sales","Sales Manager","General Manager - Sales","CRM Executive","CRM Manager"],
+"Service": ["Service Advisor","Senior Service Advisor","Technician","Senior Technician","Team Leader - Service","Workshop Manager","Service Manager","General Manager - Service","Customer Care Executive"],
+"True Value": ["True Value Executive","True Value Consultant","True Value Manager","Evaluation Executive","Customer Relationship Executive"],
+"Spare Parts": ["Parts Executive","Parts Counter Sales Executive","Parts Manager","Stores Executive","Store Manager"],
+"Accessories": ["Accessories Executive","Accessories Team Leader","Accessories Manager"],
+"Administration": ["Admin Executive","Admin Manager","Office Assistant","Receptionist"],
+"Finance": ["Accounts Executive","Senior Accounts Executive","Accountant","Finance Manager","CFO"],
+"HR": ["HR Executive","Senior HR Executive","HR Manager","HR Head"],
+"IT": ["IT Executive","IT Support Executive","System Administrator","IT Manager","IT Head"],
+"Common": ["Driver","House Keeping","Lobby Manager","Washing Staff"]};
+document.getElementById("division").addEventListener("change", function() {
+const designation =document.getElementById("designation");
+designation.innerHTML ='<option value="">Select Designation / హోదాను ఎంచుకోండి</option>';
+const selected = this.value;
+if (designations[selected]) {
+designations[selected].forEach(function(item) {
+const option =document.createElement("option");
+option.value = item;
+option.textContent = item;
+designation.appendChild(option);
+});}});
+document.getElementById("sameAddress").addEventListener("change", function() {
+const present =document.querySelector('[name="presentAddress"]').value;
+const permanent =document.getElementById("permanentAddress");
+if (this.checked) {permanent.value = present;
+permanent.readOnly = true;} else {permanent.value = "";
+permanent.readOnly = false;}});
+document.querySelector('[name="presentAddress"]').addEventListener("input", function() {const same =document.getElementById("sameAddress");
+if (same.checked) {document.getElementById("permanentAddress").value = this.value;}});
+let educationCount = 0;
+function addEducation() {
+educationCount++;
+const container =document.getElementById("educationContainer");
+const div =document.createElement("div");
+div.className = "repeat-card";
+div.innerHTML = `
+<div class="repeat-header"><span class="repeat-title">Education ${educationCount} / విద్యార్హత ${educationCount}</span>
+<button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.repeat-card').remove()">Remove / తొలగించు</button></div>
+<div class="row g-1">
+<div class="col-lg-4 col-md-6"><label class="form-label">School / College / పాఠశాల / కళాశాల</label>
+<input type="text" class="form-control" name="education_institute[]" placeholder="Institution Name / సంస్థ పేరు"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Degree / Diploma / డిగ్రీ / డిప్లొమా</label>
+<select class="form-select" name="education_course[]"><option value="">Select / ఎంచుకోండి</option>
+<option>SSC</option><option>Intermediate</option><option>ITI</option><option>Diploma</option><option>Graduation</option><option>Post Graduation</option><option>B.Tech / B.E</option><option>MBA</option><option>MCA</option><option>Other</option></select></div>
+<div class="col-lg-2 col-md-6">
+<label class="form-label">Year / సంవత్సరం</label>
+<input type="number" class="form-control" name="education_year[]" min="1950" max="2100" placeholder="YYYY"></div>
+<div class="col-lg-1 col-md-3"><label class="form-label">Grade / గ్రేడ్</label><select class="form-select" name="education_grade[]"><option value="">-</option><option>A+</option><option>A</option><option>B+</option><option>B</option><option>C</option><option>Other</option></select></div>
+<div class="col-lg-2 col-md-3"><label class="form-label">Marks % / మార్కులు %</label><input type="number" class="form-control" name="education_marks[]" min="0" max="100" step="0.01" placeholder="Percentage / శాతం"></div></div>`;
+container.appendChild(div);}
+addEducation();
+let familyCount = 0;
+function addFamily() {
+familyCount++;
+const container =document.getElementById("familyContainer");
+const div =document.createElement("div");
+div.className = "repeat-card";
+div.innerHTML = `<div class="repeat-header"><span class="repeat-title">Family Member ${familyCount} / కుటుంబ సభ్యుడు ${familyCount}</span>
+<button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.repeat-card').remove()">Remove / తొలగించు</button></div>
+<div class="row g-1">
+<div class="col-lg-4 col-md-6"><label class="form-label">Member Name / సభ్యుని పేరు</label><input type="text" class="form-control" name="family_name[]" placeholder="Name / పేరు"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Date of Birth / పుట్టిన తేదీ</label><input type="date" class="form-control" name="family_dob[]"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Relation / బంధుత్వం</label><select class="form-select" name="family_relation[]">
+<option value="">Select / ఎంచుకోండి</option><option>Father</option><option>Mother</option><option>Spouse</option><option>Brother</option><option>Sister</option><option>Son</option><option>Daughter</option><option>Other</option></select></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Aadhaar / ఆధార్</label><input type="text" class="form-control" name="family_aadhaar[]" maxlength="12" inputmode="numeric" placeholder="12 digits / 12 అంకెలు"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Mobile / ఫోన్ నంబర్</label><input type="tel" class="form-control" name="family_contact[]" maxlength="10" inputmode="numeric" placeholder="10 digits / 10 అంకెలు"></div>`;
+container.appendChild(div);}
+addFamily();
+let employmentCount = 0;
+function addEmployment() {
+employmentCount++;
+const container =document.getElementById("employmentContainer");
+const div =document.createElement("div");
+div.className = "repeat-card";
+div.innerHTML = `<div class="repeat-header"><span class="repeat-title">Previous Employment ${employmentCount} / గత ఉద్యోగం ${employmentCount}</span>
+<button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.repeat-card').remove()"> Remove / తొలగించు</button></div>
+<div class="row g-1 mb-2">
+<div class="col-lg-3 col-md-6"><label class="form-label">Name of Organisation / సంస్థ పేరు</label><input type="text" class="form-control" name="employment_org[]" placeholder="Organisation Name / సంస్థ పేరు"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Designation / హోదా </label><input type="text" class="form-control" name="employment_designation[]" placeholder="Designation / హోదా"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Joining / చేరిన తేదీ</label><input type="date" class="form-control" name="employment_joining[]"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Relieving / విడుదల తేదీ</label><input type="date" class="form-control" name="employment_relieving[]"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Worked /పని చేసిన కాలం</label><input type="text" class="form-control employment-period" name="employment_worked[]" placeholder="Auto calculated / ఆటో లెక్కింపు" readonly></div>
+</div>
+<div class="row g-3">
+<div class="col-lg-2 col-md-6"><label class="form-label">S/Salary / చేరిన జీతం</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" name="employment_joining_salary[]" min="0" step="0.01" placeholder="Amount / మొత్తం"></div></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">E/Salary / విడుదల జీతం</label>
+
+<div class="input-group">
+
+<span class="input-group-text">₹</span>
+
+<input
+type="number"
+class="form-control"
+name="employment_relieving_salary[]"
+min="0"
+step="0.01"
+placeholder="Amount / మొత్తం">
+
+</div>
+
+</div>
+
+
+<div class="col-lg-2 col-md-6">
+
+<label class="form-label">
+
+HOD Name /
+HOD పేరు
+
+</label>
+
+<input
+type="text"
+class="form-control"
+name="employment_hod[]"
+placeholder="HOD Name / HOD పేరు">
+
+</div>
+
+
+<div class="col-lg-2 col-md-6">
+
+<label class="form-label">
+
+HOD Contact /
+HOD ఫోన్
+
+</label>
+
+<input
+type="tel"
+class="form-control"
+name="employment_hod_contact[]"
+maxlength="10"
+inputmode="numeric"
+placeholder="10 Digit Mobile / 10 అంకెల మొబైల్">
+
+</div>
+
+
+<div class="col-lg-4 col-md-6">
+
+<label class="form-label">
+
+Reason to Relieve /
+విడుదల కారణం
+
+</label>
+
+<select
+class="form-select"
+name="employment_reason[]">
+
+<option value="">
+Select Reason / కారణాన్ని ఎంచుకోండి
+</option>
+
+<option>Career Growth</option>
+<option>Better Opportunity</option>
+<option>Higher Salary</option>
+<option>Relocation</option>
+<option>Personal Reasons</option>
+<option>Family Reasons</option>
+<option>Contract Completed</option>
+<option>Company Closure</option>
+<option>Layoff</option>
+<option>Retirement</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+`;
+
+
+container.appendChild(div);
+
+
+/* Employment duration */
+
+const joining =
+div.querySelector('[name="employment_joining[]"]');
+
+const relieving =
+div.querySelector('[name="employment_relieving[]"]');
+
+const worked =
+div.querySelector('.employment-period');
+
+
+function calculateEmploymentPeriod() {
+
+if (!joining.value || !relieving.value) {
+
+worked.value = "";
+
+return;
+
+}
+
+
+const start =
+new Date(joining.value);
+
+const end =
+new Date(relieving.value);
+
+
+if (end < start) {
+
+worked.value =
+"Invalid dates / తప్పు తేదీలు";
+
+return;
+
+}
+
+
+let months =
+(end.getFullYear() - start.getFullYear()) * 12;
+
+months +=
+end.getMonth() - start.getMonth();
+
+
+const years =
+Math.floor(months / 12);
+
+const remainingMonths =
+months % 12;
+
+
+let result = "";
+
+
+if (years > 0) {
+
+result +=
+years + " Year" +
+(years > 1 ? "s" : "");
+
+}
+
+
+if (remainingMonths > 0) {
+
+if (result) result += " ";
+
+result +=
+remainingMonths + " Month" +
+(remainingMonths > 1 ? "s" : "");
+
+}
+
+
+worked.value =
+result || "Less than 1 Month";
+
+}
+
+
+joining.addEventListener(
+"change",
+calculateEmploymentPeriod
+);
+
+relieving.addEventListener(
+"change",
+calculateEmploymentPeriod
+);
+
+}
+
+
+addEmployment();
+
+
+
+/* =========================================================
+ IMAGE COMPRESSION ENGINE
+========================================================= */
+
+/*
+ Photo -> Maximum 500 KB
+ Other image -> Maximum 200 KB
+
+ PDF files are NOT compressed here.
+*/
+
+
+function compressImage(file, maxKB) {
+
+return new Promise(function(resolve, reject) {
+
+const reader =
+new FileReader();
+
+
+reader.onload = function(event) {
+
+const img =
+new Image();
+
+
+img.onload = function() {
+
+let width =
+img.width;
+
+let height =
+img.height;
+
+
+/*
+ Limit excessively large images.
+*/
+
+const MAX_DIMENSION = 1800;
+
+
+if (width > MAX_DIMENSION ||
+height > MAX_DIMENSION) {
+
+const ratio =
+Math.min(
+MAX_DIMENSION / width,
+MAX_DIMENSION / height
+);
+
+width =
+Math.round(width * ratio);
+
+height =
+Math.round(height * ratio);
+
+}
+
+
+const canvas =
+document.createElement("canvas");
+
+canvas.width =
+width;
+
+canvas.height =
+height;
+
+
+const ctx =
+canvas.getContext("2d");
+
+
+ctx.drawImage(
+img,
+0,
+0,
+width,
+height
+);
+
+
+/*
+ Start with good JPEG quality.
+*/
+
+let quality = 0.85;
+
+
+function createBlob() {
+
+canvas.toBlob(
+
+function(blob) {
+
+if (!blob) {
+
+reject(
+new Error(
+"Image compression failed."
+)
+);
+
+return;
+
+}
+
+
+/*
+ Image is within required size.
+*/
+
+if (
+blob.size <=
+maxKB * 1024
+) {
+
+resolve(
+new File(
+[blob],
+file.name.replace(
+/\.[^/.]+$/,
+".jpg"
+),
+{
+type: "image/jpeg",
+lastModified:
+Date.now()
+}
+)
+);
+
+return;
+
+}
+
+
+/*
+ Reduce quality.
+*/
+
+quality -= 0.05;
+
+
+/*
+ If quality becomes too low,
+ reduce dimensions.
+*/
+
+if (quality < 0.35) {
+
+width =
+Math.round(width * 0.85);
+
+height =
+Math.round(height * 0.85);
+
+canvas.width =
+width;
+
+canvas.height =
+height;
+
+ctx.drawImage(
+img,
+0,
+0,
+width,
+height
+);
+
+quality = 0.75;
+
+}
+
+
+createBlob();
+
+},
+
+"image/jpeg",
+
+quality
+
+);
+
+}
+
+
+createBlob();
+
+};
+
+
+img.onerror =
+function() {
+
+reject(
+new Error(
+"Unable to read image."
+)
+);
+
+};
+
+
+img.src =
+event.target.result;
+
+};
+
+
+reader.onerror =
+function() {
+
+reject(
+new Error(
+"Unable to read selected file."
+)
+);
+
+};
+
+
+reader.readAsDataURL(file);
+
+});
+
+}
+
+
+
+/* =========================================================
+ REPLACE FILE INPUT
+========================================================= */
+
+function replaceFileInput(input, file) {
+
+const dataTransfer =
+new DataTransfer();
+
+dataTransfer.items.add(file);
+
+input.files =
+dataTransfer.files;
+
+}
+
+
+
+/* =========================================================
+ IMAGE FILE HANDLER
+========================================================= */
+
+async function processImageInput(
+input,
+statusElement,
+maxKB
+) {
+
+const file =
+input.files[0];
+
+if (!file) return;
+
+
+/*
+ PDF:
+ Leave unchanged.
+*/
+
+if (file.type === "application/pdf") {
+
+statusElement.innerHTML =
+"PDF selected / PDF ఎంచుకోబడింది";
+
+statusElement.className =
+"compression-status text-info";
+
+return;
+
+}
+
+
+/*
+ Only process images.
+*/
+
+if (!file.type.startsWith("image/")) {
+
+statusElement.innerHTML =
+"Unsupported file / మద్దతు లేని ఫైల్";
+
+statusElement.className =
+"compression-status text-danger";
+
+return;
+
+}
+
+
+const originalKB =
+(file.size / 1024).toFixed(1);
+
+
+statusElement.innerHTML =
+"Compressing... / కుదింపు జరుగుతోంది...";
+
+
+statusElement.className =
+"compression-status text-warning";
+
+
+try {
+
+const compressed =
+await compressImage(
+file,
+maxKB
+);
+
+
+replaceFileInput(
+input,
+compressed
+);
+
+
+const finalKB =
+(compressed.size / 1024).toFixed(1);
+
+
+statusElement.innerHTML =
+"✓ " +
+originalKB +
+" KB → " +
+finalKB +
+" KB";
+
+statusElement.className =
+"compression-status text-success";
+
+
+}
+
+catch(error) {
+
+statusElement.innerHTML =
+"✕ Compression failed / కుదింపు విఫలమైంది";
+
+statusElement.className =
+"compression-status text-danger";
+
+console.error(error);
+
+}
+
+}
+
+
+
+/* =========================================================
+ DOCUMENT IMAGE COMPRESSION
+========================================================= */
+
+document
+.querySelectorAll(".document-file")
+.forEach(function(input) {
+
+input.addEventListener(
+"change",
+function() {
+
+const statusId =
+this.name
+.replace("File", "")
++ "Status";
+
+
+const status =
+document.getElementById(statusId);
+
+
+processImageInput(
+this,
+status,
+200
+);
+
+});
+
+});
+
+
+
+/* =========================================================
+ PHOTO
+========================================================= */
+
+document
+.getElementById("photo")
+.addEventListener(
+"change",
+async function(event) {
+
+const input = this;
+
+const file =
+input.files[0];
+
+if (!file) return;
+
+
+const status =
+document.getElementById(
+"photoStatus"
+);
+
+
+try {
+
+const compressed =
+await compressImage(
+file,
+500
+);
+
+
+replaceFileInput(
+input,
+compressed
+);
+
+
+const preview =
+document.getElementById(
+"photoPreview"
+);
+
+const text =
+document.getElementById(
+"photoText"
+);
+
+
+preview.src =
+URL.createObjectURL(
+compressed
+);
+
+preview.style.display =
+"block";
+
+text.style.display =
+"none";
+
+
+status.innerHTML =
+"✓ Photo compressed to " +
+(compressed.size / 1024).toFixed(1) +
+" KB / ఫోటో కుదించబడింది";
+
+status.className =
+"compression-status text-success";
+
+}
+
+catch(error) {
+
+status.innerHTML =
+"✕ Photo compression failed / ఫోటో కుదింపు విఫలమైంది";
+
+status.className =
+"compression-status text-danger";
+
+console.error(error);
+
+}
+
+});
+
+
+
+/* =========================================================
+ SIGNATURE
+========================================================= */
+
+document
+.getElementById("signature")
+.addEventListener(
+"change",
+async function(event) {
+
+const input = this;
+
+const file =
+input.files[0];
+
+if (!file) return;
+
+
+const status =
+document.getElementById(
+"signatureStatus"
+);
+
+
+try {
+
+const compressed =
+await compressImage(
+file,
+200
+);
+
+
+replaceFileInput(
+input,
+compressed
+);
+
+
+const preview =
+document.getElementById(
+"signaturePreview"
+);
+
+const text =
+document.getElementById(
+"signatureText"
+);
+
+
+preview.src =
+URL.createObjectURL(
+compressed
+);
+
+preview.style.display =
+"block";
+
+text.style.display =
+"none";
+
+
+status.innerHTML =
+"✓ Signature compressed to " +
+(compressed.size / 1024).toFixed(1) +
+" KB / సంతకం కుదించబడింది";
+
+status.className =
+"compression-status text-success";
+
+}
+
+catch(error) {
+
+status.innerHTML =
+"✕ Signature compression failed / సంతకం కుదింపు విఫలమైంది";
+
+status.className =
+"compression-status text-danger";
+
+console.error(error);
+
+}
+
+});
+
+
+
+/* =========================================================
+ INPUT RESTRICTIONS
+========================================================= */
+
+document.addEventListener(
+"input",
+function(event) {
+
+const el =
+event.target;
+
+
+if (
+
+el.name === "aadhaar" ||
+
+el.name === "mobile" ||
+
+el.name === "uan" ||
+
+el.name === "esic" ||
+
+el.name === "accountNumber" ||
+
+el.name === "ref1Mobile" ||
+
+el.name === "ref2Mobile" ||
+
+el.name === "family_aadhaar[]" ||
+
+el.name === "family_contact[]" ||
+
+el.name ===
+"employment_hod_contact[]"
+
+) {
+
+el.value =
+el.value.replace(
+/\D/g,
+""
+);
+
+}
+
+
+if (el.name === "pan") {
+
+el.value =
+el.value
+.toUpperCase()
+.replace(
+/[^A-Z0-9]/g,
+""
+);
+
+}
+
+
+if (el.name === "ifsc") {
+
+el.value =
+el.value
+.toUpperCase()
+.replace(
+/[^A-Z0-9]/g,
+""
+);
+
+}
+
+});
+
+
+
+/* =========================================================
+ LAST SALARY CALCULATION + SUBMISSION
+========================================================= */
+
+const GOOGLE_APPS_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+/* =========================================================
+ COMPANY LETTERHEAD DETAILS (edit as needed for the PDF)
+========================================================= */
+const COMPANY_INFO = {
+  name: "SAI SWARNA AUTOMOTIVES",
+  tagline: "Employee Recruitment / Joining Application",
+  address: "MVP Colony & Paradesipalem, Visakhapatnam, Andhra Pradesh",
+  phone: "+91 8463921234",
+  email: "hr@saiswarnaautomotives.com",
+  logo: "https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN"
+};
+
+function calculateLastSalary() {
+  let gross = 0, deductions = 0;
+  document.querySelectorAll(".salary-earning").forEach(el => gross += Number(el.value) || 0);
+  document.querySelectorAll(".salary-deduction").forEach(el => deductions += Number(el.value) || 0);
+  document.getElementById("lastGross").value = gross.toFixed(2);
+  document.getElementById("lastDeductions").value = deductions.toFixed(2);
+  document.getElementById("lastNet").value = Math.max(0, gross - deductions).toFixed(2);
+}
+document.querySelectorAll(".salary-earning,.salary-deduction").forEach(el => el.addEventListener("input", calculateLastSalary));
+calculateLastSalary();
+
+function formDataToObject(form) {
+  const data = {};
+  const fd = new FormData(form);
+  for (const [key, value] of fd.entries()) {
+if (value instanceof File) continue;
+if (key.endsWith("[]")) {
+  if (!data[key]) data[key] = [];
+  data[key].push(value);
+} else if (key !== "declaration") data[key] = value;
+  }
+  data.declaration = document.getElementById("declaration").checked;
+  data.submittedAt = new Date().toISOString();
+  data.applicationId = data.aadhaar || ("SS-" + Date.now());
+  return data;
+}
+
+/* =========================================================
+ PDF HELPERS - image loading
+========================================================= */
+
+function loadUrlAsDataURL(url) {
+  return new Promise((resolve) => {
+if (!url) { resolve(null); return; }
+fetch(url)
+  .then(res => { if (!res.ok) throw new Error("logo fetch failed"); return res.blob(); })
+  .then(blob => {
+const reader = new FileReader();
+reader.onload = () => resolve(reader.result);
+reader.onerror = () => resolve(null);
+reader.readAsDataURL(blob);
+  })
+  .catch(() => resolve(null));
+  });
+}
+
+function fileToDataURL(file) {
+  return new Promise((resolve) => {
+if (!file) { resolve(null); return; }
+const reader = new FileReader();
+reader.onload = () => resolve(reader.result);
+reader.onerror = () => resolve(null);
+reader.readAsDataURL(file);
+  });
+}
+
+function getImageDimensions(dataUrl) {
+  return new Promise((resolve) => {
+if (!dataUrl) { resolve({w:1,h:1}); return; }
+const img = new Image();
+img.onload = () => resolve({w:img.naturalWidth || 1, h:img.naturalHeight || 1});
+img.onerror = () => resolve({w:1,h:1});
+img.src = dataUrl;
+  });
+}
+
+function detectImageFormat(dataUrl) {
+  if (!dataUrl) return "JPEG";
+  if (dataUrl.indexOf("image/png") !== -1) return "PNG";
+  if (dataUrl.indexOf("image/webp") !== -1) return "WEBP";
+  return "JPEG";
+}
+
+/* Re-encode an image as a PNG with a transparent background.
+   The company logo is fetched from a remote (Google Drive) link, which
+   often re-serves images as flattened, fully-opaque JPEGs, replacing any
+   transparent background with solid white. That shows up as an ugly
+   white/coloured box behind the logo on the PDF letterhead.
+   This draws the image to an offscreen canvas and keys out any near-white
+   pixels to transparent, then returns a PNG data URL (which jsPDF embeds
+   with real alpha transparency). If the image already has genuine
+   transparency, it's returned untouched. */
+function makeLogoBackgroundTransparent(dataUrl, whiteThreshold = 245) {
+  return new Promise((resolve) => {
+if (!dataUrl) { resolve(dataUrl); return; }
+const img = new Image();
+img.onload = () => {
+  try {
+const canvas = document.createElement("canvas");
+canvas.width = img.naturalWidth || img.width;
+canvas.height = img.naturalHeight || img.height;
+const ctx = canvas.getContext("2d");
+ctx.drawImage(img, 0, 0);
+const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+const px = imgData.data;
+
+// If the source already carries real transparency, leave it as-is.
+let hasAlpha = false;
+for (let i = 3; i < px.length; i += 4) { if (px[i] < 250) { hasAlpha = true; break; } }
+if (hasAlpha) { resolve(dataUrl); return; }
+
+// Otherwise key out the near-white background.
+for (let i = 0; i < px.length; i += 4) {
+  if (px[i] >= whiteThreshold && px[i+1] >= whiteThreshold && px[i+2] >= whiteThreshold) {
+px[i+3] = 0;
+  }
+}
+ctx.putImageData(imgData, 0, 0);
+resolve(canvas.toDataURL("image/png"));
+  } catch (e) {
+// Canvas may be blocked (CORS-tainted); fall back to the original image.
+resolve(dataUrl);
+  }
+};
+img.onerror = () => resolve(dataUrl);
+img.src = dataUrl;
+  });
+}
+
+/* Draw an image centred inside a bordered box, preserving aspect ratio ("contain" fit) */
+async function drawFittedImage(pdf, dataUrl, x, y, boxW, boxH) {
+  pdf.setDrawColor(150,150,150);
+  pdf.setLineWidth(0.3);
+  pdf.rect(x, y, boxW, boxH);
+  if (!dataUrl) return;
+  try {
+const {w,h} = await getImageDimensions(dataUrl);
+const ratio = Math.min((boxW-2)/w, (boxH-2)/h);
+const drawW = w*ratio, drawH = h*ratio;
+const dx = x + (boxW-drawW)/2, dy = y + (boxH-drawH)/2;
+pdf.addImage(dataUrl, detectImageFormat(dataUrl), dx, dy, drawW, drawH, undefined, "FAST");
+  } catch(e) { /* leave box empty if the image can't be embedded */ }
+}
+
+const FIELD_LABELS = {
+  division:"Division", designation:"Designation", Location:"Location",
+  fullName:"Full Name", aadhaar:"Aadhaar Number", dob:"Date of Birth", mobile:"Mobile Number",
+  email:"Email Address", pan:"PAN Number", caste:"Caste", subCaste:"Sub-Caste", bloodGroup:"Blood Group",
+  maritalStatus:"Marital Status", fatherName:"Father's Name", fatherOccupation:"Father's Occupation",
+  presentAddress:"Present Address", permanentAddress:"Permanent Address",
+  bankName:"Bank Name", accountNumber:"Bank A/c Number", ifsc:"IFSC Code", bankBranch:"Bank Branch",
+  uan:"UAN Number", esic:"ESIC Number",
+  aboutYou:"About You", achievement:"Last Achievement", activities:"Job Roles / Responsibilities", goals:"Goals / Ambitions",
+  last_basic:"Basic", last_hra:"HRA", last_cea:"CEA", last_wa:"Washing Allowance", last_conveyance:"Conveyance",
+  last_lta:"LTA", last_medical:"Medical", last_bonus:"Bonus", last_incentive:"Incentive", last_others:"Other Allowance",
+  last_pf:"PF Deduction", last_esic:"ESIC Deduction", last_gross:"Gross Earnings", last_deductions:"Total Deductions", last_net:"Net Salary Drawn"
+};
+const DOC_LABELS = [
+  ["docAadhar","Aadhaar"], ["docPan","PAN"], ["docDob","Date of Birth Proof"],
+  ["docResidence","Residence Proof"], ["docEducation","Educational Certificates"], ["docDriving","Driving License"]
+];
+
+/* =========================================================
+ MAIN PDF GENERATOR
+========================================================= */
+async function generateApplicationPDF(form) {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({unit:"mm", format:"a4"});
+  pdf.setFont("helvetica", "normal");
+
+  const data = formDataToObject(form);
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const marginX = 12;
+  const contentWidth = pageWidth - marginX*2;
+  const HEADER_BOTTOM = 34, CONTENT_TOP = 42, FOOTER_TOP = pageHeight - 16;
+  const PRIMARY = [23,54,93], LIGHT = [237,243,249], GREY = [110,118,128], TEXT = [40,44,48];
+
+  const [logoDataUrlRaw, photoDataUrl, signatureDataUrl] = await Promise.all([
+loadUrlAsDataURL(COMPANY_INFO.logo),
+fileToDataURL(document.getElementById("photo").files[0]),
+fileToDataURL(document.getElementById("signature").files[0])
+  ]);
+  const logoDataUrl = await makeLogoBackgroundTransparent(logoDataUrlRaw);
+
+  /* ---- Letterhead header, redrawn on every page ---- */
+  function drawHeader() {
+pdf.setFillColor(...LIGHT);
+pdf.rect(0, 0, pageWidth, HEADER_BOTTOM, "F");
+pdf.setDrawColor(...PRIMARY);
+pdf.setLineWidth(0.7);
+pdf.line(0, HEADER_BOTTOM, pageWidth, HEADER_BOTTOM);
+
+pdf.setTextColor(...PRIMARY);
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(16);
+pdf.text(COMPANY_INFO.name, marginX, 12);
+
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(9);
+pdf.setTextColor(70,78,88);
+pdf.text(COMPANY_INFO.tagline, marginX, 18);
+pdf.text(COMPANY_INFO.address, marginX, 23);
+pdf.text(`Phone: ${COMPANY_INFO.phone}   |   Email: ${COMPANY_INFO.email}`, marginX, 28);
+
+// Company logo, top-right corner of the letterhead
+const logoW = 28, logoH = 22, logoX = pageWidth - marginX - logoW, logoY = 5;
+if (logoDataUrl) {
+  try { pdf.addImage(logoDataUrl, detectImageFormat(logoDataUrl), logoX, logoY, logoW, logoH, undefined, "FAST"); }
+  catch(e) {
+pdf.setDrawColor(...PRIMARY); pdf.rect(logoX, logoY, logoW, logoH);
+  }
+} else {
+  pdf.setDrawColor(...PRIMARY); pdf.rect(logoX, logoY, logoW, logoH);
+}
+  }
+
+  function drawFooter(pageNum) {
+pdf.setDrawColor(...PRIMARY);
+pdf.setLineWidth(0.3);
+pdf.line(marginX, FOOTER_TOP, pageWidth - marginX, FOOTER_TOP);
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(7.5);
+pdf.setTextColor(...GREY);
+pdf.text(`Application ID: ${data.applicationId}`, marginX, FOOTER_TOP + 5);
+pdf.text(`Generated on ${new Date().toLocaleString()}`, pageWidth/2, FOOTER_TOP + 5, {align:"center"});
+pdf.text(`Page ${pageNum}`, pageWidth - marginX, FOOTER_TOP + 5, {align:"right"});
+  }
+
+  let y = CONTENT_TOP;
+  const ensureSpace = (needed) => {
+if (y + needed > FOOTER_TOP - 2) { pdf.addPage(); drawHeader(); y = CONTENT_TOP; }
+  };
+
+  drawHeader();
+
+  /* ---- Title bar + applicant photo box (first page) ---- */
+  pdf.setFont("helvetica","bold");
+  pdf.setFontSize(14);
+  pdf.setTextColor(...PRIMARY);
+  pdf.text("EMPLOYEE APPLICATION FORM", marginX, y + 2);
+
+  const photoBoxW = 30, photoBoxH = 36;
+  const photoBoxX = pageWidth - marginX - photoBoxW, photoBoxY = y - 2;
+  await drawFittedImage(pdf, photoDataUrl, photoBoxX, photoBoxY, photoBoxW, photoBoxH);
+  pdf.setFont("helvetica","normal");
+  pdf.setFontSize(7.5);
+  pdf.setTextColor(...GREY);
+  pdf.text("Applicant Photo", photoBoxX + photoBoxW/2, photoBoxY + photoBoxH + 4, {align:"center"});
+
+  pdf.setFont("helvetica","normal");
+  pdf.setFontSize(9);
+  pdf.setTextColor(...TEXT);
+  pdf.text(`Application ID: ${data.applicationId}`, marginX, y + 9);
+  pdf.text(`Date: ${new Date().toLocaleDateString()}`, marginX, y + 15);
+  pdf.text(`Division: ${data.division || "-"}    Designation: ${data.designation || "-"}    Location: ${data.Location || "-"}`, marginX, y + 21);
+
+  y += 30;
+
+  /* ---- Section heading bar ---- */
+  function sectionHeading(title) {
+ensureSpace(12);
+pdf.setFillColor(...LIGHT);
+pdf.setDrawColor(...PRIMARY);
+pdf.setLineWidth(0.2);
+pdf.rect(marginX, y, contentWidth, 7, "FD");
+pdf.setTextColor(...PRIMARY);
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(10.5);
+pdf.text(title, marginX + 2, y + 5);
+y += 10;
+  }
+
+  /* ---- Label/value table for a group of simple fields ---- */
+  function keyValueTable(pairs) {
+const body = pairs.map(([label,key]) => [label, (data[key] ?? "").toString().trim() || "-"]);
+pdf.autoTable({
+  startY: y,
+  margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
+  theme: "grid",
+  tableWidth: contentWidth,
+  styles: {fontSize: 8.5, cellPadding: 2.2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
+  columnStyles: {0:{fontStyle:"bold", cellWidth: 52, fillColor:[248,250,252]}, 1:{cellWidth: contentWidth-52}},
+  body,
+  didDrawPage: () => { drawHeader(); }
+});
+y = pdf.lastAutoTable.finalY + 8;
+  }
+
+  /* ---- Full-width table with real column headers, for repeating groups ---- */
+  function gridTable(head, keys, colStyles) {
+const rowCount = Math.max(0, ...keys.map(k => (data[k]||[]).length));
+if (rowCount === 0) { keyValueTable([["-", "__none__"]]); return; }
+const body = [];
+for (let i=0;i<rowCount;i++) body.push(keys.map(k => (data[k]||[])[i] || "-"));
+pdf.autoTable({
+  startY: y,
+  margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
+  theme: "grid",
+  tableWidth: contentWidth,
+  styles: {fontSize: 7.5, cellPadding: 2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
+  headStyles: {fillColor: PRIMARY, textColor: 255, fontStyle:"bold", fontSize: 7.8},
+  columnStyles: colStyles || {},
+  head: [head],
+  body,
+  didDrawPage: () => { drawHeader(); }
+});
+y = pdf.lastAutoTable.finalY + 8;
+  }
+
+  sectionHeading("1-2. Application & Personal Details");
+  keyValueTable([
+[FIELD_LABELS.division,"division"], [FIELD_LABELS.designation,"designation"], [FIELD_LABELS.Location,"Location"],
+[FIELD_LABELS.fullName,"fullName"], [FIELD_LABELS.aadhaar,"aadhaar"], [FIELD_LABELS.dob,"dob"],
+[FIELD_LABELS.mobile,"mobile"], [FIELD_LABELS.email,"email"], [FIELD_LABELS.pan,"pan"],
+[FIELD_LABELS.caste,"caste"], [FIELD_LABELS.subCaste,"subCaste"], [FIELD_LABELS.bloodGroup,"bloodGroup"],
+[FIELD_LABELS.maritalStatus,"maritalStatus"], [FIELD_LABELS.fatherName,"fatherName"], [FIELD_LABELS.fatherOccupation,"fatherOccupation"]
+  ]);
+
+  sectionHeading("3. Address Details");
+  keyValueTable([[FIELD_LABELS.presentAddress,"presentAddress"], [FIELD_LABELS.permanentAddress,"permanentAddress"]]);
+
+  sectionHeading("4. Bank & Statutory Details");
+  keyValueTable([
+[FIELD_LABELS.bankName,"bankName"], [FIELD_LABELS.accountNumber,"accountNumber"], [FIELD_LABELS.ifsc,"ifsc"],
+[FIELD_LABELS.bankBranch,"bankBranch"], [FIELD_LABELS.uan,"uan"], [FIELD_LABELS.esic,"esic"]
+  ]);
+
+  sectionHeading("5. About You / Career Information");
+  keyValueTable([
+[FIELD_LABELS.aboutYou,"aboutYou"], [FIELD_LABELS.achievement,"achievement"],
+[FIELD_LABELS.activities,"activities"], [FIELD_LABELS.goals,"goals"]
+  ]);
+
+  sectionHeading("6. References");
+  pdf.autoTable({
+startY: y,
+margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
+theme: "grid",
+tableWidth: contentWidth,
+styles: {fontSize: 8, cellPadding: 2.2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
+headStyles: {fillColor: PRIMARY, textColor: 255, fontStyle:"bold", fontSize: 8},
+columnStyles: {0:{cellWidth:24}, 1:{cellWidth:38}, 2:{cellWidth:46}, 3:{cellWidth:40}, 4:{cellWidth:38}},
+head: [["Reference","Name","Organisation","Designation","Mobile"]],
+body: [
+  ["Reference 1", data.ref1Name||"-", data.ref1Org||"-", data.ref1Designation||"-", data.ref1Mobile||"-"],
+  ["Reference 2", data.ref2Name||"-", data.ref2Org||"-", data.ref2Designation||"-", data.ref2Mobile||"-"]
+],
+didDrawPage: () => { drawHeader(); }
+  });
+  y = pdf.lastAutoTable.finalY + 8;
+
+  sectionHeading("7. Educational Qualifications");
+  gridTable(
+["Institution","Course / Degree","Year","Grade","Marks %"],
+["education_institute[]","education_course[]","education_year[]","education_grade[]","education_marks[]"],
+{0:{cellWidth:65},1:{cellWidth:48},2:{cellWidth:24},3:{cellWidth:24},4:{cellWidth:25}}
+  );
+
+  sectionHeading("8. Family Details");
+  gridTable(
+["Name","Date of Birth","Relation","Aadhaar","Mobile"],
+["family_name[]","family_dob[]","family_relation[]","family_aadhaar[]","family_contact[]"],
+{0:{cellWidth:54},1:{cellWidth:32},2:{cellWidth:32},3:{cellWidth:40},4:{cellWidth:28}}
+  );
+
+  sectionHeading("9. Previous Employment Details");
+  gridTable(
+["Organisation","Designation","Joining","Relieving","Worked","S/Salary","E/Salary","HOD","HOD Contact","Reason"],
+["employment_org[]","employment_designation[]","employment_joining[]","employment_relieving[]","employment_worked[]",
+ "employment_joining_salary[]","employment_relieving_salary[]","employment_hod[]","employment_hod_contact[]","employment_reason[]"],
+{0:{cellWidth:26},1:{cellWidth:22},2:{cellWidth:18},3:{cellWidth:18},4:{cellWidth:16},5:{cellWidth:16},6:{cellWidth:16},7:{cellWidth:18},8:{cellWidth:18},9:{cellWidth:18}}
+  );
+
+  sectionHeading("10. Documents Submitted");
+  pdf.autoTable({
+startY: y,
+margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
+theme: "grid",
+tableWidth: contentWidth,
+styles: {fontSize: 8.5, cellPadding: 2.2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
+headStyles: {fillColor: PRIMARY, textColor: 255, fontStyle:"bold", fontSize: 8.5},
+head: [["Document","Submitted"]],
+body: DOC_LABELS.map(([id,label]) => [label, document.getElementById(id).checked ? "Yes" : "No"]),
+columnStyles: {0:{cellWidth: contentWidth-40}, 1:{cellWidth:40, halign:"center"}},
+didDrawPage: () => { drawHeader(); }
+  });
+  y = pdf.lastAutoTable.finalY + 8;
+
+  sectionHeading("12. Last Salary Drawn");
+  keyValueTable([
+[FIELD_LABELS.last_basic,"last_basic"], [FIELD_LABELS.last_hra,"last_hra"], [FIELD_LABELS.last_cea,"last_cea"],
+[FIELD_LABELS.last_wa,"last_wa"], [FIELD_LABELS.last_conveyance,"last_conveyance"], [FIELD_LABELS.last_lta,"last_lta"],
+[FIELD_LABELS.last_medical,"last_medical"], [FIELD_LABELS.last_bonus,"last_bonus"], [FIELD_LABELS.last_incentive,"last_incentive"],
+[FIELD_LABELS.last_others,"last_others"], [FIELD_LABELS.last_pf,"last_pf"], [FIELD_LABELS.last_esic,"last_esic"],
+[FIELD_LABELS.last_gross,"last_gross"], [FIELD_LABELS.last_deductions,"last_deductions"], [FIELD_LABELS.last_net,"last_net"]
+  ]);
+
+  /* ---- Declaration, signature and office-use block ---- */
+  sectionHeading("13. Declaration & Signature");
+  ensureSpace(45);
+  pdf.setFont("helvetica","normal");
+  pdf.setFontSize(8.5);
+  pdf.setTextColor(...TEXT);
+  const declLines = pdf.splitTextToSize(
+"I hereby declare that the information provided in this application is true and correct to the best of my knowledge and belief. I understand that any false information may result in rejection of my application or termination of employment.",
+contentWidth
+  );
+  pdf.text(declLines, marginX, y);
+  y += declLines.length*4.2 + 6;
+
+  ensureSpace(46);
+  const sigBoxW = 60, sigBoxH = 26;
+  await drawFittedImage(pdf, signatureDataUrl, marginX, y, sigBoxW, sigBoxH);
+  pdf.setFontSize(8); pdf.setTextColor(...GREY);
+  pdf.text("Applicant Signature", marginX, y + sigBoxH + 5);
+  pdf.text(data.fullName || "", marginX, y + sigBoxH + 10);
+  pdf.text(`Date: ${new Date().toLocaleDateString()}`, marginX, y + sigBoxH + 15);
+
+  const officeBoxX = pageWidth - marginX - sigBoxW;
+  pdf.setDrawColor(150,150,150); pdf.setLineWidth(0.3);
+  pdf.rect(officeBoxX, y, sigBoxW, sigBoxH);
+  pdf.text("For Office Use Only", officeBoxX, y + sigBoxH + 5);
+  pdf.text("Authorised Signatory", officeBoxX, y + sigBoxH + 10);
+
+  y += sigBoxH + 20;
+
+  /* ---- Finalise: stamp page numbers on every page ---- */
+  const totalPages = pdf.internal.getNumberOfPages();
+  for (let i=1;i<=totalPages;i++) { pdf.setPage(i); drawFooter(i); }
+
+  pdf.save(`Employee_Application_${(data.fullName || "Applicant").replace(/\s+/g,"_")}_${data.applicationId}.pdf`);
+}
+
+document.getElementById("applicationForm").addEventListener("submit", async function(event) {
+  event.preventDefault();
+  const form = this;
+  if (!form.checkValidity()) {
+event.stopPropagation();
+form.classList.add("was-validated");
+const firstInvalid = form.querySelector(":invalid");
+if (firstInvalid) { firstInvalid.scrollIntoView({behavior:"smooth",block:"center"}); firstInvalid.focus(); }
+return;
+  }
+
+  const aadhaar = form.querySelector('[name="aadhaar"]').value;
+  if (!/^\d{12}$/.test(aadhaar)) { alert("Please enter a valid 12-digit Aadhaar Number."); return; }
+  const mobile = form.querySelector('[name="mobile"]').value;
+  if (!/^[6-9]\d{9}$/.test(mobile)) { alert("Please enter a valid 10-digit mobile number."); return; }
+
+  const pan = form.querySelector('[name="pan"]').value.trim();
+  if (pan && !/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan)) { alert("Please enter a valid PAN Number."); return; }
+  const ifsc = form.querySelector('[name="ifsc"]').value.trim();
+  if (ifsc && !/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)) { alert("Please enter a valid IFSC Number."); return; }
+
+  calculateLastSalary();
+  const submitButton = form.querySelector('button[type="submit"]');
+  const oldText = submitButton.innerHTML;
+  submitButton.disabled = true;
+  submitButton.innerHTML = "Submitting... / సమర్పిస్తోంది...";
+
+  try {
+const payload = formDataToObject(form);
+if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes("PASTE_YOUR")) {
+  const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+method:"POST",
+body: JSON.stringify(payload),
+headers:{"Content-Type":"text/plain;charset=utf-8"}
+  });
+  if (!response.ok) throw new Error("Unable to save application.");
+}
+await generateApplicationPDF(form);
+const success = document.getElementById("successMessage");
+success.classList.remove("d-none");
+success.innerHTML = "<strong>Application submitted successfully.</strong><br>The application has been saved and the PDF has been generated automatically.";
+window.scrollTo({top:document.body.scrollHeight, behavior:"smooth"});
+  } catch(error) {
+console.error(error);
+alert("Submission could not be completed. Please check the Google Apps Script API URL and deployment permissions.");
+  } finally {
+submitButton.disabled = false;
+submitButton.innerHTML = oldText;
+  }
+});
+
+/* =========================================================
+ RESET
+========================================================= */
+
+document
+.getElementById("applicationForm")
+.addEventListener(
+"reset",
+function() {
+
+setTimeout(
+function() {
+
+
+document
+.getElementById(
+"successMessage"
+)
+.classList.add(
+"d-none"
+);
+
+
+document
+.getElementById(
+"photoPreview"
+)
+.style.display =
+"none";
+
+
+document
+.getElementById(
+"photoText"
+)
+.style.display =
+"block";
+
+
+document
+.getElementById(
+"signaturePreview"
+)
+.style.display =
+"none";
+
+
+document
+.getElementById(
+"signatureText"
+)
+.style.display =
+"block";
+
+
+document
+.querySelectorAll(
+".compression-status"
+)
+.forEach(
+function(el) {
+
+el.innerHTML = "";
+
+});
+
+
+document
+.getElementById(
+"applicationForm"
+)
+.classList.remove(
+"was-validated"
+);
+
+
+},
+50
+);
+
+});
+
+</script>
+
+
+</body>
+
+</html>
