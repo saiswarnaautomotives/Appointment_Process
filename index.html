@@ -21,8 +21,11 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 .header-content h2 {margin: 0;font-weight: 700;font-size: 26px;overflow-wrap: break-word;}
 .header-content p {margin: 5px 0 0;opacity: .9;font-size: 15px;overflow-wrap: break-word;}
 .section-title {background: #edf3f9;border-left: 5px solid var(--primary);padding: 10px 14px;margin: 20px 0 15px;font-size: 17px;font-weight: 700;color: var(--primary);}
-.form-label {font-weight: 600;font-size: 14px;margin-bottom: 4px;}
+.form-label {font-weight: 600;font-size: 14px;line-height: 1.25;margin-bottom: 2px;}
 .form-label .te {font-weight: 500;}
+.row.g-1 > [class*="col-"],.row.g-2 > [class*="col-"],.row.g-3 > [class*="col-"] {display: flex;flex-direction: column;}
+.row.g-1 > [class*="col-"] > .form-label,.row.g-2 > [class*="col-"] > .form-label,.row.g-3 > [class*="col-"] > .form-label {display: flex;align-items: flex-end;min-height: 2.1em;}
+@media (max-width: 767px) {.row.g-1 > [class*="col-"] > .form-label,.row.g-2 > [class*="col-"] > .form-label,.row.g-3 > [class*="col-"] > .form-label {min-height: 0;}}
 .form-control,.form-select {min-height: 40px;border: 1px solid var(--border);border-radius: 6px;}
 .form-control:focus,.form-select:focus {border-color: var(--secondary);box-shadow:0 0 0 .15rem rgba(13,110,253,.12);}
 .required::after {content: " *";color: red;}
@@ -39,6 +42,9 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 .file-size-info {font-size: 12px;color: #6c757d;margin-top: 4px;}
 .compression-status {font-size: 12px;font-weight: 600;margin-top: 4px;}
 .submit-area {background: #f5f7fa;padding: 20px;margin-top: 25px;border-top: 1px solid #dee2e6;}
+.form-busy-overlay {position: fixed;inset: 0;background: rgba(23,54,93,.35);z-index: 2000;display: flex;align-items: center;justify-content: center;}
+.form-busy-overlay .busy-box {background: #fff;border-radius: 10px;padding: 20px 28px;box-shadow: 0 8px 30px rgba(0,0,0,.25);display: flex;align-items: center;gap: 14px;font-weight: 600;color: var(--primary);max-width: 90%;}
+#aadhaarNotice {font-size: 14px;}
 .footer {text-align: center;padding: 15px;font-size: 13px;color: #6c757d;}
 .upload-section {width: 300px;max-width: 100%;text-align: center;}
 .photo-box,.signature-box {width: 200px;max-width: 100%;height: 180px;margin: 0 auto 10px auto;border: 2px dashed #adb5bd;border-radius: 8px;display: flex;align-items: center;justify-content: center;overflow: hidden;background: #f8f9fa;}
@@ -48,63 +54,47 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 .signature-box img {width: 100%;height: 100%;object-fit: contain;}
 .upload-input {width: 300px !important; max-width: 100%; margin: 0 auto;}
 .upload-section .compression-status {width: 300px;max-width: 100%;margin: 5px auto 0;}
-@media (max-width: 767px) {.upload-section {width: 100%;}.photo-box,.signature-box,.upload-input,.upload-section .compression-status {width: 100% !important;}.photo-box,.signature-box {height: 250px;}}
-@media(max-width:767px) {.container-main {margin: 0;max-width: 100%;}.application-card {border-radius: 0;}.form-header {padding: 10px 8px;gap: 6px;flex-wrap: nowrap;}.header-logo {width: 46px;height: 42px;padding: 2px;}.header-content {min-width: 0;padding: 0 2px;}.header-content h2 {font-size: 14px;line-height: 1.2;}.header-content p {font-size: 9.5px;line-height: 1.3;}.signature-box {width: 100%;}.photo-box {width: 140px;height: 170px;}}
+@media (max-width: 767px) {.upload-section {width: 100%;}.upload-input,.upload-section .compression-status {width: 100% !important;}.photo-box {width: 130px !important;height: 168px !important;}.signature-box {width: 100% !important;max-width: 260px;height: 100px !important;}}
+@media(max-width:767px) {.container-main {margin: 0;max-width: 100%;}.application-card {border-radius: 0;}.form-header {padding: 10px 8px;gap: 6px;flex-wrap: nowrap;}.header-logo {width: 46px;height: 42px;padding: 2px;}.header-content {min-width: 0;padding: 0 2px;}.header-content h2 {font-size: 14px;line-height: 1.2;}.header-content p {font-size: 9.5px;line-height: 1.3;}}
 @media (max-width: 360px) {.form-header {padding: 8px 6px;gap: 4px;}.header-logo {width: 38px;height: 36px;}.header-content h2 {font-size: 12.5px;}.header-content p {font-size: 9px;}}
 @media (max-width: 767px) {.submit-area {display: flex;flex-direction: column;align-items: stretch;gap: 10px;padding: 16px;}.submit-area button {width: 100%;margin-left: 0 !important;margin-right: 0 !important;padding-left: 12px;padding-right: 12px;white-space: normal;}}
 </style>
 </head>
 <body>
 <script>
-/* =========================================================
-   PAGE LOCK: disable right-click, view-source & DevTools shortcuts
-   NOTE: This is a deterrent for casual users only. No client-side
-   script can fully block DevTools on the web platform — anyone can
-   still open it from the browser's own menu, use a different
-   browser, or disable JavaScript. Never rely on this to protect
-   secrets; it only discourages casual tampering/copying.
-========================================================= */
 (function () {
   "use strict";
-
-  // Block right-click context menu
   document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
-
-  // Block common "view source" / "inspect" / "save page" key combinations
   document.addEventListener("keydown", function (e) {
-    const k = e.key;
-    const isDevToolsKey =
-      k === "F12" ||
-      (e.ctrlKey && e.shiftKey && ["I", "i", "J", "j", "C", "c", "K", "k"].includes(k)) || // DevTools / console panels
-      (e.ctrlKey && !e.shiftKey && ["u", "U", "s", "S"].includes(k)) || // View Source / Save As
-      (e.metaKey && e.altKey && ["I", "i", "J", "j", "C", "c"].includes(k)); // Mac Cmd+Opt+I/J/C
-    if (isDevToolsKey) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
+const k = e.key;
+const isDevToolsKey =
+  k === "F12" ||
+  (e.ctrlKey && e.shiftKey && ["I", "i", "J", "j", "C", "c", "K", "k"].includes(k)) ||
+  (e.ctrlKey && !e.shiftKey && ["u", "U", "s", "S"].includes(k)) ||
+  (e.metaKey && e.altKey && ["I", "i", "J", "j", "C", "c"].includes(k));
+if (isDevToolsKey) {
+  e.preventDefault();
+  e.stopPropagation();
+  return false;
+}
   });
-
-  // Block selecting/dragging content outside form fields (so text can't be easily copied out)
   document.addEventListener("dragstart", function (e) { e.preventDefault(); });
   document.addEventListener("selectstart", function (e) {
-    const tag = e.target.tagName;
-    if (tag !== "INPUT" && tag !== "TEXTAREA") e.preventDefault();
+const tag = e.target.tagName;
+if (tag !== "INPUT" && tag !== "TEXTAREA") e.preventDefault();
   });
-
-  // Best-effort DevTools-open detector (window size heuristic). Not foolproof.
   let warned = false;
   function checkDevToolsOpen() {
-    const threshold = 160;
-    const widthGap = window.outerWidth - window.innerWidth;
-    const heightGap = window.outerHeight - window.innerHeight;
-    if (!warned && (widthGap > threshold || heightGap > threshold)) {
-      warned = true;
-      document.documentElement.innerHTML =
-        '<div style="display:flex;align-items:center;justify-content:center;height:100vh;' +
-        'font-family:\'Segoe UI\',Arial,sans-serif;text-align:center;padding:24px;background:#f4f7fb;color:#17365d;">' +
-        "<h2>Developer Tools are disabled on this page.<br>Please close DevTools and reload to continue.</h2></div>";
-    }
+const threshold = 160;
+const widthGap = window.outerWidth - window.innerWidth;
+const heightGap = window.outerHeight - window.innerHeight;
+if (!warned && (widthGap > threshold || heightGap > threshold)) {
+  warned = true;
+  document.documentElement.innerHTML =
+'<div style="display:flex;align-items:center;justify-content:center;height:100vh;' +
+'font-family:\'Segoe UI\',Arial,sans-serif;text-align:center;padding:24px;background:#f4f7fb;color:#17365d;">' +
+"<h2>Developer Tools are disabled on this page.<br>Please close DevTools and reload to continue.</h2></div>";
+}
   }
   setInterval(checkDevToolsOpen, 1000);
 })();
@@ -121,44 +111,60 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 </div>
 <form id="applicationForm" novalidate>
 <div class="p-3 p-md-4">
+<div id="aadhaarNotice" class="alert d-none" role="alert"></div>
 <div class="section-title">1. Application Details /దరఖాస్తు వివరాలు</div>
 <div class="row g-1">
-<div class="col-lg-4 col-md-6"><label class="form-label required">Division /<span class="te">విభాగం</span></label>
-<select class="form-select" id="division" name="division" required>
-<option value="">Select Division / విభాగాన్ని ఎంచుకోండి</option>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Vertical /<span class="te">వర్టికల్</span></label>
+<select class="form-select" id="vertical" name="vertical" required>
+<option value="">Select Vertical / వర్టికల్ ఎంచుకోండి</option>
 <option value="Sales">Sales / సేల్స్</option>
 <option value="Service">Service / సర్వీస్</option>
-<option value="True Value">True Value / ట్రూ వ్యాల్యూ</option>
-<option value="Spare Parts">Spare Parts / స్పేర్ పార్ట్స్</option>
-<option value="Accessories">Accessories / యాక్సెసరీస్</option>
-<option value="Administration">Administration / పరిపాలన</option>
-<option value="Finance">Finance / ఫైనాన్స్</option>
-<option value="HR">HR / మానవ వనరులు</option>
-<option value="IT">IT / ఐటీ</option>
-<option value="Common">Common / సాధారణ</option>
+<option value="H-Promise">H-Promise / హెచ్-ప్రామిస్</option>
 </select>
+</div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Department /<span class="te">విభాగం</span></label>
+<select class="form-select" id="department" name="department" required><option value="">Select Department / విభాగాన్ని ఎంచుకోండి</option></select>
 </div>
 <div class="col-lg-4 col-md-6"><label class="form-label required">Designation /<span class="te">హోదా</span></label>
 <select class="form-select" id="designation" name="designation" required><option value="">Select Designation / హోదాను ఎంచుకోండి</option></select>
 </div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Division /<span class="te"> డివిజన్</span></label>
+<select class="form-select" id="division" name="division" required>
+<option value="">Select Division / డివిజన్ ఎంచుకోండి</option>
+<option value="Vizag">Vizag / విశాఖ</option>
+<option value="Rajahmundry">Rajahmundry / రాజమండ్రి</option>
+<option value="Guntur">Guntur / గుంటూరు</option>
+</select>
+</div>
 <div class="col-lg-4 col-md-6"><label class="form-label required">Location /<span class="te"> ప్రాంతం</span></label>
-<select class="form-select" id="Location" name="Location" required><option value="">Select Location / ప్రాంతం ఎంచుకోండి</option><option value="MVP">MVP Colony</option><option value="Paradesipalem">Paradesipalem</option></select>
+<select class="form-select" id="Location" name="Location" required><option value="">Select Location / ప్రాంతం ఎంచుకోండి</option></select>
+</div>
+
+<div class="col-lg-4 col-md-6"><label class="form-label required">Source of Job Information / <span class="te">ఉద్యోగ సమాచార విధానం</span></label>
+<select class="form-select" id="source" name="source" required><option value="">Select Source / మూలాన్ని ఎంచుకోండి</option><option value="Social Media">Social Media / సోషల్ మీడియా</option><option value="Job Advertisement">Job Advertisement / ఉద్యోగ ప్రకటన</option><option value="Employee Reference">Employee Reference / ఉద్యోగి సిఫార్సు</option><option value="Walk-in">Walk-in / నేరుగా విచ్చేయడం</option><option value="Job Portal">Job Portal / ఉద్యోగ పోర్టల్</option><option value="Company Website">Company Website / కంపెనీ వెబ్‌సైట్</option><option value="Consultant">Consultant / Recruitment Agency / కన్సల్టెంట్ / నియామక సంస్థ</option></select>
 </div>
 </div>
-<div class="section-title"> 2. Personal Details / వ్యక్తిగత వివరాలు </div>
+<div class="section-title"> 2. Personal Details / వ్యక్తిగత వివరాలు</div>
 <div class="row g-1">
-<div class="col-lg-4 col-md-6"><label class="form-label required">Full Name / పూర్తి పేరు</label><input type="text" class="form-control" name="fullName" placeholder="Enter full name / పూర్తి పేరు నమోదు చేయండి" required></div>
+
+<div class="col-lg-4 col-md-6"><label class="form-label required">Full Name / పూర్తి పేరు</label><input type="text" class="form-control" name="fullName" placeholder="Name as per Aadhaar / ఆధార్ ప్రకారం పేరు" required></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Gender / లింగం</label><select class="form-select" name="gender" required><option value="">Select Gender / లింగం ఎంచుకోండి</option><option>Male</option><option>Female</option><option>Transgender</option></select></div>
 <div class="col-lg-4 col-md-6"><label class="form-label required">Aadhaar Number / ఆధార్ నంబర్</label><input type="text" class="form-control" name="aadhaar" maxlength="12" inputmode="numeric" placeholder="12 digit Aadhaar / 12 అంకెల ఆధార్" required></div>
-<div class="col-lg-4 col-md-6"><label class="form-label required">Date of Birth / పుట్టిన తేదీ</label><input type="date" class="form-control" name="dob" required></div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Date of Birth (as on Aadhar) / పుట్టిన తేదీ (ఆధార్ ప్రకారం)</label><input type="date" class="form-control" name="dob1" required></div>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Date of Birth (Actual) / వాస్తవ పుట్టిన తేదీ</label><input type="date" class="form-control" name="dob2" required></div>
 <div class="col-lg-4 col-md-6"><label class="form-label required">Mobile Number / మొబైల్ నంబర్</label><input type="tel" class="form-control" name="mobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile / 10 అంకెల మొబైల్" required></div>
-<div class="col-lg-4 col-md-6"><label class="form-label">Email / ఇమెయిల్</label><input type="email" class="form-control" name="email" placeholder="example@email.com / ఇమెయిల్ నమోదు చేయండి"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Email / ఇమెయిల్</label><input type="email" class="form-control" name="email" placeholder="example@email.com / ఇమెయిల్ నమోదు చేయండి" required></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">PAN Number / పాన్ నంబర్</label><input type="text" class="form-control text-uppercase" name="pan" maxlength="10" placeholder="ABCDE1234F / పాన్ నంబర్"></div>
-<div class="col-lg-4 col-md-6"><label class="form-label">Caste / కులం</label><select class="form-select" name="caste" required><option value="">Select Caste / కులాన్ని ఎంచుకోండి</option><option>General</option><option>OBC</option><option>SC</option><option>ST</option><option>Other</option><option>Prefer Not to Say</option></select></div>
-<div class="col-lg-4 col-md-6"><label class="form-label">Sub-Caste / ఉప కులం</label><input type="text" class="form-control" name="subCaste" placeholder="Enter sub-caste / ఉప కులం"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Caste / కులం</label><select class="form-select" name="caste" required><option value="">Select Caste / కులాన్ని ఎంచుకోండి</option><option value="General">General / OC — జనరల్ / ఓసీ</option><option value="OBC">OBC (Other Backward Classes) — ఇతర వెనుకబడిన తరగతులు</option><option value="SC">SC (Scheduled Caste) — షెడ్యూల్డ్ కులం</option><option value="ST">ST (Scheduled Tribe) — షెడ్యూల్డ్ తెగ</option><option value="EWS">EWS (Economically Weaker Section) — ఆర్థికంగా బలహీన వర్గం</option></Select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Sub-Caste / ఉప కులం</label><input type="text" class="form-control" name="subCaste" placeholder="Enter sub-caste / ఉప కులం" required></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Blood Group / రక్త వర్గం</label><select class="form-select" name="bloodGroup"><option value="">Select Blood Group / రక్త వర్గాన్ని ఎంచుకోండి</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
-<div class="col-lg-4 col-md-6"><label class="form-label">Marital Status / వైవాహిక స్థితి</label><select class="form-select" name="maritalStatus"><option value="">Select Status / స్థితిని ఎంచుకోండి</option><option>Single / అవివాహితులు</option><option>Married / వివాహితులు</option><option>Divorced / విడాకులు పొందినవారు</option><option>Widowed / వితంతువు</option></select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Marital Status / వైవాహిక స్థితి</label><select class="form-select" name="maritalStatus"><option value="">Select Status / స్థితిని ఎంచుకోండి</option><option value="Single">Single / అవివాహితులు</option><option value="Married">Married / వివాహితులు</option><option value="Divorced">Divorced / విడాకులు పొందినవారు</option><option Value="Widowed">Widowed / వితంతువు</option></select></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Father's Name / తండ్రి పేరు</label><input type="text" class="form-control" name="fatherName" placeholder="Enter father's name / తండ్రి పేరు"></div>
-<div class="col-lg-4 col-md-6"><label class="form-label">Father Occupation / తండ్రి వృత్తి</label><select class="form-select" name="fatherOccupation"><option value="">Select Occupation / వృత్తిని ఎంచుకోండి</option><option>Employee / ఉద్యోగి</option><option>Business / వ్యాపారం</option><option>Agriculture / వ్యవసాయం</option><option>Professional / వృత్తి</option><option>Retired / పదవీ విరమణ</option><option>Other / ఇతర</option></select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Father Occupation / తండ్రి వృత్తి</label><select class="form-select" name="fatherOccupation"><option value="">Select Occupation / వృత్తిని ఎంచుకోండి</option><option value="Employee">Employee / ఉద్యోగి</option><option value="Business">Business / వ్యాపారం</option><option option="Agriculture">Agriculture / వ్యవసాయం</option><option Value="Professional">Professional / వృత్తి</option><option value="Retired">Retired / పదవీ విరమణ</option><option>Other / ఇతర</option></select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Father's Place of Birth / తండ్రి జన్మస్థలం</label><input type="text" class="form-control" name="fatherBirthPlace" placeholder="Birth Place / జన్మస్థలం"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Husband's Name / భర్త పేరు</label><input type="text" class="form-control" name="husbandName" placeholder="Enter father's name / తండ్రి పేరు"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Husband Occupation / భర్త వృత్తి</label><select class="form-select" name="husbandOccupation"><option value="">Select Occupation / వృత్తిని ఎంచుకోండి</option><option value="Employee">Employee / ఉద్యోగి</option><option value="Business">Business / వ్యాపారం</option><option option="Agriculture">Agriculture / వ్యవసాయం</option><option Value="Professional">Professional / వృత్తి</option><option value="Retired">Retired / పదవీ విరమణ</option><option>Other / ఇతర</option></select></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Husband's Place of Birth / భర్త జన్మస్థలం</label><input type="text" class="form-control" name="husbandBirthPlace" placeholder="Birth Place / జన్మస్థలం"></div>
 </div>
 <div class="section-title">3. Address Details / చిరునామా వివరాలు</div>
 <div class="row g-1">
@@ -182,13 +188,13 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 <div class="section-title">6. References / సూచన వ్యక్తుల వివరాలు</div><h6 class="fw-bold mt-1">Reference - 1 / సూచన - 1</h6>
 <div class="row g-1">
 <div class="col-lg-3 col-md-6"><label class="form-label">Name / పేరు</label><input type="text" class="form-control" name="ref1Name" placeholder="Name / పేరు"></div>
-<div class="col-lg-3 col-md-6"><label class="form-label">Working Organisation / సంస్థ</label><input type="text" class="form-control" name="ref1Org" placeholder="Organisation / సంస్థ"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Present Organisation / పనిచేస్తున్న సంస్థ</label><input type="text" class="form-control" name="ref1Org" placeholder="Organisation / సంస్థ"></div>
 <div class="col-lg-3 col-md-6"><label class="form-label">Designation / హోదా</label><input type="text" class="form-control" name="ref1Designation" placeholder="Designation / హోదా"></div>
 <div class="col-lg-3 col-md-6"><label class="form-label">Mobile / మొబైల్</label><input type="tel" class="form-control" name="ref1Mobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile / 10 అంకెల మొబైల్"></div></div>
 <h6 class="fw-bold mt-4">Reference - 2 / సూచన - 2</h6>
 <div class="row g-1">
 <div class="col-lg-3 col-md-6"><label class="form-label">Name / పేరు</label><input type="text" class="form-control" name="ref2Name" placeholder="Name / పేరు"></div>
-<div class="col-lg-3 col-md-6"><label class="form-label">Working Organisation / సంస్థ</label><input type="text" class="form-control" name="ref2Org" placeholder="Organisation / సంస్థ"></div>
+<div class="col-lg-3 col-md-6"><label class="form-label">Present Organisation / పనిచేస్తున్న సంస్థ</label><input type="text" class="form-control" name="ref2Org" placeholder="Organisation / సంస్థ"></div>
 <div class="col-lg-3 col-md-6"><label class="form-label">Designation / హోదా</label><input type="text" class="form-control" name="ref2Designation" placeholder="Designation / హోదా"></div>
 <div class="col-lg-3 col-md-6"><label class="form-label">Mobile / మొబైల్</label><input type="tel" class="form-control" name="ref2Mobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile / 10 అంకెల మొబైల్"></div></div>
 <div class="section-title">7. Educational Qualifications / విద్యార్హతలు</div>
@@ -199,30 +205,30 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 <div class="section-title">9. Previous Employment Details / గత ఉద్యోగ వివరాలు</div>
 <div id="employmentContainer"></div><button type="button" class="btn btn-outline-primary btn-sm" onclick="addEmployment()">+ Add Previous Employment / గత ఉద్యోగాన్ని జోడించండి</button>
 <div class="section-title">10. Documents Submitted / సమర్పించిన పత్రాలు</div>
-<div class="alert alert-info py-2"><strong>File Size / ఫైల్ పరిమాణం:</strong>Image files will be automatically compressed.<br>Images other than Photo:<strong>Maximum 200 KB</strong><br>Photo: <strong>Maximum 500 KB</strong></div>
+<div class="alert alert-info py-2"><strong>File Size / ఫైల్ పరిమాణం:</strong>Image files will be automatically compressed. Multiple files can be selected per document / ప్రతి పత్రానికి బహుళ ఫైళ్లను ఎంచుకోవచ్చు.<br>Images other than Photo:<strong>Maximum 200 KB</strong><br>Photo: <strong>Maximum 500 KB</strong></div>
 <div class="row">
 <div class="col-lg-6">
 <div class="document-row">
 <div class="form-check"><input class="form-check-input document-check" type="checkbox" id="docAadhar" name="docAadhar"><label class="form-check-label" for="docAadhar">Documents (Aadhaar) / ఆధార్ పత్రం</label></div>
-<input type="file" class="form-control mt-2 document-file" name="aadharFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="aadharStatus"></div></div>
+<input type="file" class="form-control mt-2 document-file" name="aadharFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple><div class="compression-status" id="aadharFilesList"></div></div>
 <div class="document-row">
 <div class="form-check"><input class="form-check-input" type="checkbox" id="docPan" name="docPan"><label class="form-check-label" for="docPan">Documents (PAN) / పాన్ పత్రం</label></div>
-<input type="file" class="form-control mt-2 document-file" name="panFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="panStatus"></div></div>
+<input type="file" class="form-control mt-2 document-file" name="panFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple><div class="compression-status" id="panFilesList"></div></div>
 <div class="document-row">
 <div class="form-check"><input class="form-check-input" type="checkbox" id="docDob" name="docDob"><label class="form-check-label" for="docDob"> Documents (Date of Birth) / పుట్టిన తేదీ పత్రం</label></div>
-<input type="file" class="form-control mt-2 document-file" name="dobFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="dobStatus"></div></div></div>
+<input type="file" class="form-control mt-2 document-file" name="dobFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple><div class="compression-status" id="dobFilesList"></div></div></div>
 <div class="col-lg-6">
 <div class="document-row">
-<div class="form-check"><input class="form-check-input" type="checkbox" id="docResidence" name="docResidence"><label class="form-check-label" for="docResidence">Documents (Residence) / నివాస ధృవీకరణ పత్రం</label></div>
-<input type="file" class="form-control mt-2 document-file" name="residenceFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200"><div class="compression-status" id="residenceStatus"></div></div>
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docResidence" name="docResidence"><label class="form-check-label" for="docResidence">Residence Proof / Ration Card / Sachivalayam/ నివాస ధృవీకరణ పత్రం</label></div>
+<input type="file" class="form-control mt-2 document-file" name="residenceFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple><div class="compression-status" id="residenceFilesList"></div></div>
 <div class="document-row">
 <div class="form-check"><input class="form-check-input" type="checkbox" id="docEducation" name="docEducation"><label class="form-check-label" for="docEducation">Documents (Educational) / విద్యా పత్రాలు</label></div>
-<input type="file" class="form-control mt-2 document-file" name="educationFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200">
-<div class="compression-status" id="educationStatus"></div></div>
+<input type="file" class="form-control mt-2 document-file" name="educationFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple>
+<div class="compression-status" id="educationFilesList"></div></div>
 <div class="document-row">
 <div class="form-check"><input class="form-check-input" type="checkbox" id="docDriving" name="docDriving"><label class="form-check-label" for="docDriving">Documents (Driving License) / డ్రైవింగ్ లైసెన్స్</label></div>
-<input type="file" class="form-control mt-2 document-file" name="drivingFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200">
-<div class="compression-status" id="drivingStatus"></div></div></div></div>
+<input type="file" class="form-control mt-2 document-file" name="drivingFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple>
+<div class="compression-status" id="drivingFilesList"></div></div></div></div>
 <div class="section-title">11. Photo & Signature / ఫోటో & సంతకం</div>
 <div class="row justify-content-center g-4">
 <div class="col-lg-4 col-md-6 d-flex justify-content-center">
@@ -241,18 +247,18 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 <div class="section-title">12. Last Salary Drawn / చివరి జీతం వివరాలు</div>
 <div class="alert alert-light border py-2 small">Enter the monthly salary components from your last drawn salary. PF and ESIC are deductions; Gross and Net Salary are calculated automatically.</div>
 <div class="row g-2">
-<div class="col-lg-3 col-md-4"><label class="form-label">Basic</label><input type="number" class="form-control salary-earning" name="last_basic" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">HRA</label><input type="number" class="form-control salary-earning" name="last_hra" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">CEA</label><input type="number" class="form-control salary-earning" name="last_cea" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">WA / Washing Allowance</label><input type="number" class="form-control salary-earning" name="last_wa" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">Conveyance</label><input type="number" class="form-control salary-earning" name="last_conveyance" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">LTA</label><input type="number" class="form-control salary-earning" name="last_lta" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">Medical</label><input type="number" class="form-control salary-earning" name="last_medical" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">Bonus</label><input type="number" class="form-control salary-earning" name="last_bonus" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">Incentive</label><input type="number" class="form-control salary-earning" name="last_incentive" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">Others / Special Allowance</label><input type="number" class="form-control salary-earning" name="last_others" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">PF Deduction</label><input type="number" class="form-control salary-deduction" name="last_pf" min="0" step="0.01" value="0"></div>
-<div class="col-lg-3 col-md-4"><label class="form-label">ESIC Deduction</label><input type="number" class="form-control salary-deduction" name="last_esic" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">Basic</label><input type="number" class="form-control salary-earning" name="last_basic" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">HRA</label><input type="number" class="form-control salary-earning" name="last_hra" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">CEA</label><input type="number" class="form-control salary-earning" name="last_cea" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">WA / Washing Allowance</label><input type="number" class="form-control salary-earning" name="last_wa" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">Conveyance</label><input type="number" class="form-control salary-earning" name="last_conveyance" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">LTA</label><input type="number" class="form-control salary-earning" name="last_lta" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">Medical</label><input type="number" class="form-control salary-earning" name="last_medical" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">Bonus</label><input type="number" class="form-control salary-earning" name="last_bonus" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">Incentive</label><input type="number" class="form-control salary-earning" name="last_incentive" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">Others / Special Allowance</label><input type="number" class="form-control salary-earning" name="last_others" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">PF Deduction</label><input type="number" class="form-control salary-deduction" name="last_pf" min="0" step="0.01" value="0"></div>
+<div class="col-lg-2 col-md-4"><label class="form-label">ESIC Deduction</label><input type="number" class="form-control salary-deduction" name="last_esic" min="0" step="0.01" value="0"></div>
 <div class="col-lg-4 col-md-4"><label class="form-label fw-bold">Gross Earnings</label><input type="number" class="form-control bg-light fw-bold" id="lastGross" name="last_gross" readonly></div>
 <div class="col-lg-4 col-md-4"><label class="form-label fw-bold">Total Deductions</label><input type="number" class="form-control bg-light fw-bold" id="lastDeductions" name="last_deductions" readonly></div>
 <div class="col-lg-4 col-md-4"><label class="form-label fw-bold">Net Salary Drawn</label><input type="number" class="form-control bg-light fw-bold" id="lastNet" name="last_net" readonly></div>
@@ -260,7 +266,11 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 <div class="section-title">13. Declaration / ప్రకటన</div>
 <div class="border rounded p-3 bg-light">
 <div class="form-check"><input class="form-check-input" type="checkbox" id="declaration" required><label class="form-check-label" for="declaration">I hereby declare that the information provided in this application is true and correct to the best of my knowledge and belief.<br>నేను ఈ దరఖాస్తులో అందించిన సమాచారం నా జ్ఞానం మరియు నమ్మకం మేరకు నిజమైనది మరియు సరైనదని ఇందుమూలంగా ప్రకటిస్తున్నాను.<br><br>
-I understand that any false information may result in rejection of my application or termination of employment.<br>ఏదైనా తప్పుడు సమాచారం అందించినట్లయితే నా దరఖాస్తు తిరస్కరించబడవచ్చు లేదా ఉద్యోగం రద్దు చేయబడవచ్చని నేను అర్థం చేసుకున్నాను.</label></div></div>
+I understand that any false information may result in rejection of my application or termination of employment.<br>ఏదైనా తప్పుడు సమాచారం అందించినట్లయితే నా దరఖాస్తు తిరస్కరించబడవచ్చు లేదా ఉద్యోగం రద్దు చేయబడవచ్చని నేను అర్థం చేసుకున్నాను.</label></div>
+<div class="form-check mt-3 d-none" id="drivingDeclarationBlock"><input class="form-check-input" type="checkbox" id="drivingDeclaration"><label class="form-check-label" for="drivingDeclaration">I hereby declare that I do not possess a valid Driving Licence. If any accident, damage to Company property, financial loss, physical injury, or any other loss occurs as a result of my driving or operating a Two-Wheeler or Four-Wheeler, I shall be solely responsible for the consequences arising from such incident.<br>నేను చెల్లుబాటు అయ్యే డ్రైవింగ్ లైసెన్స్ కలిగి లేనని ఇందుమూలంగా ప్రకటిస్తున్నాను. నేను ద్విచక్ర వాహనం లేదా నాలుగు చక్రాల వాహనం నడుపుతున్నప్పుడు లేదా నిర్వహిస్తున్నప్పుడు ఏదైనా ప్రమాదం, కంపెనీ ఆస్తికి నష్టం, ఆర్థిక నష్టం, శారీరక గాయం లేదా మరే ఇతర నష్టం సంభవించినట్లయితే, అటువంటి సంఘటన వల్ల ఏర్పడే పరిణామాలకు నేను పూర్తి బాధ్యత వహిస్తాను.<br><br>
+I understand that the Company shall not be held responsible or liable for any loss, damage, injury, compensation, or legal consequences arising due to my unauthorized driving. I shall not seek or claim any financial, legal, or other intervention from the Company in connection with such incidents.<br>నా అనధికార డ్రైవింగ్ వలన సంభవించే ఏ నష్టానికి, హానికి, గాయానికి, పరిహారానికి లేదా చట్టపరమైన పరిణామాలకు కంపెనీ బాధ్యత వహించదని నేను అర్థం చేసుకున్నాను. అటువంటి సంఘటనలకు సంబంధించి కంపెనీ నుండి ఎలాంటి ఆర్థిక, చట్టపరమైన లేదా ఇతర సహాయాన్ని నేను కోరను లేదా క్లెయిమ్ చేయను.<br><br>
+Further, I confirm that neither I nor my family members shall hold the Company responsible or create any claim, dispute, or demand against the Company arising from such incidents.<br>ఇంకా, అటువంటి సంఘటనల వలన నేను గానీ నా కుటుంబ సభ్యులు గానీ కంపెనీని బాధ్యులను చేయమని లేదా కంపెనీపై ఎలాంటి క్లెయిమ్, వివాదం లేదా డిమాండ్ చేయమని నేను ధృవీకరిస్తున్నాను.<br><br>
+I am signing this declaration voluntarily and with full understanding of its contents and consequences.<br>నేను ఈ ప్రకటనను స్వచ్ఛందంగా మరియు దీని విషయాలు మరియు పరిణామాలను పూర్తిగా అర్థం చేసుకుని సంతకం చేస్తున్నాను.</label></div></div>
 <div class="submit-area text-center">
 <button type="submit" class="btn btn-primary btn-lg px-5"> Submit Application / దరఖాస్తును సమర్పించండి </button>
 <button type="reset" class="btn btn-outline-secondary btn-lg px-5 ms-2"> Reset / రీసెట్</button></div>
@@ -269,26 +279,70 @@ I understand that any false information may result in rejection of my applicatio
 <div class="footer">Designed By: B Bhujanga Rao</div></div></div>
 <script>
 const designations = {
-"Sales": ["Sales Consultant","Team Leader - Sales","Sales Manager","General Manager - Sales","CRM Executive","CRM Manager"],
-"Service": ["Service Advisor","Senior Service Advisor","Technician","Senior Technician","Team Leader - Service","Workshop Manager","Service Manager","General Manager - Service","Customer Care Executive"],
-"True Value": ["True Value Executive","True Value Consultant","True Value Manager","Evaluation Executive","Customer Relationship Executive"],
-"Spare Parts": ["Parts Executive","Parts Counter Sales Executive","Parts Manager","Stores Executive","Store Manager"],
-"Accessories": ["Accessories Executive","Accessories Team Leader","Accessories Manager"],
-"Administration": ["Admin Executive","Admin Manager","Office Assistant","Receptionist"],
-"Finance": ["Accounts Executive","Senior Accounts Executive","Accountant","Finance Manager","CFO"],
-"HR": ["HR Executive","Senior HR Executive","HR Manager","HR Head"],
-"IT": ["IT Executive","IT Support Executive","System Administrator","IT Manager","IT Head"],
-"Common": ["Driver","House Keeping","Lobby Manager","Washing Staff"]};
-document.getElementById("division").addEventListener("change", function() {
-const designation =document.getElementById("designation");
-designation.innerHTML ='<option value="">Select Designation / హోదాను ఎంచుకోండి</option>';
+"Accounts": ["Cashier", "Trainee Executive", "Executive"," Senior Executive", "Asst. Manager", "Deputy Manager", "Manager", "Asst. General Manager", "General Manager", "Chief Financial Officer"],
+"Admin":["Executive", "Senior Executive", "Assistant Manager", "Deputy Manager", "Manager", "Assistant General Manager", "Deputy General Manager", "General Manager", "Chief Executive Officer"],
+"Audit":["Executive", "Senior Executive", "Assistant Manager", "Deputy Manager", "Manager", "Assistant General Manager", "Deputy General Manager", "General Manager"],
+"Accessories": ["Technician","Trainee Executive","Executive", "Senior Executive", "Assistant Manager", "Deputy Manager","Manager"],
+"Bodyshop":["Assistant Technician", "Technician", "Tinker", "Denter", "Painter", "Floor Supervisor", "Bodyshop Advisor", "Manager", "Assistant General Manager", "General Manager"],
+"Customer Care":["Trainee Executive", "Executive", "Lobby", "Customer Care Executive", "Receptionist", "Customer Care Manager"],
+"Delivery":["Co-Ordinator", "Executive", "Incharge", "Test Drive Incharge", "Driver"],
+"EDP":["Billing Executive", "Executive", "Senior Executive", "Assistant Manager", "Deputy Manager", "Manager", "Assistant General Manager", "Deputy General Manager", "General Manager"],
+"Finance": ["Junior Executive","Executive", "Senior Executive","Assistant Manager" , "Deputy Manager", "Manager"],
+"HR": ["Junior Executive","Senior Executive","Executive","Assistant Manager", "Deputy Manager", "Manager", "Assistant General Manager", "Deputy General Manager", "General Manager"],
+"IT": ["Junior Executive","Executive","Administrator","Assistant Manager","Manager"],
+"H-Promise" :["Junior Executive", "Evaluator", "Sourcing Executive", "Executive","Senior Executive", "Team Leader", "Assistant General Manager", "Deputy General Manager", "General Manager"],
+"Insurance":["Junior Executive","Senior Executive","Executive","Assistant Manager", "Deputy Manager", "Manager", "Assistant General Manager", "Deputy General Manager", "General Manager"],
+"Maintenance":["Technician", "Electrician", "plumber", "Incharge", "Manager"],
+"Sales": ["Junior Executive","Executive","Senior Executive","Team Leader","Assistant Manager", "Deputy Manager", "Branch Manager", "Assistant General Manager", "Deputy General Manager", "General Manager", "Chief Executive Officer"],
+"Service": ["Helper", "Trainee Technician", "Junior Technician", "Senior Technician", "Floor Incharge", "Final Inspector", "Advisor", "Trainee Advisor", "Assistant Service Manager", "Deputy Service Manager", "Workshop Manager", "Assistant General Manager", "Deputy General Manager", "General Manager", "Chief General Manager", "Chief Executive Officer"],
+"Spare Parts": ["Executive","Counter Sales Executive","Parts Manager","Store Incharge"],
+"Common": ["House Keeping","Washing Staff", "Washing Supervisor","Warranty"]};
+const verticalDepartments = {
+"Sales": ["Sales","Accounts","Admin","Accessories", "Customer Care", "Delivery","EDP","Finance","Insurance","Maintenance"],
+"Service": ["Service","Accounts","Admin","Bodyshop", "Customer Care", "Delivery","EDP","Insurance", "Spare Parts","Common"],
+"H-Promise": ["H-Promise","Accounts","Admin","Finance","HR","IT","Common"]
+};
+const divisionLocations = {
+"Vizag": ["MVP","Paradesipalem"],
+"Rajahmundry": ["Gantyada Veedi","Samarlakota","Kakinada","Kurupam"],
+"Guntur": ["Yard","Telkipeta"]
+};
+document.getElementById("vertical").addEventListener("change", function() {
+const department = document.getElementById("department");
+const designation = document.getElementById("designation");
+department.innerHTML = '<option value="">Select Department / విభాగాన్ని ఎంచుకోండి</option>';
+designation.innerHTML = '<option value="">Select Designation / హోదాను ఎంచుకోండి</option>';
+const selected = this.value;
+if (verticalDepartments[selected]) {
+verticalDepartments[selected].forEach(function(item) {
+const option = document.createElement("option");
+option.value = item;
+option.textContent = item;
+department.appendChild(option);
+});}});
+
+document.getElementById("department").addEventListener("change", function() {
+const designation = document.getElementById("designation");
+designation.innerHTML = '<option value="">Select Designation / హోదాను ఎంచుకోండి</option>';
 const selected = this.value;
 if (designations[selected]) {
 designations[selected].forEach(function(item) {
-const option =document.createElement("option");
+const option = document.createElement("option");
 option.value = item;
 option.textContent = item;
 designation.appendChild(option);
+});}});
+
+document.getElementById("division").addEventListener("change", function() {
+const location = document.getElementById("Location");
+location.innerHTML = '<option value="">Select Location / ప్రాంతం ఎంచుకోండి</option>';
+const selected = this.value;
+if (divisionLocations[selected]) {
+divisionLocations[selected].forEach(function(item) {
+const option = document.createElement("option");
+option.value = item;
+option.textContent = item;
+location.appendChild(option);
 });}});
 document.getElementById("sameAddress").addEventListener("change", function() {
 const present =document.querySelector('[name="presentAddress"]').value;
@@ -323,20 +377,111 @@ addEducation();
 let familyCount = 0;
 function addFamily() {
 familyCount++;
-const container =document.getElementById("familyContainer");
-const div =document.createElement("div");
+
+const container = document.getElementById("familyContainer");
+const div = document.createElement("div");
+
 div.className = "repeat-card";
-div.innerHTML = `<div class="repeat-header"><span class="repeat-title">Family Member ${familyCount} / కుటుంబ సభ్యుడు ${familyCount}</span>
-<button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.repeat-card').remove()">Remove / తొలగించు</button></div>
+
+div.innerHTML = `
+<div class="repeat-header">
+<span class="repeat-title">
+Family Member ${familyCount} / కుటుంబ సభ్యుడు ${familyCount}
+</span>
+
+<button type="button"
+class="btn btn-sm btn-outline-danger"
+onclick="this.closest('.repeat-card').remove()">
+Remove / తొలగించు
+</button>
+</div>
+
 <div class="row g-1">
-<div class="col-lg-4 col-md-6"><label class="form-label">Member Name / సభ్యుని పేరు</label><input type="text" class="form-control" name="family_name[]" placeholder="Name / పేరు"></div>
-<div class="col-lg-2 col-md-6"><label class="form-label">Date of Birth / పుట్టిన తేదీ</label><input type="date" class="form-control" name="family_dob[]"></div>
-<div class="col-lg-2 col-md-6"><label class="form-label">Relation / బంధుత్వం</label><select class="form-select" name="family_relation[]">
-<option value="">Select / ఎంచుకోండి</option><option>Father</option><option>Mother</option><option>Spouse</option><option>Brother</option><option>Sister</option><option>Son</option><option>Daughter</option><option>Other</option></select></div>
-<div class="col-lg-2 col-md-6"><label class="form-label">Aadhaar / ఆధార్</label><input type="text" class="form-control" name="family_aadhaar[]" maxlength="12" inputmode="numeric" placeholder="12 digits / 12 అంకెలు"></div>
-<div class="col-lg-2 col-md-6"><label class="form-label">Mobile / ఫోన్ నంబర్</label><input type="tel" class="form-control" name="family_contact[]" maxlength="10" inputmode="numeric" placeholder="10 digits / 10 అంకెలు"></div>`;
-container.appendChild(div);}
+
+<div class="col-lg-4 col-md-6">
+<label class="form-label">
+Member Name / సభ్యుని పేరు
+</label>
+<input type="text"
+   class="form-control"
+   name="family_name[]"
+   placeholder="Name / పేరు">
+</div>
+
+<div class="col-lg-2 col-md-6">
+<label class="form-label">
+Date of Birth / పుట్టిన తేదీ
+</label>
+<input type="date"
+   class="form-control"
+   name="family_dob[]">
+</div>
+
+<div class="col-lg-2 col-md-6">
+<label class="form-label">
+Relation / బంధుత్వం
+</label>
+<select class="form-select" name="family_relation[]">
+<option value="">Select / ఎంచుకోండి</option>
+<option>Father</option>
+<option>Mother</option>
+<option>Spouse</option>
+<option>Brother</option>
+<option>Sister</option>
+<option>Son</option>
+<option>Daughter</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="col-lg-2 col-md-6">
+<label class="form-label">
+Aadhaar / ఆధార్
+</label>
+<input type="text"
+   class="form-control"
+   name="family_aadhaar[]"
+   maxlength="12"
+   inputmode="numeric"
+   placeholder="12 digits / 12 అంకెలు">
+</div>
+
+<div class="col-lg-2 col-md-6">
+<label class="form-label">
+Mobile / ఫోన్ నంబర్
+</label>
+<input type="tel"
+   class="form-control"
+   name="family_contact[]"
+   maxlength="10"
+   inputmode="numeric"
+   placeholder="10 digits / 10 అంకెలు">
+</div>
+
+<div class="col-12 mt-2">
+<div class="form-check">
+<input class="form-check-input"
+   type="checkbox"
+   name="family_emergency[]"
+   value="Yes"
+   id="emergency_${familyCount}">
+
+<label class="form-check-label fw-semibold"
+   for="emergency_${familyCount}">
+Emergency Contact / అత్యవసర సమయంలో సంప్రదించాలి
+</label>
+</div>
+</div>
+
+</div>
+`;
+
+container.appendChild(div);
+}
+
 addFamily();
+
+
 let employmentCount = 0;
 function addEmployment() {
 employmentCount++;
@@ -916,36 +1061,171 @@ console.error(error);
 
 
 /* =========================================================
- DOCUMENT IMAGE COMPRESSION
+ DOCUMENT IMAGE COMPRESSION (MULTIPLE FILES PER DOCUMENT)
 ========================================================= */
+
+async function processDocumentFiles(input, listElement, maxKB) {
+
+const files = Array.from(input.files || []);
+
+listElement.innerHTML = "";
+
+if (!files.length) {
+input.value = "";
+return;
+}
+
+const dataTransfer = new DataTransfer();
+
+for (const file of files) {
+
+const row = document.createElement("div");
+row.className = "compression-status";
+
+if (file.type === "application/pdf") {
+
+dataTransfer.items.add(file);
+row.innerHTML = "📄 " + file.name + " / PDF ఎంచుకోబడింది";
+row.classList.add("text-info");
+listElement.appendChild(row);
+continue;
+
+}
+
+if (!file.type.startsWith("image/")) {
+
+row.innerHTML = "✕ " + file.name + ": Unsupported file / మద్దతు లేని ఫైల్";
+row.classList.add("text-danger");
+listElement.appendChild(row);
+continue;
+
+}
+
+const originalKB = (file.size / 1024).toFixed(1);
+row.innerHTML = "Compressing " + file.name + "... / కుదింపు జరుగుతోంది...";
+row.classList.add("text-warning");
+listElement.appendChild(row);
+
+try {
+
+const compressed = await compressImage(file, maxKB);
+dataTransfer.items.add(compressed);
+
+const finalKB = (compressed.size / 1024).toFixed(1);
+
+row.innerHTML =
+"✓ " + file.name + ": " + originalKB + " KB → " + finalKB + " KB";
+row.className = "compression-status text-success";
+
+} catch (error) {
+
+row.innerHTML =
+"✕ " + file.name + ": Compression failed / కుదింపు విఫలమైంది";
+row.className = "compression-status text-danger";
+console.error(error);
+
+}
+
+}
+
+input.files = dataTransfer.files;
+
+}
+
+document
+.querySelectorAll(".document-row")
+.forEach(function(row) {
+  const checkbox = row.querySelector('input[type="checkbox"]');
+  if (checkbox) {
+/* The checkbox is now purely a status indicator driven by whether a
+   file has been chosen for this document — it should not be toggled
+   by hand, only by the auto-tick logic in the file input's "change"
+   handler below (which sets .checked directly, not via a click). */
+checkbox.addEventListener("click", function(e) { e.preventDefault(); });
+checkbox.style.cursor = "default";
+  }
+});
 
 document
 .querySelectorAll(".document-file")
 .forEach(function(input) {
 
+const listId =
+input.name
+.replace("File", "")
++ "FilesList";
+
+const listElement =
+document.getElementById(listId);
+
 input.addEventListener(
 "change",
-function() {
+async function() {
 
-const statusId =
-this.name
-.replace("File", "")
-+ "Status";
+/* The checkbox is now purely a status indicator: ticked whenever a
+   file is attached to this row, unticked when it isn't. Manual
+   clicking is disabled above — this is the only thing that sets it. */
+const row = this.closest(".document-row");
+const checkbox = row ? row.querySelector('input[type="checkbox"]') : null;
+if (checkbox) {
+  const hasFiles = !!(this.files && this.files.length > 0);
+  if (checkbox.checked !== hasFiles) {
+checkbox.checked = hasFiles;
+checkbox.dispatchEvent(new Event("change"));
+  }
+}
 
-
-const status =
-document.getElementById(statusId);
-
-
-processImageInput(
+await processDocumentFiles(
 this,
-status,
-200
+listElement,
+Number(this.dataset.maxKb) || 200
+);
+
+if (this.name === "drivingFile") {
+updateDrivingDeclaration();
+}
+
+}
 );
 
 });
 
-});
+/* =========================================================
+ DRIVING LICENCE DECLARATION
+ Shown only when no Driving Licence file has been uploaded.
+========================================================= */
+
+function updateDrivingDeclaration() {
+
+const drivingInput =
+document.querySelector('input[name="drivingFile"]');
+
+const block =
+document.getElementById("drivingDeclarationBlock");
+
+const checkbox =
+document.getElementById("drivingDeclaration");
+
+if (!drivingInput || !block || !checkbox) return;
+
+const hasFile =
+drivingInput.files && drivingInput.files.length > 0;
+
+if (hasFile) {
+
+block.classList.add("d-none");
+checkbox.required = false;
+
+} else {
+
+block.classList.remove("d-none");
+checkbox.required = true;
+
+}
+
+}
+
+updateDrivingDeclaration();
 
 
 
@@ -1203,8 +1483,8 @@ el.value
 /* =========================================================
  LAST SALARY CALCULATION + SUBMISSION
 ========================================================= */
-
-const GOOGLE_APPS_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+/*https://script.google.com/macros/s/AKfycbzbror4y12cQydmb0b-t_vAqDSzjElk-g5BJXWW5VVHNgBf110nFGoHhmK5q-PAYNdi/exec   */
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw9iMq3A3pG_IQ47fUoXI7S7WoERka8AlzxQSFWAJWv6Rou22uSvlP0H1JgvxExKLv9/exec";
 
 /* =========================================================
  COMPANY LETTERHEAD DETAILS (edit as needed for the PDF)
@@ -1218,6 +1498,220 @@ const COMPANY_INFO = {
   logo: "https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN"
 };
 
+/* =========================================================
+ AADHAAR SESSION CACHE + DEPENDENT DUPLICATE-DETECTION
+ On page load, the list of Aadhaar numbers already on record is
+ downloaded once and cached in sessionStorage. When the user leaves the
+ Aadhaar field, that cached list is checked (no network call); on a
+ match the full existing application is fetched from the backend and
+ used to populate the entire form for editing/updating.
+========================================================= */
+const AADHAAR_SESSION_KEY = "ssa_aadhaarList";
+
+function backendReady() {
+  return !!GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes("PASTE_YOUR");
+}
+
+async function loadAadhaarListIntoSession() {
+  if (!backendReady()) return;
+  try {
+const res = await fetch(GOOGLE_APPS_SCRIPT_URL + "?action=getAadhaarList");
+const json = await res.json();
+if (json && json.success) {
+  sessionStorage.setItem(AADHAAR_SESSION_KEY, JSON.stringify(json.aadhaarList || []));
+}
+  } catch (err) {
+console.error("Could not preload Aadhaar list:", err);
+  }
+}
+
+function getCachedAadhaarList() {
+  try { return JSON.parse(sessionStorage.getItem(AADHAAR_SESSION_KEY) || "[]"); }
+  catch (err) { return []; }
+}
+
+function rememberAadhaarInSession(aadhaar) {
+  const list = getCachedAadhaarList();
+  if (aadhaar && !list.includes(aadhaar)) {
+list.push(aadhaar);
+sessionStorage.setItem(AADHAAR_SESSION_KEY, JSON.stringify(list));
+  }
+}
+
+function setFormBusy(isBusy, message) {
+  let overlay = document.getElementById("formBusyOverlay");
+  if (isBusy) {
+if (!overlay) {
+  overlay = document.createElement("div");
+  overlay.id = "formBusyOverlay";
+  overlay.className = "form-busy-overlay";
+  overlay.innerHTML = '<div class="busy-box"><span class="spinner-border spinner-border-sm text-primary" role="status"></span><span id="formBusyText"></span></div>';
+  document.body.appendChild(overlay);
+}
+document.getElementById("formBusyText").textContent = message || "Working... / దయచేసి వేచి ఉండండి...";
+overlay.style.display = "flex";
+  } else if (overlay) {
+overlay.style.display = "none";
+  }
+}
+
+function showFormNotice(message, isError) {
+  const notice = document.getElementById("aadhaarNotice");
+  if (!notice) return;
+  notice.className = "alert " + (isError ? "alert-warning" : "alert-info");
+  notice.textContent = message;
+  notice.classList.remove("d-none");
+}
+
+function hideFormNotice() {
+  const notice = document.getElementById("aadhaarNotice");
+  if (notice) notice.classList.add("d-none");
+}
+
+/* Fills every matching form field/select/textarea from a flat object,
+   dispatching change/input events so dependent listeners (dropdowns,
+   salary totals, driving declaration, etc.) fire correctly. */
+function fillSimpleFields(form, data) {
+  Array.from(form.elements).forEach(function(el) {
+if (!el.name || el.name.endsWith("[]")) return;
+if (!(el.name in data)) return;
+const value = data[el.name];
+if (el.type === "checkbox") {
+  el.checked = (value === true || value === "true" || value === "Yes" || value === "on");
+} else if (el.type === "file") {
+  // files can't be reprogrammatically set; skip
+} else if (el.type === "date") {
+  // <input type="date"> only accepts "YYYY-MM-DD"; guard against a
+  // full ISO datetime string slipping through from the backend.
+  const raw = (value === null || value === undefined) ? "" : String(value);
+  el.value = /^\d{4}-\d{2}-\d{2}/.test(raw) ? raw.slice(0, 10) : "";
+} else {
+  el.value = (value === null || value === undefined) ? "" : value;
+}
+  });
+}
+
+function populateRepeatingSection(containerId, addFn, rows, fieldNames) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = "";
+  if (!rows || !rows.length) { addFn(); return; }
+  rows.forEach(function(row) {
+addFn();
+const card = container.lastElementChild;
+if (!card) return;
+fieldNames.forEach(function(fieldName) {
+  const el = card.querySelector('[name="' + fieldName + '[]"]');
+  if (!el) return;
+  const value = row[fieldName];
+  if (el.type === "checkbox") {
+el.checked = (value === "Yes" || value === true);
+  } else if (el.type === "date") {
+const raw = (value === null || value === undefined) ? "" : String(value);
+el.value = /^\d{4}-\d{2}-\d{2}/.test(raw) ? raw.slice(0, 10) : "";
+  } else {
+el.value = (value === null || value === undefined) ? "" : value;
+if (el.tagName === "SELECT") el.dispatchEvent(new Event("change"));
+  }
+});
+  });
+}
+
+/* Photo/Signature file inputs can't be pre-filled by JS (browser security),
+   so on a loaded update the person previously had to re-pick both files
+   even when nothing else changed. This shows the already-saved image and
+   makes the field optional again — the person only needs to choose a new
+   file if they actually want to replace it. */
+function setExistingFilePreview(input, previewImg, previewText, url) {
+  if (!input) return;
+  if (url) {
+input.dataset.existingUrl = url;
+input.required = false;
+if (previewImg) { previewImg.src = driveViewUrlToDirect_(url); previewImg.style.display = "block"; }
+if (previewText) previewText.style.display = "none";
+  } else {
+delete input.dataset.existingUrl;
+input.required = true;
+if (previewImg) { previewImg.src = ""; previewImg.style.display = "none"; }
+if (previewText) previewText.style.display = "block";
+  }
+}
+
+async function populateFormFromApplicant(data) {
+  const form = document.getElementById("applicationForm");
+
+  setExistingFilePreview(document.getElementById("photo"), document.getElementById("photoPreview"), document.getElementById("photoText"), data.photoUrl);
+  setExistingFilePreview(document.getElementById("signature"), document.getElementById("signaturePreview"), document.getElementById("signatureText"), data.signatureUrl);
+
+  // Vertical -> Department -> Designation chain, and Division -> Location
+  const verticalEl = document.getElementById("vertical");
+  verticalEl.value = data.vertical || "";
+  verticalEl.dispatchEvent(new Event("change"));
+  const departmentEl = document.getElementById("department");
+  departmentEl.value = data.department || "";
+  departmentEl.dispatchEvent(new Event("change"));
+  document.getElementById("designation").value = data.designation || "";
+
+  const divisionEl = document.getElementById("division");
+  divisionEl.value = data.division || "";
+  divisionEl.dispatchEvent(new Event("change"));
+  document.getElementById("Location").value = data.Location || "";
+
+  // Every other simple field
+  fillSimpleFields(form, data);
+
+  // Repeating sections
+  populateRepeatingSection("educationContainer", addEducation, data.education,
+["education_institute","education_course","education_year","education_grade","education_marks"]);
+  populateRepeatingSection("familyContainer", addFamily, data.family,
+["family_name","family_dob","family_relation","family_aadhaar","family_contact","family_emergency"]);
+  populateRepeatingSection("employmentContainer", addEmployment, data.employment,
+["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked",
+ "employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"]);
+
+  // Documents checkboxes
+  ["docAadhar","docPan","docDob","docResidence","docEducation","docDriving"].forEach(function(id) {
+const el = document.getElementById(id);
+if (el) el.checked = (data[id] === true || data[id] === "true" || data[id] === "TRUE");
+  });
+
+  calculateLastSalary();
+  if (typeof updateDrivingDeclaration === "function") updateDrivingDeclaration();
+  document.querySelectorAll('[name="employment_relieving[]"]').forEach(function(el) {
+el.dispatchEvent(new Event("change"));
+  });
+}
+
+document.addEventListener("DOMContentLoaded", loadAadhaarListIntoSession);
+if (document.readyState !== "loading") loadAadhaarListIntoSession();
+
+document.querySelector('[name="aadhaar"]').addEventListener("blur", async function() {
+  const value = this.value.trim();
+  hideFormNotice();
+  if (!/^\d{12}$/.test(value)) return;
+  if (!backendReady()) return;
+
+  const cachedList = getCachedAadhaarList();
+  if (!cachedList.includes(value)) return; // new applicant — nothing to stop for
+
+  setFormBusy(true, "Existing application found. Loading saved details... / ఇప్పటికే దరఖాస్తు కనుగొనబడింది. వివరాలు లోడ్ అవుతున్నాయి...");
+  try {
+const res = await fetch(GOOGLE_APPS_SCRIPT_URL + "?action=getApplicant&aadhaar=" + encodeURIComponent(value));
+const json = await res.json();
+if (json && json.success && json.data) {
+  await populateFormFromApplicant(json.data);
+  showFormNotice("An application already exists for Aadhaar " + value + ". The form has been loaded with the saved details — submitting will update this record. / ఇప్పటికే దరఖాస్తు ఉంది; సమర్పిస్తే ఈ రికార్డు నవీకరించబడుతుంది.", false);
+} else {
+  showFormNotice("Could not load the existing application (" + ((json && json.error) || "unknown error") + "). You can continue filling the form manually.", true);
+}
+  } catch (err) {
+console.error(err);
+showFormNotice("Could not reach the server to check for an existing application. You can continue filling the form manually.", true);
+  } finally {
+setFormBusy(false);
+  }
+});
+
 function calculateLastSalary() {
   let gross = 0, deductions = 0;
   document.querySelectorAll(".salary-earning").forEach(el => gross += Number(el.value) || 0);
@@ -1229,17 +1723,53 @@ function calculateLastSalary() {
 document.querySelectorAll(".salary-earning,.salary-deduction").forEach(el => el.addEventListener("input", calculateLastSalary));
 calculateLastSalary();
 
+/* Reads a repeating section (.repeat-card list) directly from the DOM,
+   one row per card, so that a row's fields always stay aligned by index
+   even when a checkbox in that row (e.g. Emergency Contact) is left
+   unchecked and would otherwise be omitted from FormData. */
+function collectRepeatingSection(containerId, fieldNames) {
+  const container = document.getElementById(containerId);
+  const cards = container ? Array.from(container.querySelectorAll(":scope > .repeat-card")) : [];
+  const result = {};
+  fieldNames.forEach(f => { result[f] = []; });
+  cards.forEach(function(card) {
+fieldNames.forEach(function(fieldName) {
+  const el = card.querySelector('[name="' + fieldName + '[]"]');
+  if (!el) { result[fieldName].push(""); return; }
+  if (el.type === "checkbox") {
+result[fieldName].push(el.checked ? "Yes" : "No");
+  } else {
+result[fieldName].push(el.value || "");
+  }
+});
+  });
+  return result;
+}
+
 function formDataToObject(form) {
   const data = {};
   const fd = new FormData(form);
   for (const [key, value] of fd.entries()) {
 if (value instanceof File) continue;
-if (key.endsWith("[]")) {
-  if (!data[key]) data[key] = [];
-  data[key].push(value);
-} else if (key !== "declaration") data[key] = value;
+if (key.endsWith("[]")) continue; // repeating fields are collected below, row-aligned via the DOM
+if (key !== "declaration") data[key] = value;
   }
+
+  Object.assign(data, collectRepeatingSection("educationContainer",
+["education_institute","education_course","education_year","education_grade","education_marks"]));
+  Object.assign(data, collectRepeatingSection("familyContainer",
+["family_name","family_dob","family_relation","family_aadhaar","family_contact","family_emergency"]));
+  Object.assign(data, collectRepeatingSection("employmentContainer",
+["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked",
+ "employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"]));
+
+  ["docAadhar","docPan","docDob","docResidence","docEducation","docDriving"].forEach(function(id) {
+const el = document.getElementById(id);
+data[id] = el ? el.checked : false;
+  });
+
   data.declaration = document.getElementById("declaration").checked;
+  data.drivingDeclaration = document.getElementById("drivingDeclaration") ? document.getElementById("drivingDeclaration").checked : false;
   data.submittedAt = new Date().toISOString();
   data.applicationId = data.aadhaar || ("SS-" + Date.now());
   return data;
@@ -1248,6 +1778,19 @@ if (key.endsWith("[]")) {
 /* =========================================================
  PDF HELPERS - image loading
 ========================================================= */
+
+/* Converts a Google Drive "view" share link (what DriveApp.File.getUrl()
+   returns, e.g. https://drive.google.com/file/d/<ID>/view?usp=drivesdk)
+   into a directly-fetchable image URL, the same lh3.googleusercontent.com
+   form already used for the company logo. The plain drive.google.com/file
+   URL returns an HTML viewer page when fetched, not image bytes, so it
+   can't be embedded into the PDF directly. */
+function driveViewUrlToDirect_(url) {
+  if (!url) return null;
+  const match = String(url).match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (!match) return url;
+  return "https://lh3.googleusercontent.com/d/" + match[1];
+}
 
 function loadUrlAsDataURL(url) {
   return new Promise((resolve) => {
@@ -1273,6 +1816,50 @@ reader.onerror = () => resolve(null);
 reader.readAsDataURL(file);
   });
 }
+function stripDataUrlPrefix(dataUrl) {
+  if (!dataUrl) return "";
+  const comma = dataUrl.indexOf(",");
+  return comma !== -1 ? dataUrl.substring(comma + 1) : dataUrl;
+}
+
+async function fileToUploadObject(file) {
+  if (!file) return null;
+  const dataUrl = await fileToDataURL(file);
+  if (!dataUrl) return null;
+  return { name: file.name, mimeType: file.type || "application/octet-stream", data: stripDataUrlPrefix(dataUrl) };
+}
+async function collectFilesForUpload(form) {
+  const files = {};
+  const photoInput = form.querySelector("#photo");
+  const signatureInput = form.querySelector("#signature");
+
+  if (photoInput && photoInput.files[0]) {
+files.photo = await fileToUploadObject(photoInput.files[0]);
+  } else {
+files.photo = null;
+if (photoInput && photoInput.dataset.existingUrl) files.photoUrl = photoInput.dataset.existingUrl;
+  }
+
+  if (signatureInput && signatureInput.files[0]) {
+files.signature = await fileToUploadObject(signatureInput.files[0]);
+  } else {
+files.signature = null;
+if (signatureInput && signatureInput.dataset.existingUrl) files.signatureUrl = signatureInput.dataset.existingUrl;
+  }
+
+  const docFieldNames = ["aadharFile","panFile","dobFile","residenceFile","educationFile","drivingFile"];
+  for (const name of docFieldNames) {
+const input = form.querySelector('[name="' + name + '"]');
+const fileList = input ? Array.from(input.files || []) : [];
+const uploaded = [];
+for (const f of fileList) {
+  const obj = await fileToUploadObject(f);
+  if (obj) uploaded.push(obj);
+}
+files[name] = uploaded;
+  }
+  return files;
+}
 
 function getImageDimensions(dataUrl) {
   return new Promise((resolve) => {
@@ -1290,16 +1877,6 @@ function detectImageFormat(dataUrl) {
   if (dataUrl.indexOf("image/webp") !== -1) return "WEBP";
   return "JPEG";
 }
-
-/* Re-encode an image as a PNG with a transparent background.
-   The company logo is fetched from a remote (Google Drive) link, which
-   often re-serves images as flattened, fully-opaque JPEGs, replacing any
-   transparent background with solid white. That shows up as an ugly
-   white/coloured box behind the logo on the PDF letterhead.
-   This draws the image to an offscreen canvas and keys out any near-white
-   pixels to transparent, then returns a PNG data URL (which jsPDF embeds
-   with real alpha transparency). If the image already has genuine
-   transparency, it's returned untouched. */
 function makeLogoBackgroundTransparent(dataUrl, whiteThreshold = 245) {
   return new Promise((resolve) => {
 if (!dataUrl) { resolve(dataUrl); return; }
@@ -1353,10 +1930,11 @@ pdf.addImage(dataUrl, detectImageFormat(dataUrl), dx, dy, drawW, drawH, undefine
 }
 
 const FIELD_LABELS = {
-  division:"Division", designation:"Designation", Location:"Location",
-  fullName:"Full Name", aadhaar:"Aadhaar Number", dob:"Date of Birth", mobile:"Mobile Number",
+  vertical:"Vertical", department:"Department", division:"Division", designation:"Designation", Location:"Location", source:"Source of Job Information",
+  fullName:"Full Name", gender:"Gender", aadhaar:"Aadhaar Number", dob1:"Date of Birth (as on Aadhaar)", dob2:"Date of Birth (Actual)", mobile:"Mobile Number",
   email:"Email Address", pan:"PAN Number", caste:"Caste", subCaste:"Sub-Caste", bloodGroup:"Blood Group",
-  maritalStatus:"Marital Status", fatherName:"Father's Name", fatherOccupation:"Father's Occupation",
+  maritalStatus:"Marital Status", fatherName:"Father's Name", fatherOccupation:"Father's Occupation", fatherBirthPlace:"Father's Place of Birth",
+  husbandName:"Husband's Name", husbandOccupation:"Husband's Occupation", husbandBirthPlace:"Husband's Place of Birth",
   presentAddress:"Present Address", permanentAddress:"Permanent Address",
   bankName:"Bank Name", accountNumber:"Bank A/c Number", ifsc:"IFSC Code", bankBranch:"Bank Branch",
   uan:"UAN Number", esic:"ESIC Number",
@@ -1387,10 +1965,19 @@ async function generateApplicationPDF(form) {
   const HEADER_BOTTOM = 34, CONTENT_TOP = 42, FOOTER_TOP = pageHeight - 16;
   const PRIMARY = [23,54,93], LIGHT = [237,243,249], GREY = [110,118,128], TEXT = [40,44,48];
 
+  const photoInputEl = document.getElementById("photo");
+  const signatureInputEl = document.getElementById("signature");
+  const photoSourcePromise = photoInputEl.files[0]
+? fileToDataURL(photoInputEl.files[0])
+: loadUrlAsDataURL(driveViewUrlToDirect_(photoInputEl.dataset.existingUrl));
+  const signatureSourcePromise = signatureInputEl.files[0]
+? fileToDataURL(signatureInputEl.files[0])
+: loadUrlAsDataURL(driveViewUrlToDirect_(signatureInputEl.dataset.existingUrl));
+
   const [logoDataUrlRaw, photoDataUrl, signatureDataUrl] = await Promise.all([
 loadUrlAsDataURL(COMPANY_INFO.logo),
-fileToDataURL(document.getElementById("photo").files[0]),
-fileToDataURL(document.getElementById("signature").files[0])
+photoSourcePromise,
+signatureSourcePromise
   ]);
   const logoDataUrl = await makeLogoBackgroundTransparent(logoDataUrlRaw);
 
@@ -1462,11 +2049,11 @@ if (y + needed > FOOTER_TOP - 2) { pdf.addPage(); drawHeader(); y = CONTENT_TOP;
   pdf.setFont("helvetica","normal");
   pdf.setFontSize(9);
   pdf.setTextColor(...TEXT);
-  pdf.text(`Application ID: ${data.applicationId}`, marginX, y + 9);
-  pdf.text(`Date: ${new Date().toLocaleDateString()}`, marginX, y + 15);
-  pdf.text(`Division: ${data.division || "-"}    Designation: ${data.designation || "-"}    Location: ${data.Location || "-"}`, marginX, y + 21);
+  pdf.text(`Application ID: ${data.applicationId}, Date: ${new Date().toLocaleDateString()}`, marginX, y + 9);
+  pdf.text(`Vertical: ${data.vertical || "-"}, Department: ${data.department || "-"}, Designation: ${data.designation || "-"}`, marginX, y + 15);
+  pdf.text(`Division: ${data.division || "-"}, Location: ${data.Location || "-"}`, marginX, y + 21);
 
-  y += 30;
+  y += 36;
 
   /* ---- Section heading bar ---- */
   function sectionHeading(title) {
@@ -1521,11 +2108,12 @@ y = pdf.lastAutoTable.finalY + 8;
 
   sectionHeading("1-2. Application & Personal Details");
   keyValueTable([
-[FIELD_LABELS.division,"division"], [FIELD_LABELS.designation,"designation"], [FIELD_LABELS.Location,"Location"],
-[FIELD_LABELS.fullName,"fullName"], [FIELD_LABELS.aadhaar,"aadhaar"], [FIELD_LABELS.dob,"dob"],
+[FIELD_LABELS.vertical,"vertical"], [FIELD_LABELS.department,"department"], [FIELD_LABELS.designation,"designation"], [FIELD_LABELS.division,"division"], [FIELD_LABELS.Location,"Location"], [FIELD_LABELS.source,"source"],
+[FIELD_LABELS.fullName,"fullName"], [FIELD_LABELS.gender,"gender"], [FIELD_LABELS.aadhaar,"aadhaar"], [FIELD_LABELS.dob1,"dob1"], [FIELD_LABELS.dob2,"dob2"],
 [FIELD_LABELS.mobile,"mobile"], [FIELD_LABELS.email,"email"], [FIELD_LABELS.pan,"pan"],
 [FIELD_LABELS.caste,"caste"], [FIELD_LABELS.subCaste,"subCaste"], [FIELD_LABELS.bloodGroup,"bloodGroup"],
-[FIELD_LABELS.maritalStatus,"maritalStatus"], [FIELD_LABELS.fatherName,"fatherName"], [FIELD_LABELS.fatherOccupation,"fatherOccupation"]
+[FIELD_LABELS.maritalStatus,"maritalStatus"], [FIELD_LABELS.fatherName,"fatherName"], [FIELD_LABELS.fatherOccupation,"fatherOccupation"], [FIELD_LABELS.fatherBirthPlace,"fatherBirthPlace"],
+[FIELD_LABELS.husbandName,"husbandName"], [FIELD_LABELS.husbandOccupation,"husbandOccupation"], [FIELD_LABELS.husbandBirthPlace,"husbandBirthPlace"]
   ]);
 
   sectionHeading("3. Address Details");
@@ -1564,22 +2152,22 @@ didDrawPage: () => { drawHeader(); }
   sectionHeading("7. Educational Qualifications");
   gridTable(
 ["Institution","Course / Degree","Year","Grade","Marks %"],
-["education_institute[]","education_course[]","education_year[]","education_grade[]","education_marks[]"],
+["education_institute","education_course","education_year","education_grade","education_marks"],
 {0:{cellWidth:65},1:{cellWidth:48},2:{cellWidth:24},3:{cellWidth:24},4:{cellWidth:25}}
   );
 
   sectionHeading("8. Family Details");
   gridTable(
-["Name","Date of Birth","Relation","Aadhaar","Mobile"],
-["family_name[]","family_dob[]","family_relation[]","family_aadhaar[]","family_contact[]"],
-{0:{cellWidth:54},1:{cellWidth:32},2:{cellWidth:32},3:{cellWidth:40},4:{cellWidth:28}}
+["Name","Date of Birth","Relation","Aadhaar","Mobile","Emergency Contact"],
+["family_name","family_dob","family_relation","family_aadhaar","family_contact","family_emergency"],
+{0:{cellWidth:42},1:{cellWidth:26},2:{cellWidth:26},3:{cellWidth:32},4:{cellWidth:24},5:{cellWidth:36}}
   );
 
   sectionHeading("9. Previous Employment Details");
   gridTable(
 ["Organisation","Designation","Joining","Relieving","Worked","S/Salary","E/Salary","HOD","HOD Contact","Reason"],
-["employment_org[]","employment_designation[]","employment_joining[]","employment_relieving[]","employment_worked[]",
- "employment_joining_salary[]","employment_relieving_salary[]","employment_hod[]","employment_hod_contact[]","employment_reason[]"],
+["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked",
+ "employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"],
 {0:{cellWidth:26},1:{cellWidth:22},2:{cellWidth:18},3:{cellWidth:18},4:{cellWidth:16},5:{cellWidth:16},6:{cellWidth:16},7:{cellWidth:18},8:{cellWidth:18},9:{cellWidth:18}}
   );
 
@@ -1619,6 +2207,16 @@ contentWidth
   );
   pdf.text(declLines, marginX, y);
   y += declLines.length*4.2 + 6;
+
+  if (data.drivingDeclaration) {
+ensureSpace(40);
+const drivingDeclLines = pdf.splitTextToSize(
+  "I hereby declare that I do not possess a valid Driving Licence. If any accident, damage to Company property, financial loss, physical injury, or any other loss occurs as a result of my driving or operating a Two-Wheeler or Four-Wheeler, I shall be solely responsible for the consequences arising from such incident. I understand that the Company shall not be held responsible or liable for any loss, damage, injury, compensation, or legal consequences arising due to my unauthorized driving. I shall not seek or claim any financial, legal, or other intervention from the Company in connection with such incidents. Further, I confirm that neither I nor my family members shall hold the Company responsible or create any claim, dispute, or demand against the Company arising from such incidents. I am signing this declaration voluntarily and with full understanding of its contents and consequences.",
+  contentWidth
+);
+pdf.text(drivingDeclLines, marginX, y);
+y += drivingDeclLines.length*4.2 + 6;
+  }
 
   ensureSpace(46);
   const sigBoxW = 60, sigBoxH = 26;
@@ -1672,13 +2270,20 @@ return;
 
   try {
 const payload = formDataToObject(form);
-if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes("PASTE_YOUR")) {
+payload.action = "submitApplication";
+if (backendReady()) {
+  submitButton.innerHTML = "Uploading files... / ఫైళ్లను అప్‌లోడ్ చేస్తోంది...";
+  payload.files = await collectFilesForUpload(form);
+  submitButton.innerHTML = "Submitting... / సమర్పిస్తోంది...";
   const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
 method:"POST",
 body: JSON.stringify(payload),
 headers:{"Content-Type":"text/plain;charset=utf-8"}
   });
   if (!response.ok) throw new Error("Unable to save application.");
+  const result = await response.json();
+  if (!result || !result.success) throw new Error((result && result.error) || "Unable to save application.");
+  rememberAadhaarInSession(payload.aadhaar);
 }
 await generateApplicationPDF(form);
 const success = document.getElementById("successMessage");
@@ -1749,6 +2354,10 @@ document
 "block";
 
 
+setExistingFilePreview(document.getElementById("photo"), document.getElementById("photoPreview"), document.getElementById("photoText"), null);
+setExistingFilePreview(document.getElementById("signature"), document.getElementById("signaturePreview"), document.getElementById("signatureText"), null);
+
+
 document
 .querySelectorAll(
 ".compression-status"
@@ -1768,6 +2377,10 @@ document
 .classList.remove(
 "was-validated"
 );
+
+
+updateDrivingDeclaration();
+hideFormNotice();
 
 
 },
