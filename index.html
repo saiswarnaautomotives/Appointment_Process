@@ -3,49 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAI SWARNA AUTOMOTIVES</title>
-<link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"  rel="stylesheet">
+<title>SAI SWARNA - H R M S</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN">
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-:root {--primary: #17365d;--secondary: #0d6efd;--light-bg: #f4f7fb;--border: #d9e1ea;}
-html {overflow-x: hidden;}
-body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;color: #263238;overflow-x: hidden;}
+:root {--primary: #17365d;--secondary: #0d6efd;--accent: #38bdf8;--light-bg: #eef3fb;--border: #d9e1ea;--success:#198754;--danger:#dc3545;}
+html {overflow-x: hidden;scroll-behavior: smooth;}
+body {background: radial-gradient(1200px 600px at 10% -10%, #e7f0ff 0%, transparent 60%),radial-gradient(1000px 600px at 110% 10%, #eaf7ff 0%, transparent 55%),var(--light-bg);font-family: "Poppins","Segoe UI", Arial, sans-serif;color: #263238;overflow-x: hidden;}
 .container-main {max-width: 1250px;margin: 25px auto;}
-.application-card {background: #fff;border-radius: 12px;box-shadow: 0 4px 20px rgba(0,0,0,.08);overflow: hidden;}
-.form-header {background:linear-gradient(135deg,#0d6efd,#ffffff);color: var(--primary);padding: 12px 20px;display: flex;align-items: center;gap: 20px;border-bottom: 1px solid #d9e1ea;}
-.header-logo {flex: 0 0 auto;width: 120px;height: 70px;display: flex;align-items: center;justify-content: center;background: transparent;border-radius: 8px;padding: 5px;}
+.application-card {background: #fff;border-radius: 16px;box-shadow: 0 10px 40px rgba(23,54,93,.12);overflow: hidden;animation: cardEnter .6s cubic-bezier(.22,1,.36,1);}
+@keyframes cardEnter {from {opacity: 0;transform: translateY(22px) scale(.99);} to {opacity: 1;transform: translateY(0) scale(1);}}
+@keyframes fadeInUp {from {opacity: 0;transform: translateY(14px);} to {opacity: 1;transform: translateY(0);}}
+.form-header {background:linear-gradient(180deg,#FF9933 0%,#FF9933 30%,#FFFFFF 42%,#FFFFFF 58%,#138808 70%,#138808 100%);background-size: 100% 260%;animation: gradientScroll 25s ease infinite;color: var(--primary);padding: 14px 22px;display: flex;align-items: center;gap: 20px;border-bottom: 3px solid #000080;position: relative;}
+@keyframes gradientScroll {0%{background-position:0% 0%;}50%{background-position:0% 100%;}100%{background-position:0% 0%;}}
+.header-logo {flex: 0 0 auto;width: 120px;height: 70px;display: flex;align-items: center;justify-content: center;background:transparent;border-radius: 10px;padding: 5px;transition: transform .3s ease;}
+.header-logo:hover {transform: translateY(-2px) scale(1.03);}
 .header-logo img {max-width: 100%;max-height: 100%;width: auto;height: auto;object-fit: contain;}
 .header-content {flex: 1 1 auto;min-width: 0;}
-.header-content h2 {margin: 0;font-weight: 700;font-size: 26px;overflow-wrap: break-word;}
-.header-content p {margin: 5px 0 0;opacity: .9;font-size: 15px;overflow-wrap: break-word;}
-.section-title {background: #edf3f9;border-left: 5px solid var(--primary);padding: 10px 14px;margin: 20px 0 15px;font-size: 17px;font-weight: 700;color: var(--primary);}
+.header-content h2 {margin: 0;font-weight: 800;font-size: 26px;overflow-wrap: break-word;letter-spacing: .5px;text-shadow: 0 1px 12px rgba(255,255,255,.35); color: #FFD700;}
+.header-content p {margin: 5px 0 0;opacity: .92;font-size: 15px;overflow-wrap: break-word; color: #FFD700;}
+.section-title {background: linear-gradient(90deg,#edf3f9,#f8fbff);border-left: 5px solid var(--secondary);padding: 10px 14px;margin: 20px 0 15px;font-size: 17px;font-weight: 700;color: var(--primary);border-radius: 0 8px 8px 0;transition: transform .2s ease, box-shadow .2s ease, background .2s ease;animation: fadeInUp .5s ease;}
+.section-title:hover {transform: translateX(4px);box-shadow: 0 4px 14px rgba(23,54,93,.1);background: linear-gradient(90deg,#e3edfa,#f2f8ff);}
 .form-label {font-weight: 600;font-size: 14px;line-height: 1.25;margin-bottom: 2px;}
 .form-label .te {font-weight: 500;}
 .row.g-1 > [class*="col-"],.row.g-2 > [class*="col-"],.row.g-3 > [class*="col-"] {display: flex;flex-direction: column;}
 .row.g-1 > [class*="col-"] > .form-label,.row.g-2 > [class*="col-"] > .form-label,.row.g-3 > [class*="col-"] > .form-label {display: flex;align-items: flex-end;min-height: 2.1em;}
 @media (max-width: 767px) {.row.g-1 > [class*="col-"] > .form-label,.row.g-2 > [class*="col-"] > .form-label,.row.g-3 > [class*="col-"] > .form-label {min-height: 0;}}
-.form-control,.form-select {min-height: 40px;border: 1px solid var(--border);border-radius: 6px;}
-.form-control:focus,.form-select:focus {border-color: var(--secondary);box-shadow:0 0 0 .15rem rgba(13,110,253,.12);}
+.form-control,.form-select {min-height: 40px;border: 1px solid var(--border);border-radius: 8px;transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease;}
+.form-control:focus,.form-select:focus {border-color: var(--secondary);box-shadow:0 0 0 .18rem rgba(13,110,253,.15);transform: translateY(-1px);}
+.form-control:hover,.form-select:hover {border-color: #9fc2f5;}
+.form-control.is-valid,.form-select.is-valid {border-color: var(--success);background-image: none;}
+.form-control.is-invalid,.form-select.is-invalid {border-color: var(--danger);background-image: none;}
+.valid-feedback,.invalid-feedback {font-size: 12px;margin-top: 3px;}
 .required::after {content: " *";color: red;}
 .address-box {min-height: 90px;resize: vertical;}
-.repeat-card {border: 1px solid #dce3eb;border-radius: 8px;padding: 15px;margin-bottom: 12px;background: #fbfcfe;}
+.repeat-card {border: 1px solid #dce3eb;border-radius: 10px;padding: 15px;margin-bottom: 12px;background: #fbfcfe;transition: box-shadow .25s ease, transform .2s ease;}
+.repeat-card:hover {box-shadow: 0 8px 22px rgba(23,54,93,.12);transform: translateY(-2px);}
 .repeat-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 12px;}
 .repeat-title {font-weight: 700;color: var(--primary);}
-.document-row {border: 1px solid #dee2e6;border-radius: 7px; padding: 12px; margin-bottom: 8px; background: #fff;}
+.document-row {border: 1px solid #dee2e6;border-radius: 9px; padding: 12px; margin-bottom: 8px; background: #fff;transition: box-shadow .2s ease, transform .2s ease;}
+.document-row:hover {box-shadow: 0 6px 16px rgba(23,54,93,.08);transform: translateY(-1px);}
 .document-row label {font-weight: 600;}
-.photo-box { width: 150px; height: 180px; border: 2px dashed #adb5bd; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f8f9fa; margin-bottom: 10px;}
-.photo-box img {width: 100%;height: 100%;object-fit: cover;}
-.signature-box {width: 300px;height: 120px;border: 2px dashed #adb5bd;border-radius: 8px;display: flex;align-items: center;justify-content: center;overflow: hidden;background: #f8f9fa;margin-bottom: 10px;}
-.signature-box img {width: 100%;height: 100%;object-fit: contain;}
 .file-size-info {font-size: 12px;color: #6c757d;margin-top: 4px;}
 .compression-status {font-size: 12px;font-weight: 600;margin-top: 4px;}
-.submit-area {background: #f5f7fa;padding: 20px;margin-top: 25px;border-top: 1px solid #dee2e6;}
-.form-busy-overlay {position: fixed;inset: 0;background: rgba(23,54,93,.35);z-index: 2000;display: flex;align-items: center;justify-content: center;}
-.form-busy-overlay .busy-box {background: #fff;border-radius: 10px;padding: 20px 28px;box-shadow: 0 8px 30px rgba(0,0,0,.25);display: flex;align-items: center;gap: 14px;font-weight: 600;color: var(--primary);max-width: 90%;}
+.submit-area {background: linear-gradient(180deg,#f5f7fa,#eef3fb);padding: 22px;margin-top: 25px;border-top: 1px solid #dee2e6;}
+.submit-area .btn {border-radius: 10px;font-weight: 600;transition: transform .2s ease, box-shadow .2s ease;}
+.submit-area .btn-primary {background: linear-gradient(135deg,#0d6efd,#17365d);border: none;box-shadow: 0 6px 18px rgba(13,110,253,.3);}
+.submit-area .btn-primary:hover {transform: translateY(-2px);box-shadow: 0 10px 26px rgba(13,110,253,.4);}
+.submit-area .btn-outline-secondary:hover {transform: translateY(-2px);box-shadow: 0 6px 16px rgba(23,54,93,.15);}
+.form-busy-overlay {position: fixed;inset: 0;background: rgba(23,54,93,.4);backdrop-filter: blur(2px);z-index: 2000;display: flex;align-items: center;justify-content: center;}
+.form-busy-overlay .busy-box {background: #fff;border-radius: 12px;padding: 20px 28px;box-shadow: 0 8px 30px rgba(0,0,0,.25);display: flex;align-items: center;gap: 14px;font-weight: 600;color: var(--primary);max-width: 90%;}
 #aadhaarNotice {font-size: 14px;}
-.footer {text-align: center;padding: 15px;font-size: 13px;color: #6c757d;}
+.footer {text-align: center;padding: 18px 15px;font-size: 13px;color: #6c757d;background: linear-gradient(180deg,#f7f9fc,#eef3fb);border-top: 1px solid #e3e9f1;}
+.footer .designer-link {color: var(--secondary);font-weight: 600;text-decoration: none;position: relative;transition: color .2s ease;}
+.footer .designer-link::after {content: "";position: absolute;left: 0;bottom: -2px;width: 0;height: 2px;background: var(--secondary);transition: width .25s ease;}
+.footer .designer-link:hover {color: var(--primary);}
+.footer .designer-link:hover::after {width: 100%;}
+.footer .sep {margin: 0 8px;color: #c3cedb;}
 .upload-section {width: 300px;max-width: 100%;text-align: center;}
 .photo-box,.signature-box {width: 200px;max-width: 100%;height: 180px;margin: 0 auto 10px auto;border: 2px dashed #adb5bd;border-radius: 8px;display: flex;align-items: center;justify-content: center;overflow: hidden;background: #f8f9fa;}
 .photo-box {height: 300px;}
@@ -63,40 +83,40 @@ body {background: var(--light-bg);font-family: "Segoe UI", Arial, sans-serif;col
 <body>
 <script>
 (function () {
-  "use strict";
-  document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
-  document.addEventListener("keydown", function (e) {
+"use strict";
+document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+document.addEventListener("keydown", function (e) {
 const k = e.key;
 const isDevToolsKey =
-  k === "F12" ||
-  (e.ctrlKey && e.shiftKey && ["I", "i", "J", "j", "C", "c", "K", "k"].includes(k)) ||
-  (e.ctrlKey && !e.shiftKey && ["u", "U", "s", "S"].includes(k)) ||
-  (e.metaKey && e.altKey && ["I", "i", "J", "j", "C", "c"].includes(k));
+k === "F12" ||
+(e.ctrlKey && e.shiftKey && ["I", "i", "J", "j", "C", "c", "K", "k"].includes(k)) ||
+(e.ctrlKey && !e.shiftKey && ["u", "U", "s", "S"].includes(k)) ||
+(e.metaKey && e.altKey && ["I", "i", "J", "j", "C", "c"].includes(k));
 if (isDevToolsKey) {
-  e.preventDefault();
-  e.stopPropagation();
-  return false;
+e.preventDefault();
+e.stopPropagation();
+return false;
 }
-  });
-  document.addEventListener("dragstart", function (e) { e.preventDefault(); });
-  document.addEventListener("selectstart", function (e) {
+});
+document.addEventListener("dragstart", function (e) { e.preventDefault(); });
+document.addEventListener("selectstart", function (e) {
 const tag = e.target.tagName;
 if (tag !== "INPUT" && tag !== "TEXTAREA") e.preventDefault();
-  });
-  let warned = false;
-  function checkDevToolsOpen() {
+});
+let warned = false;
+function checkDevToolsOpen() {
 const threshold = 160;
 const widthGap = window.outerWidth - window.innerWidth;
 const heightGap = window.outerHeight - window.innerHeight;
 if (!warned && (widthGap > threshold || heightGap > threshold)) {
-  warned = true;
-  document.documentElement.innerHTML =
+warned = true;
+document.documentElement.innerHTML =
 '<div style="display:flex;align-items:center;justify-content:center;height:100vh;' +
 'font-family:\'Segoe UI\',Arial,sans-serif;text-align:center;padding:24px;background:#f4f7fb;color:#17365d;">' +
 "<h2>Developer Tools are disabled on this page.<br>Please close DevTools and reload to continue.</h2></div>";
 }
-  }
-  setInterval(checkDevToolsOpen, 1000);
+}
+setInterval(checkDevToolsOpen, 1000);
 })();
 </script>
 <div class="container-main">
@@ -104,17 +124,17 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 <div class="form-header">
 <div class="header-logo"><img id="companyLogoImg" src="https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN" alt="Sai Swarna Automotives Logo"></div>
 <div class="header-content text-center">
-<h2>JOB APPLICATION FORM</h2>
+<h2>HUMAN RESOURCE MANAGEMENT SYSTEM</h2>
 <p>Employee Recruitment / Joining Application<br><span lang="te">ఉద్యోగ నియామకం / చేరిక దరఖాస్తు</span></p>
 </div>
 <div class="header-logo header-logo-right"><img src="https://lh3.googleusercontent.com/d/1we99lgGaprFz6s65IYbkIHwaKqykg9KF" alt="Hundai Logo"></div>
 </div>
 <form id="applicationForm" novalidate>
 <div class="p-3 p-md-4">
-<div id="aadhaarNotice" class="alert d-none" role="alert"></div>
-<div class="section-title">1. Application Details /దరఖాస్తు వివరాలు</div>
+<!--<div id="aadhaarNotice" class="alert d-none" role="alert"></div>-->
+<div class="section-title">1. Application Details / దరఖాస్తు వివరాలు</div>
 <div class="row g-1">
-<div class="col-lg-4 col-md-6"><label class="form-label required">Vertical /<span class="te">వర్టికల్</span></label>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Vertical / <span class="te">వర్టికల్</span></label>
 <select class="form-select" id="vertical" name="vertical" required>
 <option value="">Select Vertical / వర్టికల్ ఎంచుకోండి</option>
 <option value="Sales">Sales / సేల్స్</option>
@@ -122,13 +142,13 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 <option value="H-Promise">H-Promise / హెచ్-ప్రామిస్</option>
 </select>
 </div>
-<div class="col-lg-4 col-md-6"><label class="form-label required">Department /<span class="te">విభాగం</span></label>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Department / <span class="te"> విభాగం</span></label>
 <select class="form-select" id="department" name="department" required><option value="">Select Department / విభాగాన్ని ఎంచుకోండి</option></select>
 </div>
-<div class="col-lg-4 col-md-6"><label class="form-label required">Designation /<span class="te">హోదా</span></label>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Designation / <span class="te"> హోదా</span></label>
 <select class="form-select" id="designation" name="designation" required><option value="">Select Designation / హోదాను ఎంచుకోండి</option></select>
 </div>
-<div class="col-lg-4 col-md-6"><label class="form-label required">Division /<span class="te"> డివిజన్</span></label>
+<div class="col-lg-4 col-md-6"><label class="form-label required">Division / <span class="te"> డివిజన్</span></label>
 <select class="form-select" id="division" name="division" required>
 <option value="">Select Division / డివిజన్ ఎంచుకోండి</option>
 <option value="Vizag">Vizag / విశాఖ</option>
@@ -142,11 +162,37 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 
 <div class="col-lg-4 col-md-6"><label class="form-label required">Source of Job Information / <span class="te">ఉద్యోగ సమాచార విధానం</span></label>
 <select class="form-select" id="source" name="source" required><option value="">Select Source / మూలాన్ని ఎంచుకోండి</option><option value="Social Media">Social Media / సోషల్ మీడియా</option><option value="Job Advertisement">Job Advertisement / ఉద్యోగ ప్రకటన</option><option value="Employee Reference">Employee Reference / ఉద్యోగి సిఫార్సు</option><option value="Walk-in">Walk-in / నేరుగా విచ్చేయడం</option><option value="Job Portal">Job Portal / ఉద్యోగ పోర్టల్</option><option value="Company Website">Company Website / కంపెనీ వెబ్‌సైట్</option><option value="Consultant">Consultant / Recruitment Agency / కన్సల్టెంట్ / నియామక సంస్థ</option></select>
+<div id="refSummary" class="form-text d-none mt-1"></div>
+</div>
+</div>
+<div class="modal fade" id="employeeReferenceModal" tabindex="-1" aria-labelledby="employeeReferenceModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="employeeReferenceModalLabel">Employee Reference Details / ఉద్యోగి సిఫార్సు వివరాలు</h5>
+<button type="button" class="btn-close" id="refModalCloseBtn" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<p class="small text-muted">Please provide the details of the employee who referred you.<br>మిమ్మల్ని సిఫార్సు చేసిన ఉద్యోగి వివరాలను నమోదు చేయండి.</p>
+<div class="row g-2">
+<div class="col-12"><label class="form-label required">Employee ID / ఉద్యోగి ఐడి</label>
+<input type="text" class="form-control" id="refEmployeeId" name="refEmployeeId" placeholder="Referring Employee's ID / ఉద్యోగి ఐడి"></div>
+<div class="col-12"><label class="form-label required">Employee Name / ఉద్యోగి పేరు</label>
+<input type="text" class="form-control" id="refEmployeeName" name="refEmployeeName" placeholder="Referring Employee's Name / ఉద్యోగి పేరు"></div>
+<div class="col-12"><label class="form-label required">Employee Contact Number / ఉద్యోగి సంప్రదింపు నంబర్</label>
+<input type="tel" class="form-control" id="refEmployeeContact" name="refEmployeeContact" maxlength="10" inputmode="numeric" placeholder="10 digit mobile Number"></div>
+</div>
+<div id="refModalError" class="text-danger small mt-2 d-none">Please fill in all the Employee Reference details before continuing. / దయచేసి అన్ని వివరాలను నమోదు చేయండి.</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-outline-secondary" id="refModalCancelBtn">Cancel / రద్దు చేయండి</button>
+<button type="button" class="btn btn-primary" id="refModalSaveBtn">Save / సేవ్ చేయండి</button>
+</div>
+</div>
 </div>
 </div>
 <div class="section-title"> 2. Personal Details / వ్యక్తిగత వివరాలు</div>
 <div class="row g-1">
-
 <div class="col-lg-4 col-md-6"><label class="form-label required">Full Name / పూర్తి పేరు</label><input type="text" class="form-control" name="fullName" placeholder="Name as per Aadhaar / ఆధార్ ప్రకారం పేరు" required></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Gender / లింగం</label><select class="form-select" name="gender" required><option value="">Select Gender / లింగం ఎంచుకోండి</option><option>Male</option><option>Female</option><option>Transgender</option></select></div>
 <div class="col-lg-4 col-md-6"><label class="form-label required">Aadhaar Number / ఆధార్ నంబర్</label><input type="text" class="form-control" name="aadhaar" maxlength="12" inputmode="numeric" placeholder="12 digit Aadhaar / 12 అంకెల ఆధార్" required></div>
@@ -154,7 +200,9 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 <div class="col-lg-4 col-md-6"><label class="form-label required">Date of Birth (Actual) / వాస్తవ పుట్టిన తేదీ</label><input type="date" class="form-control" name="dob2" required></div>
 <div class="col-lg-4 col-md-6"><label class="form-label required">Mobile Number / మొబైల్ నంబర్</label><input type="tel" class="form-control" name="mobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile / 10 అంకెల మొబైల్" required></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Email / ఇమెయిల్</label><input type="email" class="form-control" name="email" placeholder="example@email.com / ఇమెయిల్ నమోదు చేయండి" required></div>
-<div class="col-lg-4 col-md-6"><label class="form-label">PAN Number / పాన్ నంబర్</label><input type="text" class="form-control text-uppercase" name="pan" maxlength="10" placeholder="ABCDE1234F / పాన్ నంబర్"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">PAN Number / పాన్ నంబర్</label><input type="text" class="form-control text-uppercase" id="pan" name="pan" maxlength="10" pattern="[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z]" title="Enter a valid 10-character PAN, e.g. ABCPD1234E" placeholder="ABCPD1234E / పాన్ నంబర్">
+<div class="invalid-feedback">Invalid PAN format. It must be 10 characters as per Income Tax rules, e.g. ABCPD1234E.</div>
+<div class="valid-feedback">Valid PAN format.</div></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Caste / కులం</label><select class="form-select" name="caste" required><option value="">Select Caste / కులాన్ని ఎంచుకోండి</option><option value="General">General / OC — జనరల్ / ఓసీ</option><option value="OBC">OBC (Other Backward Classes) — ఇతర వెనుకబడిన తరగతులు</option><option value="SC">SC (Scheduled Caste) — షెడ్యూల్డ్ కులం</option><option value="ST">ST (Scheduled Tribe) — షెడ్యూల్డ్ తెగ</option><option value="EWS">EWS (Economically Weaker Section) — ఆర్థికంగా బలహీన వర్గం</option></Select></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Sub-Caste / ఉప కులం</label><input type="text" class="form-control" name="subCaste" placeholder="Enter sub-caste / ఉప కులం" required></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Blood Group / రక్త వర్గం</label><select class="form-select" name="bloodGroup"><option value="">Select Blood Group / రక్త వర్గాన్ని ఎంచుకోండి</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
@@ -175,7 +223,9 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 <div class="row g-1">
 <div class="col-lg-4 col-md-6"><label class="form-label">Bank Name / బ్యాంక్ పేరు</label><input type="text" class="form-control" name="bankName" placeholder="Enter bank name / బ్యాంక్ పేరు"></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Bank A/c Number / బ్యాంక్ ఖాతా నంబర్</label><input type="text" class="form-control" name="accountNumber" inputmode="numeric" placeholder="Account number / ఖాతా నంబర్"></div>
-<div class="col-lg-4 col-md-6"><label class="form-label">IFSC Number / IFSC నంబర్</label><input type="text" class="form-control text-uppercase" name="ifsc" maxlength="11" placeholder="SBIN0001234 / IFSC నంబర్"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">IFSC Number / IFSC నంబర్</label><input type="text" class="form-control text-uppercase" id="ifsc" name="ifsc" maxlength="11" pattern="[A-Z]{4}0[A-Z0-9]{6}" title="Enter a valid 11-character IFSC, e.g. SBIN0001234" placeholder="SBIN0001234 / IFSC నంబర్">
+<div class="invalid-feedback">Invalid IFSC format. It must be 11 characters: 4 letters, a 0, then 6 alphanumeric characters, e.g. SBIN0001234.</div>
+<div class="valid-feedback">Valid IFSC format.</div></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">Bank Branch / బ్యాంక్ శాఖ</label><input type="text" class="form-control" name="bankBranch" placeholder="Branch name / శాఖ పేరు"></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">UAN Number / UAN నంబర్</label><input type="text" class="form-control" name="uan" maxlength="12" inputmode="numeric" placeholder="UAN number / UAN నంబర్"></div>
 <div class="col-lg-4 col-md-6"><label class="form-label">ESIC Number / ESIC నంబర్</label><input type="text" class="form-control" name="esic" inputmode="numeric" placeholder="ESIC number / ESIC నంబర్"></div></div>
@@ -201,7 +251,7 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 <div id="educationContainer"></div>
 <button type="button" class="btn btn-outline-primary btn-sm" onclick="addEducation()">+ Add Education / విద్యార్హతను జోడించండి</button>
 <div class="section-title">8. Family Details /కుటుంబ వివరాలు</div>
-<div id="familyContainer"></div><button type="button" class="btn btn-outline-primary btn-sm" onclick="addFamily()">+ Add Family Member /కుటుంబ సభ్యుడిని జోడించండి</button>
+<div id="familyContainer"></div><button type="button" class="btn btn-outline-primary btn-sm" onclick="addFamily()">+ Add Family Member / కుటుంబ సభ్యుడిని జోడించండి</button>
 <div class="section-title">9. Previous Employment Details / గత ఉద్యోగ వివరాలు</div>
 <div id="employmentContainer"></div><button type="button" class="btn btn-outline-primary btn-sm" onclick="addEmployment()">+ Add Previous Employment / గత ఉద్యోగాన్ని జోడించండి</button>
 <div class="section-title">10. Documents Submitted / సమర్పించిన పత్రాలు</div>
@@ -215,11 +265,11 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 <div class="form-check"><input class="form-check-input" type="checkbox" id="docPan" name="docPan"><label class="form-check-label" for="docPan">Documents (PAN) / పాన్ పత్రం</label></div>
 <input type="file" class="form-control mt-2 document-file" name="panFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple><div class="compression-status" id="panFilesList"></div></div>
 <div class="document-row">
-<div class="form-check"><input class="form-check-input" type="checkbox" id="docDob" name="docDob"><label class="form-check-label" for="docDob"> Documents (Date of Birth) / పుట్టిన తేదీ పత్రం</label></div>
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docDob" name="docDob"><label class="form-check-label" for="docDob"> Bank Pass Book First Page / బ్యాంక్ పాస్‌బుక్ మొదటి పేజీ</label></div>
 <input type="file" class="form-control mt-2 document-file" name="dobFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple><div class="compression-status" id="dobFilesList"></div></div></div>
 <div class="col-lg-6">
 <div class="document-row">
-<div class="form-check"><input class="form-check-input" type="checkbox" id="docResidence" name="docResidence"><label class="form-check-label" for="docResidence">Residence Proof / Ration Card / Sachivalayam/ నివాస ధృవీకరణ పత్రం</label></div>
+<div class="form-check"><input class="form-check-input" type="checkbox" id="docResidence" name="docResidence"><label class="form-check-label" for="docResidence">Residence Proof / Ration Card / Sachivalayam / నివాస ధృవీకరణ పత్రం</label></div>
 <input type="file" class="form-control mt-2 document-file" name="residenceFile" accept=".pdf,.jpg,.jpeg,.png" data-max-kb="200" multiple><div class="compression-status" id="residenceFilesList"></div></div>
 <div class="document-row">
 <div class="form-check"><input class="form-check-input" type="checkbox" id="docEducation" name="docEducation"><label class="form-check-label" for="docEducation">Documents (Educational) / విద్యా పత్రాలు</label></div>
@@ -234,16 +284,16 @@ if (!warned && (widthGap > threshold || heightGap > threshold)) {
 <div class="col-lg-4 col-md-6 d-flex justify-content-center">
 <div class="upload-section">
 <label class="form-label required text-center d-block">Photo / ఫోటో</label>
-<div class="photo-box mx-auto"><img id="photoPreview"  src=""  alt="Photo Preview"  style="display:none;"><span id="photoText">Photo Preview / ఫోటో ప్రివ్యూ</span></div>
+<div class="photo-box mx-auto"><img id="photoPreview" src="" alt="Photo Preview" style="display:none;"><span id="photoText">Photo Preview / ఫోటో ప్రివ్యూ</span></div>
 <input type="file" class="form-control upload-input" id="photo" name="photo" accept="image/jpeg,image/png" capture="user" required>
 <div id="photoStatus" class="compression-status text-center"></div></div></div>
 <div class="col-lg-4 col-md-6 d-flex justify-content-center">
 <div class="upload-section">
 <label class="form-label required text-center d-block">Signature / సంతకం</label>
 <div class="signature-box mx-auto">
-<img id="signaturePreview"  src="" alt="Signature Preview" style="display:none;"><span id="signatureText">Signature Preview / సంతకం ప్రివ్యూ</span></div>
-<input type="file"   class="form-control upload-input"   id="signature"   name="signature"   accept="image/jpeg,image/png"   capture="environment"   required>
-<div id="signatureStatus"  class="compression-status text-center"></div></div></div></div>
+<img id="signaturePreview"src="" alt="Signature Preview" style="display:none;"><span id="signatureText">Signature Preview / సంతకం ప్రివ్యూ</span></div>
+<input type="file" class="form-control upload-input" id="signature" name="signature" accept="image/jpeg,image/png" capture="environment" required>
+<div id="signatureStatus" class="compression-status text-center"></div></div></div></div>
 <div class="section-title">12. Last Salary Drawn / చివరి జీతం వివరాలు</div>
 <div class="alert alert-light border py-2 small">Enter the monthly salary components from your last drawn salary. PF and ESIC are deductions; Gross and Net Salary are calculated automatically.</div>
 <div class="row g-2">
@@ -276,7 +326,7 @@ I am signing this declaration voluntarily and with full understanding of its con
 <button type="reset" class="btn btn-outline-secondary btn-lg px-5 ms-2"> Reset / రీసెట్</button></div>
 <div id="successMessage" class="alert alert-success mt-3 d-none">Application submitted successfully.</div></div>
 </form>
-<div class="footer">Designed By: B Bhujanga Rao</div></div></div>
+<div class="footer">Designed By: B Bhujanga Rao <span class="sep">|</span> <a class="designer-link" id="OfficeLink" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">For Office use Only</a></div></div></div>
 <script>
 const designations = {
 "Accounts": ["Cashier", "Trainee Executive", "Executive"," Senior Executive", "Asst. Manager", "Deputy Manager", "Manager", "Asst. General Manager", "General Manager", "Chief Financial Officer"],
@@ -352,6 +402,73 @@ permanent.readOnly = true;} else {permanent.value = "";
 permanent.readOnly = false;}});
 document.querySelector('[name="presentAddress"]').addEventListener("input", function() {const same =document.getElementById("sameAddress");
 if (same.checked) {document.getElementById("permanentAddress").value = this.value;}});
+const refFieldIds = ["refEmployeeId","refEmployeeName","refEmployeeContact"];
+let refModalInstance = null;
+function getRefModal() {
+if (!refModalInstance && window.bootstrap) {
+const el = document.getElementById("employeeReferenceModal");
+if (el) refModalInstance = new bootstrap.Modal(el, {backdrop:"static", keyboard:false});
+}
+return refModalInstance;
+}
+function refFieldsFilled() {
+return refFieldIds.every(function(id) {
+const el = document.getElementById(id);
+return el && el.value.trim() !== "";
+});
+}
+function clearRefFields() {
+refFieldIds.forEach(function(id) {
+const el = document.getElementById(id);
+if (el) el.value = "";
+});
+updateRefSummary();
+}
+function updateRefSummary() {
+const summary = document.getElementById("refSummary");
+if (!summary) return;
+const id = document.getElementById("refEmployeeId").value.trim();
+const name = document.getElementById("refEmployeeName").value.trim();
+if (id || name) {
+summary.classList.remove("d-none");
+summary.innerHTML = "Referred by: " + (name || "-") + " (ID: " + (id || "-") + ") &middot; <a href=\"#\" id=\"refEditLink\">Edit</a>";
+const editLink = document.getElementById("refEditLink");
+if (editLink) editLink.addEventListener("click", function(e) { e.preventDefault(); const m = getRefModal(); if (m) m.show(); });
+} else {
+summary.classList.add("d-none");
+summary.innerHTML = "";
+}
+}
+document.getElementById("source").addEventListener("change", function() {
+if (this.value === "Employee Reference") {
+const m = getRefModal();
+if (m) m.show();
+} else {
+clearRefFields();
+}
+});
+document.getElementById("refModalSaveBtn").addEventListener("click", function() {
+const err = document.getElementById("refModalError");
+if (!refFieldsFilled()) {
+err.classList.remove("d-none");
+return;
+}
+err.classList.add("d-none");
+updateRefSummary();
+const m = getRefModal();
+if (m) m.hide();
+});
+
+document.getElementById("refModalCancelBtn").addEventListener("click", function() {
+document.getElementById("refModalError").classList.add("d-none");
+clearRefFields();
+document.getElementById("source").value = "";
+const m = getRefModal();
+if (m) m.hide();
+});
+document.getElementById("refModalCloseBtn").addEventListener("click", function() {
+document.getElementById("refModalCancelBtn").click();
+});
 let educationCount = 0;
 function addEducation() {
 educationCount++;
@@ -377,97 +494,24 @@ addEducation();
 let familyCount = 0;
 function addFamily() {
 familyCount++;
-
 const container = document.getElementById("familyContainer");
 const div = document.createElement("div");
-
 div.className = "repeat-card";
-
 div.innerHTML = `
 <div class="repeat-header">
-<span class="repeat-title">
-Family Member ${familyCount} / కుటుంబ సభ్యుడు ${familyCount}
-</span>
-
-<button type="button"
-class="btn btn-sm btn-outline-danger"
-onclick="this.closest('.repeat-card').remove()">
-Remove / తొలగించు
-</button>
+<span class="repeat-title">Family Member ${familyCount} / కుటుంబ సభ్యుడు ${familyCount}</span>
+<button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.repeat-card').remove()">Remove / తొలగించు</button>
 </div>
-
 <div class="row g-1">
-
-<div class="col-lg-4 col-md-6">
-<label class="form-label">
-Member Name / సభ్యుని పేరు
-</label>
-<input type="text"
-   class="form-control"
-   name="family_name[]"
-   placeholder="Name / పేరు">
-</div>
-
-<div class="col-lg-2 col-md-6">
-<label class="form-label">
-Date of Birth / పుట్టిన తేదీ
-</label>
-<input type="date"
-   class="form-control"
-   name="family_dob[]">
-</div>
-
-<div class="col-lg-2 col-md-6">
-<label class="form-label">
-Relation / బంధుత్వం
-</label>
-<select class="form-select" name="family_relation[]">
-<option value="">Select / ఎంచుకోండి</option>
-<option>Father</option>
-<option>Mother</option>
-<option>Spouse</option>
-<option>Brother</option>
-<option>Sister</option>
-<option>Son</option>
-<option>Daughter</option>
-<option>Other</option>
-</select>
-</div>
-
-<div class="col-lg-2 col-md-6">
-<label class="form-label">
-Aadhaar / ఆధార్
-</label>
-<input type="text"
-   class="form-control"
-   name="family_aadhaar[]"
-   maxlength="12"
-   inputmode="numeric"
-   placeholder="12 digits / 12 అంకెలు">
-</div>
-
-<div class="col-lg-2 col-md-6">
-<label class="form-label">
-Mobile / ఫోన్ నంబర్
-</label>
-<input type="tel"
-   class="form-control"
-   name="family_contact[]"
-   maxlength="10"
-   inputmode="numeric"
-   placeholder="10 digits / 10 అంకెలు">
-</div>
-
-<div class="col-12 mt-2">
-<div class="form-check">
-<input class="form-check-input"
-   type="checkbox"
-   name="family_emergency[]"
-   value="Yes"
-   id="emergency_${familyCount}">
+<div class="col-lg-4 col-md-6"><label class="form-label">Member Name / సభ్యుని పేరు</label><input type="text" class="form-control" name="family_name[]" placeholder="Name / పేరు"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Date of Birth / పుట్టిన తేదీ</label><input type="date" class="form-control" name="family_dob[]"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Relation / బంధుత్వం</label><select class="form-select" name="family_relation[]"><option value="">Select / ఎంచుకోండి</option><option value="Father">Father</option><option value="Mother">Mother</option><option value="Spouse">Spouse</option><option value="Brother">Brother</option><option value="Sister">Sister</option><option value="Son">Son</option><option value="Daughter">Daughter</option><option value="Other">Other</option></select></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Aadhaar / ఆధార్</label><input type="text" class="form-control" name="family_aadhaar[]" maxlength="12" inputmode="numeric" placeholder="12 digits / 12 అంకెలు"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">Mobile / ఫోన్ నంబర్</label><input type="tel" class="form-control" name="family_contact[]" maxlength="10" inputmode="numeric" placeholder="10 digits / 10 అంకెలు"></div>
+<div class="col-12 mt-2"><div class="form-check"><input class="form-check-input" type="checkbox" name="family_emergency[]" value="Yes" id="emergency_${familyCount}">
 
 <label class="form-check-label fw-semibold"
-   for="emergency_${familyCount}">
+ for="emergency_${familyCount}">
 Emergency Contact / అత్యవసర సమయంలో సంప్రదించాలి
 </label>
 </div>
@@ -499,219 +543,38 @@ div.innerHTML = `<div class="repeat-header"><span class="repeat-title">Previous 
 </div>
 <div class="row g-3">
 <div class="col-lg-2 col-md-6"><label class="form-label">S/Salary / చేరిన జీతం</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" name="employment_joining_salary[]" min="0" step="0.01" placeholder="Amount / మొత్తం"></div></div>
-<div class="col-lg-2 col-md-6"><label class="form-label">E/Salary / విడుదల జీతం</label>
-
-<div class="input-group">
-
-<span class="input-group-text">₹</span>
-
-<input
-type="number"
-class="form-control"
-name="employment_relieving_salary[]"
-min="0"
-step="0.01"
-placeholder="Amount / మొత్తం">
-
-</div>
-
-</div>
-
-
-<div class="col-lg-2 col-md-6">
-
-<label class="form-label">
-
-HOD Name /
-HOD పేరు
-
-</label>
-
-<input
-type="text"
-class="form-control"
-name="employment_hod[]"
-placeholder="HOD Name / HOD పేరు">
-
-</div>
-
-
-<div class="col-lg-2 col-md-6">
-
-<label class="form-label">
-
-HOD Contact /
-HOD ఫోన్
-
-</label>
-
-<input
-type="tel"
-class="form-control"
-name="employment_hod_contact[]"
-maxlength="10"
-inputmode="numeric"
-placeholder="10 Digit Mobile / 10 అంకెల మొబైల్">
-
-</div>
-
-
-<div class="col-lg-4 col-md-6">
-
-<label class="form-label">
-
-Reason to Relieve /
-విడుదల కారణం
-
-</label>
-
-<select
-class="form-select"
-name="employment_reason[]">
-
-<option value="">
-Select Reason / కారణాన్ని ఎంచుకోండి
-</option>
-
-<option>Career Growth</option>
-<option>Better Opportunity</option>
-<option>Higher Salary</option>
-<option>Relocation</option>
-<option>Personal Reasons</option>
-<option>Family Reasons</option>
-<option>Contract Completed</option>
-<option>Company Closure</option>
-<option>Layoff</option>
-<option>Retirement</option>
-<option>Other</option>
-
-</select>
-
-</div>
-
-
-</div>
-
-`;
-
-
+<div class="col-lg-2 col-md-6"><label class="form-label">E/Salary / విడుదల జీతం</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" name="employment_relieving_salary[]" min="0" step="0.01" placeholder="Amount / మొత్తం"></div></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">HOD Name / HOD పేరు</label><input type="text" class="form-control" name="employment_hod[]" placeholder="HOD Name / HOD పేరు"></div>
+<div class="col-lg-2 col-md-6"><label class="form-label">HOD Contact / HOD ఫోన్</label><input type="tel" class="form-control" name="employment_hod_contact[]" maxlength="10" inputmode="numeric" placeholder="10 Digit Mobile / 10 అంకెల మొబైల్"></div>
+<div class="col-lg-4 col-md-6"><label class="form-label">Reason to Relieve / విడుదల కారణం</label>
+<select class="form-select" name="employment_reason[]"><option value="">Select Reason / కారణాన్ని ఎంచుకోండి</option>
+<option>Career Growth</option><option>Better Opportunity</option><option>Higher Salary</option><option>Relocation</option><option>Personal Reasons</option><option>Family Reasons</option><option>Contract Completed</option><option>Company Closure</option><option>Layoff</option><option>Retirement</option><option>Other</option></select></div>
+</div>`;
 container.appendChild(div);
 
-
 /* Employment duration */
-
-const joining =
-div.querySelector('[name="employment_joining[]"]');
-
-const relieving =
-div.querySelector('[name="employment_relieving[]"]');
-
-const worked =
-div.querySelector('.employment-period');
-
-
+const joining = div.querySelector('[name="employment_joining[]"]');
+const relieving = div.querySelector('[name="employment_relieving[]"]');
+const worked = div.querySelector('.employment-period');
 function calculateEmploymentPeriod() {
-
-if (!joining.value || !relieving.value) {
-
-worked.value = "";
-
-return;
-
-}
-
-
-const start =
-new Date(joining.value);
-
-const end =
-new Date(relieving.value);
-
-
-if (end < start) {
-
-worked.value =
-"Invalid dates / తప్పు తేదీలు";
-
-return;
-
-}
-
-
-let months =
-(end.getFullYear() - start.getFullYear()) * 12;
-
-months +=
-end.getMonth() - start.getMonth();
-
-
-const years =
-Math.floor(months / 12);
-
-const remainingMonths =
-months % 12;
-
-
+if (!joining.value || !relieving.value) { worked.value = ""; return; }
+const start = new Date(joining.value);
+const end = new Date(relieving.value);
+if (end < start) { worked.value = "Invalid dates / తప్పు తేదీలు"; return; }
+let months = (end.getFullYear() - start.getFullYear()) * 12;
+months += end.getMonth() - start.getMonth();
+const years = Math.floor(months / 12);
+const remainingMonths = months % 12;
 let result = "";
-
-
-if (years > 0) {
-
-result +=
-years + " Year" +
-(years > 1 ? "s" : "");
-
+if (years > 0) result += years + " Year" + (years > 1 ? "s" : "");
+if (remainingMonths > 0) { if (result) result += " "; result += remainingMonths + " Month" + (remainingMonths > 1 ? "s" : ""); }
+worked.value = result || "Less than 1 Month";
 }
-
-
-if (remainingMonths > 0) {
-
-if (result) result += " ";
-
-result +=
-remainingMonths + " Month" +
-(remainingMonths > 1 ? "s" : "");
-
+joining.addEventListener("change", calculateEmploymentPeriod);
+relieving.addEventListener("change", calculateEmploymentPeriod);
 }
-
-
-worked.value =
-result || "Less than 1 Month";
-
-}
-
-
-joining.addEventListener(
-"change",
-calculateEmploymentPeriod
-);
-
-relieving.addEventListener(
-"change",
-calculateEmploymentPeriod
-);
-
-}
-
-
 addEmployment();
-
-
-
-/* =========================================================
- IMAGE COMPRESSION ENGINE
-========================================================= */
-
-/*
- Photo -> Maximum 500 KB
- Other image -> Maximum 200 KB
-
- PDF files are NOT compressed here.
-*/
-
-
 function compressImage(file, maxKB) {
-
 return new Promise(function(resolve, reject) {
 
 const reader =
@@ -738,1151 +601,472 @@ img.height;
 */
 
 const MAX_DIMENSION = 1800;
-
-
-if (width > MAX_DIMENSION ||
-height > MAX_DIMENSION) {
-
-const ratio =
-Math.min(
-MAX_DIMENSION / width,
-MAX_DIMENSION / height
-);
-
-width =
-Math.round(width * ratio);
-
-height =
-Math.round(height * ratio);
-
-}
-
-
-const canvas =
-document.createElement("canvas");
-
-canvas.width =
-width;
-
-canvas.height =
-height;
-
-
-const ctx =
-canvas.getContext("2d");
-
-
-ctx.drawImage(
-img,
-0,
-0,
-width,
-height
-);
-
-
-/*
- Start with good JPEG quality.
-*/
-
+if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
+const ratio = Math.min(MAX_DIMENSION / width, MAX_DIMENSION / height);
+width = Math.round(width * ratio);height = Math.round(height * ratio);}
+const canvas = document.createElement("canvas");
+canvas.width = width;
+canvas.height = height;
+const ctx = canvas.getContext("2d");
+ctx.drawImage( img, 0, 0, width, height);
 let quality = 0.85;
-
-
 function createBlob() {
-
 canvas.toBlob(
-
 function(blob) {
-
-if (!blob) {
-
-reject(
-new Error(
-"Image compression failed."
-)
-);
-
-return;
-
-}
-
-
-/*
- Image is within required size.
-*/
-
-if (
-blob.size <=
-maxKB * 1024
-) {
-
-resolve(
-new File(
-[blob],
-file.name.replace(
-/\.[^/.]+$/,
-".jpg"
-),
-{
-type: "image/jpeg",
-lastModified:
-Date.now()
-}
-)
-);
-
-return;
-
-}
-
-
-/*
- Reduce quality.
-*/
-
+if (!blob) {reject(new Error("Image compression failed.")); return; }
+if ( blob.size <= maxKB * 1024 ) {
+resolve( new File( [blob], file.name.replace(/\.[^/.]+$/,".jpg"),
+{type: "image/jpeg", lastModified: Date.now()}));return;}
 quality -= 0.05;
-
-
-/*
- If quality becomes too low,
- reduce dimensions.
-*/
-
 if (quality < 0.35) {
-
-width =
-Math.round(width * 0.85);
-
-height =
-Math.round(height * 0.85);
-
-canvas.width =
-width;
-
-canvas.height =
-height;
-
-ctx.drawImage(
-img,
-0,
-0,
-width,
-height
-);
-
-quality = 0.75;
-
-}
-
-
-createBlob();
-
-},
-
-"image/jpeg",
-
-quality
-
-);
-
-}
-
-
-createBlob();
-
-};
-
-
-img.onerror =
-function() {
-
-reject(
-new Error(
-"Unable to read image."
-)
-);
-
-};
-
-
-img.src =
-event.target.result;
-
-};
-
-
-reader.onerror =
-function() {
-
-reject(
-new Error(
-"Unable to read selected file."
-)
-);
-
-};
-
-
-reader.readAsDataURL(file);
-
-});
-
-}
-
-
-
-/* =========================================================
- REPLACE FILE INPUT
-========================================================= */
-
+width = Math.round(width * 0.85);
+height = Math.round(height * 0.85);
+canvas.width = width;
+canvas.height = height;
+ctx.drawImage(img,0,0,width,height);quality = 0.75;} createBlob();}, "image/jpeg", quality );}createBlob();};
+img.onerror = function() {
+reject( new Error( "Unable to read image."));};
+img.src = event.target.result;};
+reader.onerror = function() {
+reject(new Error("Unable to read selected file."));};reader.readAsDataURL(file); });}
 function replaceFileInput(input, file) {
-
-const dataTransfer =
-new DataTransfer();
-
-dataTransfer.items.add(file);
-
-input.files =
-dataTransfer.files;
-
-}
-
-
-
-/* =========================================================
- IMAGE FILE HANDLER
-========================================================= */
-
-async function processImageInput(
-input,
-statusElement,
-maxKB
-) {
-
-const file =
-input.files[0];
-
-if (!file) return;
-
-
-/*
- PDF:
- Leave unchanged.
-*/
-
-if (file.type === "application/pdf") {
-
-statusElement.innerHTML =
-"PDF selected / PDF ఎంచుకోబడింది";
-
-statusElement.className =
-"compression-status text-info";
-
-return;
-
-}
-
-
-/*
- Only process images.
-*/
-
-if (!file.type.startsWith("image/")) {
-
-statusElement.innerHTML =
-"Unsupported file / మద్దతు లేని ఫైల్";
-
-statusElement.className =
-"compression-status text-danger";
-
-return;
-
-}
-
-
-const originalKB =
-(file.size / 1024).toFixed(1);
-
-
-statusElement.innerHTML =
-"Compressing... / కుదింపు జరుగుతోంది...";
-
-
-statusElement.className =
-"compression-status text-warning";
-
-
-try {
-
-const compressed =
-await compressImage(
-file,
-maxKB
-);
-
-
-replaceFileInput(
-input,
-compressed
-);
-
-
-const finalKB =
-(compressed.size / 1024).toFixed(1);
-
-
-statusElement.innerHTML =
-"✓ " +
-originalKB +
-" KB → " +
-finalKB +
-" KB";
-
-statusElement.className =
-"compression-status text-success";
-
-
-}
-
-catch(error) {
-
-statusElement.innerHTML =
-"✕ Compression failed / కుదింపు విఫలమైంది";
-
-statusElement.className =
-"compression-status text-danger";
-
-console.error(error);
-
-}
-
-}
-
-
-
-/* =========================================================
- DOCUMENT IMAGE COMPRESSION (MULTIPLE FILES PER DOCUMENT)
-========================================================= */
-
-async function processDocumentFiles(input, listElement, maxKB) {
-
-const files = Array.from(input.files || []);
-
-listElement.innerHTML = "";
-
-if (!files.length) {
-input.value = "";
-return;
-}
-
 const dataTransfer = new DataTransfer();
-
+dataTransfer.items.add(file);
+input.files = dataTransfer.files;}
+async function processImageInput(
+input, statusElement,maxKB ) {
+const file = input.files[0];
+if (!file) return;
+if (file.type === "application/pdf") {
+statusElement.innerHTML = "PDF selected / PDF ఎంచుకోబడింది";
+statusElement.className = "compression-status text-info";
+return;}
+if (!file.type.startsWith("image/")) {
+statusElement.innerHTML = "Unsupported file / మద్దతు లేని ఫైల్";
+statusElement.className = "compression-status text-danger";
+return; }
+const originalKB = (file.size / 1024).toFixed(1);
+statusElement.innerHTML = "Compressing... / కుదింపు జరుగుతోంది...";
+statusElement.className = "compression-status text-warning";
+try {
+const compressed = await compressImage(file,maxKB);
+replaceFileInput(input,compressed);
+const finalKB = (compressed.size / 1024).toFixed(1);
+statusElement.innerHTML = "✓ " + originalKB + " KB → " + finalKB + " KB";
+statusElement.className = "compression-status text-success";}
+catch(error) {
+statusElement.innerHTML = "✕ Compression failed / కుదింపు విఫలమైంది";
+statusElement.className = "compression-status text-danger";
+console.error(error);}}
+async function processDocumentFiles(input, listElement, maxKB) {
+const files = Array.from(input.files || []);
+listElement.innerHTML = "";
+if (!files.length) {input.value = "";return;}
+const dataTransfer = new DataTransfer();
 for (const file of files) {
-
 const row = document.createElement("div");
 row.className = "compression-status";
-
 if (file.type === "application/pdf") {
-
 dataTransfer.items.add(file);
 row.innerHTML = "📄 " + file.name + " / PDF ఎంచుకోబడింది";
 row.classList.add("text-info");
 listElement.appendChild(row);
-continue;
-
-}
-
+continue;}
 if (!file.type.startsWith("image/")) {
-
-row.innerHTML = "✕ " + file.name + ": Unsupported file / మద్దతు లేని ఫైల్";
-row.classList.add("text-danger");
-listElement.appendChild(row);
-continue;
-
-}
-
+row.innerHTML = "✕ " + file.name + ": Unsupported file / మద్దతు లేని ఫైల్";row.classList.add("text-danger"); listElement.appendChild(row); continue;}
 const originalKB = (file.size / 1024).toFixed(1);
 row.innerHTML = "Compressing " + file.name + "... / కుదింపు జరుగుతోంది...";
 row.classList.add("text-warning");
 listElement.appendChild(row);
-
 try {
-
 const compressed = await compressImage(file, maxKB);
 dataTransfer.items.add(compressed);
-
 const finalKB = (compressed.size / 1024).toFixed(1);
-
-row.innerHTML =
-"✓ " + file.name + ": " + originalKB + " KB → " + finalKB + " KB";
-row.className = "compression-status text-success";
-
-} catch (error) {
-
-row.innerHTML =
-"✕ " + file.name + ": Compression failed / కుదింపు విఫలమైంది";
-row.className = "compression-status text-danger";
-console.error(error);
-
-}
-
-}
-
-input.files = dataTransfer.files;
-
-}
-
-document
-.querySelectorAll(".document-row")
-.forEach(function(row) {
-  const checkbox = row.querySelector('input[type="checkbox"]');
-  if (checkbox) {
-/* The checkbox is now purely a status indicator driven by whether a
-   file has been chosen for this document — it should not be toggled
-   by hand, only by the auto-tick logic in the file input's "change"
-   handler below (which sets .checked directly, not via a click). */
-checkbox.addEventListener("click", function(e) { e.preventDefault(); });
-checkbox.style.cursor = "default";
-  }
-});
-
-document
-.querySelectorAll(".document-file")
-.forEach(function(input) {
-
-const listId =
-input.name
-.replace("File", "")
-+ "FilesList";
-
-const listElement =
-document.getElementById(listId);
-
-input.addEventListener(
-"change",
-async function() {
-
-/* The checkbox is now purely a status indicator: ticked whenever a
-   file is attached to this row, unticked when it isn't. Manual
-   clicking is disabled above — this is the only thing that sets it. */
+row.innerHTML = "✓ " + file.name + ": " + originalKB + " KB → " + finalKB + " KB";
+row.className = "compression-status text-success";} catch (error) {
+row.innerHTML = "✕ " + file.name + ": Compression failed / కుదింపు విఫలమైంది";
+row.className = "compression-status text-danger";console.error(error);}}input.files = dataTransfer.files;}
+document.querySelectorAll(".document-row").forEach(function(row) {
+const checkbox = row.querySelector('input[type="checkbox"]');
+if (checkbox && checkbox.id !== "docDriving") {checkbox.addEventListener("click", function(e) { e.preventDefault(); });checkbox.style.cursor = "default";}});
+document.querySelectorAll(".document-file").forEach(function(input) {
+const listId = input.name.replace("File", "") + "FilesList";
+const listElement = document.getElementById(listId);
+input.addEventListener("change",async function() {
+if (this.name !== "drivingFile") {
 const row = this.closest(".document-row");
 const checkbox = row ? row.querySelector('input[type="checkbox"]') : null;
-if (checkbox) {
-  const hasFiles = !!(this.files && this.files.length > 0);
-  if (checkbox.checked !== hasFiles) {
-checkbox.checked = hasFiles;
-checkbox.dispatchEvent(new Event("change"));
-  }
-}
-
-await processDocumentFiles(
-this,
-listElement,
-Number(this.dataset.maxKb) || 200
-);
-
-if (this.name === "drivingFile") {
-updateDrivingDeclaration();
-}
-
-}
-);
-
-});
-
-/* =========================================================
- DRIVING LICENCE DECLARATION
- Shown only when no Driving Licence file has been uploaded.
-========================================================= */
-
+if (checkbox) {const hasFiles = !!(this.files && this.files.length > 0);
+if (checkbox.checked !== hasFiles) { checkbox.checked = hasFiles; checkbox.dispatchEvent(new Event("change"));}}}
+await processDocumentFiles(this,listElement,Number(this.dataset.maxKb) || 200);});});
 function updateDrivingDeclaration() {
-
-const drivingInput =
-document.querySelector('input[name="drivingFile"]');
-
-const block =
-document.getElementById("drivingDeclarationBlock");
-
-const checkbox =
-document.getElementById("drivingDeclaration");
-
-if (!drivingInput || !block || !checkbox) return;
-
-const hasFile =
-drivingInput.files && drivingInput.files.length > 0;
-
-if (hasFile) {
-
+const docDriving = document.getElementById("docDriving");
+const block = document.getElementById("drivingDeclarationBlock");
+const checkbox = document.getElementById("drivingDeclaration");
+if (!docDriving || !block || !checkbox) return;
+if (docDriving.checked) {
 block.classList.add("d-none");
 checkbox.required = false;
-
-} else {
-
-block.classList.remove("d-none");
-checkbox.required = true;
-
-}
-
-}
-
+checkbox.checked = false;
+} else {block.classList.remove("d-none");checkbox.required = true;}}
+const docDrivingCheckbox = document.getElementById("docDriving");
+if (docDrivingCheckbox) {docDrivingCheckbox.addEventListener("change", updateDrivingDeclaration);}
 updateDrivingDeclaration();
-
-
-
-/* =========================================================
- PHOTO
-========================================================= */
-
-document
-.getElementById("photo")
-.addEventListener(
-"change",
-async function(event) {
-
+document.getElementById("photo").addEventListener("change",async function(event) {
 const input = this;
-
-const file =
-input.files[0];
-
+const file = input.files[0];
 if (!file) return;
-
-
-const status =
-document.getElementById(
-"photoStatus"
-);
-
-
-try {
-
-const compressed =
-await compressImage(
-file,
-500
-);
-
-
-replaceFileInput(
-input,
-compressed
-);
-
-
-const preview =
-document.getElementById(
-"photoPreview"
-);
-
-const text =
-document.getElementById(
-"photoText"
-);
-
-
-preview.src =
-URL.createObjectURL(
-compressed
-);
-
-preview.style.display =
-"block";
-
-text.style.display =
-"none";
-
-
-status.innerHTML =
-"✓ Photo compressed to " +
-(compressed.size / 1024).toFixed(1) +
-" KB / ఫోటో కుదించబడింది";
-
-status.className =
-"compression-status text-success";
-
-}
-
+const status = document.getElementById("photoStatus");
+try {const compressed = await compressImage(file,500);
+replaceFileInput(input,compressed);
+const preview =document.getElementById("photoPreview");
+const text =document.getElementById("photoText");
+preview.src = URL.createObjectURL(compressed);
+preview.style.display = "block";
+text.style.display = "none";
+status.innerHTML ="✓ Photo compressed to " + (compressed.size / 1024).toFixed(1) + " KB / ఫోటో కుదించబడింది";
+status.className = "compression-status text-success";}
 catch(error) {
-
-status.innerHTML =
-"✕ Photo compression failed / ఫోటో కుదింపు విఫలమైంది";
-
-status.className =
-"compression-status text-danger";
-
-console.error(error);
-
-}
-
-});
-
-
-
-/* =========================================================
- SIGNATURE
-========================================================= */
-
-document
-.getElementById("signature")
-.addEventListener(
-"change",
-async function(event) {
-
+status.innerHTML = "✕ Photo compression failed / ఫోటో కుదింపు విఫలమైంది";
+status.className = "compression-status text-danger";
+console.error(error);}});
+document.getElementById("signature").addEventListener("change",async function(event) {
 const input = this;
-
-const file =
-input.files[0];
-
+const file =input.files[0];
 if (!file) return;
-
-
-const status =
-document.getElementById(
-"signatureStatus"
-);
-
-
+const status =document.getElementById("signatureStatus");
 try {
-
-const compressed =
-await compressImage(
-file,
-200
-);
-
-
-replaceFileInput(
-input,
-compressed
-);
-
-
-const preview =
-document.getElementById(
-"signaturePreview"
-);
-
-const text =
-document.getElementById(
-"signatureText"
-);
-
-
-preview.src =
-URL.createObjectURL(
-compressed
-);
-
-preview.style.display =
-"block";
-
-text.style.display =
-"none";
-
-
-status.innerHTML =
-"✓ Signature compressed to " +
-(compressed.size / 1024).toFixed(1) +
-" KB / సంతకం కుదించబడింది";
-
-status.className =
-"compression-status text-success";
-
-}
-
+const compressed = await compressImage(file, 200 );
+replaceFileInput( input, compressed);
+const preview = document.getElementById( "signaturePreview");
+const text = document.getElementById("signatureText");
+preview.src = URL.createObjectURL(compressed);
+preview.style.display = "block";
+text.style.display = "none";
+status.innerHTML = "✓ Signature compressed to " + (compressed.size / 1024).toFixed(1) + " KB / సంతకం కుదించబడింది";
+status.className = "compression-status text-success"; }
 catch(error) {
-
-status.innerHTML =
-"✕ Signature compression failed / సంతకం కుదింపు విఫలమైంది";
-
-status.className =
-"compression-status text-danger";
-
+status.innerHTML = "✕ Signature compression failed / సంతకం కుదింపు విఫలమైంది";
+status.className = "compression-status text-danger";
 console.error(error);
-
 }
-
 });
-
-
-
-/* =========================================================
- INPUT RESTRICTIONS
-========================================================= */
-
-document.addEventListener(
-"input",
-function(event) {
-
-const el =
-event.target;
-
-
-if (
-
-el.name === "aadhaar" ||
-
-el.name === "mobile" ||
-
-el.name === "uan" ||
-
-el.name === "esic" ||
-
-el.name === "accountNumber" ||
-
-el.name === "ref1Mobile" ||
-
-el.name === "ref2Mobile" ||
-
-el.name === "family_aadhaar[]" ||
-
-el.name === "family_contact[]" ||
-
-el.name ===
-"employment_hod_contact[]"
-
-) {
-
-el.value =
-el.value.replace(
-/\D/g,
-""
-);
-
-}
-
-
+document.addEventListener("input", function(event) {
+const el = event.target;
+const digitsOnly = ["aadhaar","mobile","uan","esic","accountNumber","ref1Mobile","ref2Mobile","refEmployeeContact","family_aadhaar[]","family_contact[]","employment_hod_contact[]"];
+if (digitsOnly.includes(el.name)) el.value = el.value.replace(/\D/g, "");
 if (el.name === "pan") {
-
-el.value =
-el.value
-.toUpperCase()
-.replace(
-/[^A-Z0-9]/g,
-""
-);
-
+el.value = el.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+const panRegex = /^[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z]$/;
+if (el.value.length === 0) { el.classList.remove("is-valid","is-invalid"); el.setCustomValidity(""); }
+else if (panRegex.test(el.value)) { el.classList.add("is-valid"); el.classList.remove("is-invalid"); el.setCustomValidity(""); }
+else { el.classList.add("is-invalid"); el.classList.remove("is-valid"); el.setCustomValidity("Invalid PAN format"); }
 }
-
-
 if (el.name === "ifsc") {
-
-el.value =
-el.value
-.toUpperCase()
-.replace(
-/[^A-Z0-9]/g,
-""
-);
-
+el.value = el.value.toUpperCase().replace(/[^A-Z0-9]/g,"");
+const ifscRegex = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+if (el.value.length === 0) { el.classList.remove("is-valid","is-invalid"); el.setCustomValidity(""); }
+else if (ifscRegex.test(el.value)) { el.classList.add("is-valid"); el.classList.remove("is-invalid"); el.setCustomValidity(""); }
+else { el.classList.add("is-invalid"); el.classList.remove("is-valid"); el.setCustomValidity("Invalid IFSC format"); }
 }
-
 });
-
-
-
-/* =========================================================
- LAST SALARY CALCULATION + SUBMISSION
-========================================================= */
-/*https://script.google.com/macros/s/AKfycbzbror4y12cQydmb0b-t_vAqDSzjElk-g5BJXWW5VVHNgBf110nFGoHhmK5q-PAYNdi/exec   */
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw9iMq3A3pG_IQ47fUoXI7S7WoERka8AlzxQSFWAJWv6Rou22uSvlP0H1JgvxExKLv9/exec";
-
-/* =========================================================
- COMPANY LETTERHEAD DETAILS (edit as needed for the PDF)
-========================================================= */
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8_Ej-1QEenp-oH2VvIq4DJvSYVy0pwMnnkw85pqhdNsJC-G70Df2xXlGpJBEXWxFj/exec";
 const COMPANY_INFO = {
-  name: "SAI SWARNA AUTOMOTIVES",
-  tagline: "Employee Recruitment / Joining Application",
-  address: "MVP Colony & Paradesipalem, Visakhapatnam, Andhra Pradesh",
-  phone: "+91 8463921234",
-  email: "hr@saiswarnaautomotives.com",
-  logo: "https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN"
+name: "SAI SWARNA AUTOMOTIVES",
+tagline: "Employee Recruitment / Joining Application",
+address: "MVP Colony & Paradesipalem, Visakhapatnam, Andhra Pradesh",
+phone: "+91 8463921234",
+email: "hr@saiswarnaautomotives.com",
+logo: "https://lh3.googleusercontent.com/d/1Wm8gK-t7BGOgycT4H-yN37lfE1iHgrvN"
 };
-
-/* =========================================================
- AADHAAR SESSION CACHE + DEPENDENT DUPLICATE-DETECTION
- On page load, the list of Aadhaar numbers already on record is
- downloaded once and cached in sessionStorage. When the user leaves the
- Aadhaar field, that cached list is checked (no network call); on a
- match the full existing application is fetched from the backend and
- used to populate the entire form for editing/updating.
-========================================================= */
 const AADHAAR_SESSION_KEY = "ssa_aadhaarList";
-
-function backendReady() {
-  return !!GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes("PASTE_YOUR");
-}
-
+function backendReady() {return !!GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes("PASTE_YOUR");}
 async function loadAadhaarListIntoSession() {
-  if (!backendReady()) return;
-  try {
+if (!backendReady()) return;
+try {
 const res = await fetch(GOOGLE_APPS_SCRIPT_URL + "?action=getAadhaarList");
 const json = await res.json();
-if (json && json.success) {
-  sessionStorage.setItem(AADHAAR_SESSION_KEY, JSON.stringify(json.aadhaarList || []));
-}
-  } catch (err) {
-console.error("Could not preload Aadhaar list:", err);
-  }
-}
-
-function getCachedAadhaarList() {
-  try { return JSON.parse(sessionStorage.getItem(AADHAAR_SESSION_KEY) || "[]"); }
-  catch (err) { return []; }
-}
-
-function rememberAadhaarInSession(aadhaar) {
-  const list = getCachedAadhaarList();
-  if (aadhaar && !list.includes(aadhaar)) {
-list.push(aadhaar);
-sessionStorage.setItem(AADHAAR_SESSION_KEY, JSON.stringify(list));
-  }
-}
-
+if (json && json.success) {sessionStorage.setItem(AADHAAR_SESSION_KEY, JSON.stringify(json.aadhaarList || []));}} catch (err) {
+console.error("Could not preload Aadhaar list:", err);}}
+function getCachedAadhaarList() {try { return JSON.parse(sessionStorage.getItem(AADHAAR_SESSION_KEY) || "[]"); }catch (err) { return []; }}
+function rememberAadhaarInSession(aadhaar) {const list = getCachedAadhaarList();if (aadhaar && !list.includes(aadhaar)) {list.push(aadhaar);sessionStorage.setItem(AADHAAR_SESSION_KEY, JSON.stringify(list));}}
 function setFormBusy(isBusy, message) {
-  let overlay = document.getElementById("formBusyOverlay");
-  if (isBusy) {
+let overlay = document.getElementById("formBusyOverlay");
+if (isBusy) {
 if (!overlay) {
-  overlay = document.createElement("div");
-  overlay.id = "formBusyOverlay";
-  overlay.className = "form-busy-overlay";
-  overlay.innerHTML = '<div class="busy-box"><span class="spinner-border spinner-border-sm text-primary" role="status"></span><span id="formBusyText"></span></div>';
-  document.body.appendChild(overlay);
+overlay = document.createElement("div");
+overlay.id = "formBusyOverlay";
+overlay.className = "form-busy-overlay";
+overlay.innerHTML = '<div class="busy-box"><span class="spinner-border spinner-border-sm text-primary" role="status"></span><span id="formBusyText"></span></div>';
+document.body.appendChild(overlay);
 }
 document.getElementById("formBusyText").textContent = message || "Working... / దయచేసి వేచి ఉండండి...";
-overlay.style.display = "flex";
-  } else if (overlay) {
-overlay.style.display = "none";
-  }
-}
-
+overlay.style.display = "flex";} else if (overlay) {overlay.style.display = "none";}}
 function showFormNotice(message, isError) {
-  const notice = document.getElementById("aadhaarNotice");
-  if (!notice) return;
-  notice.className = "alert " + (isError ? "alert-warning" : "alert-info");
-  notice.textContent = message;
-  notice.classList.remove("d-none");
-}
-
-function hideFormNotice() {
-  const notice = document.getElementById("aadhaarNotice");
-  if (notice) notice.classList.add("d-none");
-}
-
-/* Fills every matching form field/select/textarea from a flat object,
-   dispatching change/input events so dependent listeners (dropdowns,
-   salary totals, driving declaration, etc.) fire correctly. */
+const notice = document.getElementById("aadhaarNotice");
+if (!notice) return; notice.className = "alert " + (isError ? "alert-warning" : "alert-info"); notice.textContent = message; notice.classList.remove("d-none");}
+function hideFormNotice() {const notice = document.getElementById("aadhaarNotice");if (notice) notice.classList.add("d-none");}
 function fillSimpleFields(form, data) {
-  Array.from(form.elements).forEach(function(el) {
+Array.from(form.elements).forEach(function(el) {
 if (!el.name || el.name.endsWith("[]")) return;
 if (!(el.name in data)) return;
 const value = data[el.name];
 if (el.type === "checkbox") {
-  el.checked = (value === true || value === "true" || value === "Yes" || value === "on");
+el.checked = (value === true || value === "true" || value === "Yes" || value === "on");
 } else if (el.type === "file") {
-  // files can't be reprogrammatically set; skip
 } else if (el.type === "date") {
-  // <input type="date"> only accepts "YYYY-MM-DD"; guard against a
-  // full ISO datetime string slipping through from the backend.
-  const raw = (value === null || value === undefined) ? "" : String(value);
-  el.value = /^\d{4}-\d{2}-\d{2}/.test(raw) ? raw.slice(0, 10) : "";
+const raw = (value === null || value === undefined) ? "" : String(value);
+el.value = /^\d{4}-\d{2}-\d{2}/.test(raw) ? raw.slice(0, 10) : "";
 } else {
-  el.value = (value === null || value === undefined) ? "" : value;
+el.value = (value === null || value === undefined) ? "" : value;
 }
-  });
+});
 }
-
 function populateRepeatingSection(containerId, addFn, rows, fieldNames) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  container.innerHTML = "";
-  if (!rows || !rows.length) { addFn(); return; }
-  rows.forEach(function(row) {
+const container = document.getElementById(containerId);
+if (!container) return;
+container.innerHTML = "";
+if (!rows || !rows.length) { addFn(); return; }
+rows.forEach(function(row) {
 addFn();
 const card = container.lastElementChild;
 if (!card) return;
 fieldNames.forEach(function(fieldName) {
-  const el = card.querySelector('[name="' + fieldName + '[]"]');
-  if (!el) return;
-  const value = row[fieldName];
-  if (el.type === "checkbox") {
+const el = card.querySelector('[name="' + fieldName + '[]"]');
+if (!el) return;
+const value = row[fieldName];
+if (el.type === "checkbox") {
 el.checked = (value === "Yes" || value === true);
-  } else if (el.type === "date") {
+} else if (el.type === "date") {
 const raw = (value === null || value === undefined) ? "" : String(value);
 el.value = /^\d{4}-\d{2}-\d{2}/.test(raw) ? raw.slice(0, 10) : "";
-  } else {
+} else {
 el.value = (value === null || value === undefined) ? "" : value;
 if (el.tagName === "SELECT") el.dispatchEvent(new Event("change"));
-  }
-});
-  });
 }
-
-/* Photo/Signature file inputs can't be pre-filled by JS (browser security),
-   so on a loaded update the person previously had to re-pick both files
-   even when nothing else changed. This shows the already-saved image and
-   makes the field optional again — the person only needs to choose a new
-   file if they actually want to replace it. */
+});
+});
+}
 function setExistingFilePreview(input, previewImg, previewText, url) {
-  if (!input) return;
-  if (url) {
+if (!input) return;
+if (url) {
 input.dataset.existingUrl = url;
 input.required = false;
 if (previewImg) { previewImg.src = driveViewUrlToDirect_(url); previewImg.style.display = "block"; }
 if (previewText) previewText.style.display = "none";
-  } else {
+} else {
 delete input.dataset.existingUrl;
 input.required = true;
 if (previewImg) { previewImg.src = ""; previewImg.style.display = "none"; }
 if (previewText) previewText.style.display = "block";
-  }
+}
 }
 
 async function populateFormFromApplicant(data) {
-  const form = document.getElementById("applicationForm");
-
-  setExistingFilePreview(document.getElementById("photo"), document.getElementById("photoPreview"), document.getElementById("photoText"), data.photoUrl);
-  setExistingFilePreview(document.getElementById("signature"), document.getElementById("signaturePreview"), document.getElementById("signatureText"), data.signatureUrl);
-
-  // Vertical -> Department -> Designation chain, and Division -> Location
-  const verticalEl = document.getElementById("vertical");
-  verticalEl.value = data.vertical || "";
-  verticalEl.dispatchEvent(new Event("change"));
-  const departmentEl = document.getElementById("department");
-  departmentEl.value = data.department || "";
-  departmentEl.dispatchEvent(new Event("change"));
-  document.getElementById("designation").value = data.designation || "";
-
-  const divisionEl = document.getElementById("division");
-  divisionEl.value = data.division || "";
-  divisionEl.dispatchEvent(new Event("change"));
-  document.getElementById("Location").value = data.Location || "";
-
-  // Every other simple field
-  fillSimpleFields(form, data);
-
-  // Repeating sections
-  populateRepeatingSection("educationContainer", addEducation, data.education,
+const form = document.getElementById("applicationForm");
+setExistingFilePreview(document.getElementById("photo"), document.getElementById("photoPreview"), document.getElementById("photoText"), data.photoUrl);
+setExistingFilePreview(document.getElementById("signature"), document.getElementById("signaturePreview"), document.getElementById("signatureText"), data.signatureUrl);
+const verticalEl = document.getElementById("vertical");
+verticalEl.value = data.vertical || "";
+verticalEl.dispatchEvent(new Event("change"));
+const departmentEl = document.getElementById("department");
+departmentEl.value = data.department || "";
+departmentEl.dispatchEvent(new Event("change"));
+document.getElementById("designation").value = data.designation || "";
+const divisionEl = document.getElementById("division");
+divisionEl.value = data.division || "";
+divisionEl.dispatchEvent(new Event("change"));
+document.getElementById("Location").value = data.Location || "";
+fillSimpleFields(form, data);
+if (typeof updateRefSummary === "function") updateRefSummary();
+populateRepeatingSection("educationContainer", addEducation, data.education,
 ["education_institute","education_course","education_year","education_grade","education_marks"]);
-  populateRepeatingSection("familyContainer", addFamily, data.family,
+populateRepeatingSection("familyContainer", addFamily, data.family,
 ["family_name","family_dob","family_relation","family_aadhaar","family_contact","family_emergency"]);
-  populateRepeatingSection("employmentContainer", addEmployment, data.employment,
-["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked",
- "employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"]);
-
-  // Documents checkboxes
-  ["docAadhar","docPan","docDob","docResidence","docEducation","docDriving"].forEach(function(id) {
+populateRepeatingSection("employmentContainer", addEmployment, data.employment,
+["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked", "employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"]);
+["docAadhar","docPan","docDob","docResidence","docEducation","docDriving"].forEach(function(id) {
 const el = document.getElementById(id);
 if (el) el.checked = (data[id] === true || data[id] === "true" || data[id] === "TRUE");
-  });
-
-  calculateLastSalary();
-  if (typeof updateDrivingDeclaration === "function") updateDrivingDeclaration();
-  document.querySelectorAll('[name="employment_relieving[]"]').forEach(function(el) {
+});
+calculateLastSalary();
+if (typeof updateDrivingDeclaration === "function") updateDrivingDeclaration();
+document.querySelectorAll('[name="employment_relieving[]"]').forEach(function(el) {
 el.dispatchEvent(new Event("change"));
-  });
+});
 }
-
 document.addEventListener("DOMContentLoaded", loadAadhaarListIntoSession);
 if (document.readyState !== "loading") loadAadhaarListIntoSession();
-
 document.querySelector('[name="aadhaar"]').addEventListener("blur", async function() {
-  const value = this.value.trim();
-  hideFormNotice();
-  if (!/^\d{12}$/.test(value)) return;
-  if (!backendReady()) return;
-
-  const cachedList = getCachedAadhaarList();
-  if (!cachedList.includes(value)) return; // new applicant — nothing to stop for
-
-  setFormBusy(true, "Existing application found. Loading saved details... / ఇప్పటికే దరఖాస్తు కనుగొనబడింది. వివరాలు లోడ్ అవుతున్నాయి...");
-  try {
+const value = this.value.trim();
+hideFormNotice();
+if (!/^\d{12}$/.test(value)) return;
+if (!backendReady()) return;
+const cachedList = getCachedAadhaarList();
+if (!cachedList.includes(value)) return; // new applicant — nothing to stop for
+setFormBusy(true, "Existing application found. Loading saved details... / ఇప్పటికే దరఖాస్తు కనుగొనబడింది. వివరాలు లోడ్ అవుతున్నాయి...");
+try {
 const res = await fetch(GOOGLE_APPS_SCRIPT_URL + "?action=getApplicant&aadhaar=" + encodeURIComponent(value));
 const json = await res.json();
 if (json && json.success && json.data) {
-  await populateFormFromApplicant(json.data);
-  showFormNotice("An application already exists for Aadhaar " + value + ". The form has been loaded with the saved details — submitting will update this record. / ఇప్పటికే దరఖాస్తు ఉంది; సమర్పిస్తే ఈ రికార్డు నవీకరించబడుతుంది.", false);
+await populateFormFromApplicant(json.data);
+showFormNotice("An application already exists for Aadhaar " + value + ". The form has been loaded with the saved details — submitting will update this record. / ఇప్పటికే దరఖాస్తు ఉంది; సమర్పిస్తే ఈ రికార్డు నవీకరించబడుతుంది.", false);
 } else {
-  showFormNotice("Could not load the existing application (" + ((json && json.error) || "unknown error") + "). You can continue filling the form manually.", true);
+showFormNotice("Could not load the existing application (" + ((json && json.error) || "unknown error") + "). You can continue filling the form manually.", true);
 }
-  } catch (err) {
+} catch (err) {
 console.error(err);
 showFormNotice("Could not reach the server to check for an existing application. You can continue filling the form manually.", true);
-  } finally {
+} finally {
 setFormBusy(false);
-  }
+}
 });
-
 function calculateLastSalary() {
-  let gross = 0, deductions = 0;
-  document.querySelectorAll(".salary-earning").forEach(el => gross += Number(el.value) || 0);
-  document.querySelectorAll(".salary-deduction").forEach(el => deductions += Number(el.value) || 0);
-  document.getElementById("lastGross").value = gross.toFixed(2);
-  document.getElementById("lastDeductions").value = deductions.toFixed(2);
-  document.getElementById("lastNet").value = Math.max(0, gross - deductions).toFixed(2);
+let gross = 0, deductions = 0;
+document.querySelectorAll(".salary-earning").forEach(el => gross += Number(el.value) || 0);
+document.querySelectorAll(".salary-deduction").forEach(el => deductions += Number(el.value) || 0);
+document.getElementById("lastGross").value = gross.toFixed(2);
+document.getElementById("lastDeductions").value = deductions.toFixed(2);
+document.getElementById("lastNet").value = Math.max(0, gross - deductions).toFixed(2);
 }
 document.querySelectorAll(".salary-earning,.salary-deduction").forEach(el => el.addEventListener("input", calculateLastSalary));
 calculateLastSalary();
-
-/* Reads a repeating section (.repeat-card list) directly from the DOM,
-   one row per card, so that a row's fields always stay aligned by index
-   even when a checkbox in that row (e.g. Emergency Contact) is left
-   unchecked and would otherwise be omitted from FormData. */
 function collectRepeatingSection(containerId, fieldNames) {
-  const container = document.getElementById(containerId);
-  const cards = container ? Array.from(container.querySelectorAll(":scope > .repeat-card")) : [];
-  const result = {};
-  fieldNames.forEach(f => { result[f] = []; });
-  cards.forEach(function(card) {
+const container = document.getElementById(containerId);
+const cards = container ? Array.from(container.querySelectorAll(":scope > .repeat-card")) : [];
+const result = {};
+fieldNames.forEach(f => { result[f] = []; });
+cards.forEach(function(card) {
 fieldNames.forEach(function(fieldName) {
-  const el = card.querySelector('[name="' + fieldName + '[]"]');
-  if (!el) { result[fieldName].push(""); return; }
-  if (el.type === "checkbox") {
+const el = card.querySelector('[name="' + fieldName + '[]"]');
+if (!el) { result[fieldName].push(""); return; }
+if (el.type === "checkbox") {
 result[fieldName].push(el.checked ? "Yes" : "No");
-  } else {
+} else {
 result[fieldName].push(el.value || "");
-  }
-});
-  });
-  return result;
 }
-
+});
+});
+return result;
+}
 function formDataToObject(form) {
-  const data = {};
-  const fd = new FormData(form);
-  for (const [key, value] of fd.entries()) {
+const data = {};
+const fd = new FormData(form);
+for (const [key, value] of fd.entries()) {
 if (value instanceof File) continue;
 if (key.endsWith("[]")) continue; // repeating fields are collected below, row-aligned via the DOM
 if (key !== "declaration") data[key] = value;
-  }
-
-  Object.assign(data, collectRepeatingSection("educationContainer",
-["education_institute","education_course","education_year","education_grade","education_marks"]));
-  Object.assign(data, collectRepeatingSection("familyContainer",
-["family_name","family_dob","family_relation","family_aadhaar","family_contact","family_emergency"]));
-  Object.assign(data, collectRepeatingSection("employmentContainer",
-["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked",
- "employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"]));
-
-  ["docAadhar","docPan","docDob","docResidence","docEducation","docDriving"].forEach(function(id) {
+}
+Object.assign(data, collectRepeatingSection("educationContainer",["education_institute","education_course","education_year","education_grade","education_marks"]));
+Object.assign(data, collectRepeatingSection("familyContainer",["family_name","family_dob","family_relation","family_aadhaar","family_contact","family_emergency"]));
+Object.assign(data, collectRepeatingSection("employmentContainer",["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked","employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"]));
+["docAadhar","docPan","docDob","docResidence","docEducation","docDriving"].forEach(function(id) {
 const el = document.getElementById(id);
 data[id] = el ? el.checked : false;
-  });
-
-  data.declaration = document.getElementById("declaration").checked;
-  data.drivingDeclaration = document.getElementById("drivingDeclaration") ? document.getElementById("drivingDeclaration").checked : false;
-  data.submittedAt = new Date().toISOString();
-  data.applicationId = data.aadhaar || ("SS-" + Date.now());
-  return data;
+});
+data.declaration = document.getElementById("declaration").checked;
+data.drivingDeclaration = document.getElementById("drivingDeclaration") ? document.getElementById("drivingDeclaration").checked : false;
+data.submittedAt = new Date().toISOString();
+data.applicationId = data.aadhaar || ("SS-" + Date.now());
+return data;
 }
-
-/* =========================================================
- PDF HELPERS - image loading
-========================================================= */
-
-/* Converts a Google Drive "view" share link (what DriveApp.File.getUrl()
-   returns, e.g. https://drive.google.com/file/d/<ID>/view?usp=drivesdk)
-   into a directly-fetchable image URL, the same lh3.googleusercontent.com
-   form already used for the company logo. The plain drive.google.com/file
-   URL returns an HTML viewer page when fetched, not image bytes, so it
-   can't be embedded into the PDF directly. */
 function driveViewUrlToDirect_(url) {
-  if (!url) return null;
-  const match = String(url).match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if (!match) return url;
-  return "https://lh3.googleusercontent.com/d/" + match[1];
+if (!url) return null;
+const match = String(url).match(/\/d\/([a-zA-Z0-9_-]+)/);
+if (!match) return url;
+return "https://lh3.googleusercontent.com/d/" + match[1];
 }
-
 function loadUrlAsDataURL(url) {
-  return new Promise((resolve) => {
+return new Promise((resolve) => {
 if (!url) { resolve(null); return; }
 fetch(url)
-  .then(res => { if (!res.ok) throw new Error("logo fetch failed"); return res.blob(); })
-  .then(blob => {
+.then(res => { if (!res.ok) throw new Error("logo fetch failed"); return res.blob(); })
+.then(blob => {
 const reader = new FileReader();
 reader.onload = () => resolve(reader.result);
 reader.onerror = () => resolve(null);
 reader.readAsDataURL(blob);
-  })
-  .catch(() => resolve(null));
-  });
+})
+.catch(() => resolve(null));
+});
 }
 
 function fileToDataURL(file) {
-  return new Promise((resolve) => {
+return new Promise((resolve) => {
 if (!file) { resolve(null); return; }
 const reader = new FileReader();
 reader.onload = () => resolve(reader.result);
 reader.onerror = () => resolve(null);
 reader.readAsDataURL(file);
-  });
+});
 }
 function stripDataUrlPrefix(dataUrl) {
-  if (!dataUrl) return "";
-  const comma = dataUrl.indexOf(",");
-  return comma !== -1 ? dataUrl.substring(comma + 1) : dataUrl;
+if (!dataUrl) return "";
+const comma = dataUrl.indexOf(",");
+return comma !== -1 ? dataUrl.substring(comma + 1) : dataUrl;
 }
 
 async function fileToUploadObject(file) {
-  if (!file) return null;
-  const dataUrl = await fileToDataURL(file);
-  if (!dataUrl) return null;
-  return { name: file.name, mimeType: file.type || "application/octet-stream", data: stripDataUrlPrefix(dataUrl) };
+if (!file) return null;
+const dataUrl = await fileToDataURL(file);
+if (!dataUrl) return null;
+return { name: file.name, mimeType: file.type || "application/octet-stream", data: stripDataUrlPrefix(dataUrl) };
 }
 async function collectFilesForUpload(form) {
-  const files = {};
-  const photoInput = form.querySelector("#photo");
-  const signatureInput = form.querySelector("#signature");
+const files = {};
+const photoInput = form.querySelector("#photo");
+const signatureInput = form.querySelector("#signature");
 
-  if (photoInput && photoInput.files[0]) {
+if (photoInput && photoInput.files[0]) {
 files.photo = await fileToUploadObject(photoInput.files[0]);
-  } else {
+} else {
 files.photo = null;
 if (photoInput && photoInput.dataset.existingUrl) files.photoUrl = photoInput.dataset.existingUrl;
-  }
+}
 
-  if (signatureInput && signatureInput.files[0]) {
+if (signatureInput && signatureInput.files[0]) {
 files.signature = await fileToUploadObject(signatureInput.files[0]);
-  } else {
+} else {
 files.signature = null;
 if (signatureInput && signatureInput.dataset.existingUrl) files.signatureUrl = signatureInput.dataset.existingUrl;
-  }
+}
 
-  const docFieldNames = ["aadharFile","panFile","dobFile","residenceFile","educationFile","drivingFile"];
-  for (const name of docFieldNames) {
+const docFieldNames = ["aadharFile","panFile","dobFile","residenceFile","educationFile","drivingFile"];
+for (const name of docFieldNames) {
 const input = form.querySelector('[name="' + name + '"]');
 const fileList = input ? Array.from(input.files || []) : [];
 const uploaded = [];
 for (const f of fileList) {
-  const obj = await fileToUploadObject(f);
-  if (obj) uploaded.push(obj);
+const obj = await fileToUploadObject(f);
+if (obj) uploaded.push(obj);
 }
 files[name] = uploaded;
-  }
-  return files;
+}
+return files;
 }
 
 function getImageDimensions(dataUrl) {
-  return new Promise((resolve) => {
+return new Promise((resolve) => {
 if (!dataUrl) { resolve({w:1,h:1}); return; }
 const img = new Image();
 img.onload = () => resolve({w:img.naturalWidth || 1, h:img.naturalHeight || 1});
 img.onerror = () => resolve({w:1,h:1});
 img.src = dataUrl;
-  });
+});
 }
 
 function detectImageFormat(dataUrl) {
-  if (!dataUrl) return "JPEG";
-  if (dataUrl.indexOf("image/png") !== -1) return "PNG";
-  if (dataUrl.indexOf("image/webp") !== -1) return "WEBP";
-  return "JPEG";
+if (!dataUrl) return "JPEG";
+if (dataUrl.indexOf("image/png") !== -1) return "PNG";
+if (dataUrl.indexOf("image/webp") !== -1) return "WEBP";
+return "JPEG";
 }
 function makeLogoBackgroundTransparent(dataUrl, whiteThreshold = 245) {
-  return new Promise((resolve) => {
+return new Promise((resolve) => {
 if (!dataUrl) { resolve(dataUrl); return; }
 const img = new Image();
 img.onload = () => {
-  try {
+try {
 const canvas = document.createElement("canvas");
 canvas.width = img.naturalWidth || img.width;
 canvas.height = img.naturalHeight || img.height;
@@ -1890,130 +1074,105 @@ const ctx = canvas.getContext("2d");
 ctx.drawImage(img, 0, 0);
 const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 const px = imgData.data;
-
-// If the source already carries real transparency, leave it as-is.
 let hasAlpha = false;
 for (let i = 3; i < px.length; i += 4) { if (px[i] < 250) { hasAlpha = true; break; } }
 if (hasAlpha) { resolve(dataUrl); return; }
-
-// Otherwise key out the near-white background.
 for (let i = 0; i < px.length; i += 4) {
-  if (px[i] >= whiteThreshold && px[i+1] >= whiteThreshold && px[i+2] >= whiteThreshold) {
+if (px[i] >= whiteThreshold && px[i+1] >= whiteThreshold && px[i+2] >= whiteThreshold) {
 px[i+3] = 0;
-  }
+}
 }
 ctx.putImageData(imgData, 0, 0);
 resolve(canvas.toDataURL("image/png"));
-  } catch (e) {
-// Canvas may be blocked (CORS-tainted); fall back to the original image.
+} catch (e) {
 resolve(dataUrl);
-  }
+}
 };
 img.onerror = () => resolve(dataUrl);
 img.src = dataUrl;
-  });
+});
 }
-
-/* Draw an image centred inside a bordered box, preserving aspect ratio ("contain" fit) */
 async function drawFittedImage(pdf, dataUrl, x, y, boxW, boxH) {
-  pdf.setDrawColor(150,150,150);
-  pdf.setLineWidth(0.3);
-  pdf.rect(x, y, boxW, boxH);
-  if (!dataUrl) return;
-  try {
+pdf.setDrawColor(150,150,150);
+pdf.setLineWidth(0.3);
+pdf.rect(x, y, boxW, boxH);
+if (!dataUrl) return;
+try {
 const {w,h} = await getImageDimensions(dataUrl);
 const ratio = Math.min((boxW-2)/w, (boxH-2)/h);
 const drawW = w*ratio, drawH = h*ratio;
 const dx = x + (boxW-drawW)/2, dy = y + (boxH-drawH)/2;
 pdf.addImage(dataUrl, detectImageFormat(dataUrl), dx, dy, drawW, drawH, undefined, "FAST");
-  } catch(e) { /* leave box empty if the image can't be embedded */ }
+} catch(e) { /* leave box empty if the image can't be embedded */ }
 }
 
 const FIELD_LABELS = {
-  vertical:"Vertical", department:"Department", division:"Division", designation:"Designation", Location:"Location", source:"Source of Job Information",
-  fullName:"Full Name", gender:"Gender", aadhaar:"Aadhaar Number", dob1:"Date of Birth (as on Aadhaar)", dob2:"Date of Birth (Actual)", mobile:"Mobile Number",
-  email:"Email Address", pan:"PAN Number", caste:"Caste", subCaste:"Sub-Caste", bloodGroup:"Blood Group",
-  maritalStatus:"Marital Status", fatherName:"Father's Name", fatherOccupation:"Father's Occupation", fatherBirthPlace:"Father's Place of Birth",
-  husbandName:"Husband's Name", husbandOccupation:"Husband's Occupation", husbandBirthPlace:"Husband's Place of Birth",
-  presentAddress:"Present Address", permanentAddress:"Permanent Address",
-  bankName:"Bank Name", accountNumber:"Bank A/c Number", ifsc:"IFSC Code", bankBranch:"Bank Branch",
-  uan:"UAN Number", esic:"ESIC Number",
-  aboutYou:"About You", achievement:"Last Achievement", activities:"Job Roles / Responsibilities", goals:"Goals / Ambitions",
-  last_basic:"Basic", last_hra:"HRA", last_cea:"CEA", last_wa:"Washing Allowance", last_conveyance:"Conveyance",
-  last_lta:"LTA", last_medical:"Medical", last_bonus:"Bonus", last_incentive:"Incentive", last_others:"Other Allowance",
-  last_pf:"PF Deduction", last_esic:"ESIC Deduction", last_gross:"Gross Earnings", last_deductions:"Total Deductions", last_net:"Net Salary Drawn"
+vertical:"Vertical", department:"Department", division:"Division", designation:"Designation", Location:"Location", source:"Source of Job Information",
+refEmployeeId:"Referring Employee ID", refEmployeeName:"Referring Employee Name", refEmployeeContact:"Referring Employee's Contact Number",
+fullName:"Full Name", gender:"Gender", aadhaar:"Aadhaar Number", dob1:"Date of Birth (as on Aadhaar)", dob2:"Date of Birth (Actual)", mobile:"Mobile Number",
+email:"Email Address", pan:"PAN Number", caste:"Caste", subCaste:"Sub-Caste", bloodGroup:"Blood Group",
+maritalStatus:"Marital Status", fatherName:"Father's Name", fatherOccupation:"Father's Occupation", fatherBirthPlace:"Father's Place of Birth",
+husbandName:"Husband's Name", husbandOccupation:"Husband's Occupation", husbandBirthPlace:"Husband's Place of Birth",
+presentAddress:"Present Address", permanentAddress:"Permanent Address",
+bankName:"Bank Name", accountNumber:"Bank A/c Number", ifsc:"IFSC Code", bankBranch:"Bank Branch",
+uan:"UAN Number", esic:"ESIC Number",
+aboutYou:"About You", achievement:"Last Achievement", activities:"Job Roles / Responsibilities", goals:"Goals / Ambitions",
+last_basic:"Basic", last_hra:"HRA", last_cea:"CEA", last_wa:"Washing Allowance", last_conveyance:"Conveyance",
+last_lta:"LTA", last_medical:"Medical", last_bonus:"Bonus", last_incentive:"Incentive", last_others:"Other Allowance",
+last_pf:"PF Deduction", last_esic:"ESIC Deduction", last_gross:"Gross Earnings", last_deductions:"Total Deductions", last_net:"Net Salary Drawn"
 };
 const DOC_LABELS = [
-  ["docAadhar","Aadhaar"], ["docPan","PAN"], ["docDob","Date of Birth Proof"],
-  ["docResidence","Residence Proof"], ["docEducation","Educational Certificates"], ["docDriving","Driving License"]
+["docAadhar","Aadhaar"], ["docPan","PAN"], ["docDob","Date of Birth Proof"],
+["docResidence","Residence Proof"], ["docEducation","Educational Certificates"], ["docDriving","Driving License"]
 ];
-
-/* =========================================================
- MAIN PDF GENERATOR
-========================================================= */
 async function generateApplicationPDF(form) {
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({unit:"mm", format:"a4"});
-  pdf.setFont("helvetica", "normal");
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF({unit:"mm", format:"a4"});
+pdf.setFont("helvetica", "normal");
+const data = formDataToObject(form);
+const pageWidth = pdf.internal.pageSize.getWidth();
+const pageHeight = pdf.internal.pageSize.getHeight();
+const marginX = 12;
+const contentWidth = pageWidth - marginX*2;
+const HEADER_BOTTOM = 34, CONTENT_TOP = 42, FOOTER_TOP = pageHeight - 16;
+const PRIMARY = [23,54,93], LIGHT = [237,243,249], GREY = [110,118,128], TEXT = [40,44,48];
 
-  const data = formDataToObject(form);
-
-  const pageWidth = pdf.internal.pageSize.getWidth();
-  const pageHeight = pdf.internal.pageSize.getHeight();
-  const marginX = 12;
-  const contentWidth = pageWidth - marginX*2;
-  const HEADER_BOTTOM = 34, CONTENT_TOP = 42, FOOTER_TOP = pageHeight - 16;
-  const PRIMARY = [23,54,93], LIGHT = [237,243,249], GREY = [110,118,128], TEXT = [40,44,48];
-
-  const photoInputEl = document.getElementById("photo");
-  const signatureInputEl = document.getElementById("signature");
-  const photoSourcePromise = photoInputEl.files[0]
+const photoInputEl = document.getElementById("photo");
+const signatureInputEl = document.getElementById("signature");
+const photoSourcePromise = photoInputEl.files[0]
 ? fileToDataURL(photoInputEl.files[0])
 : loadUrlAsDataURL(driveViewUrlToDirect_(photoInputEl.dataset.existingUrl));
-  const signatureSourcePromise = signatureInputEl.files[0]
+const signatureSourcePromise = signatureInputEl.files[0]
 ? fileToDataURL(signatureInputEl.files[0])
 : loadUrlAsDataURL(driveViewUrlToDirect_(signatureInputEl.dataset.existingUrl));
 
-  const [logoDataUrlRaw, photoDataUrl, signatureDataUrl] = await Promise.all([
+const [logoDataUrlRaw, photoDataUrl, signatureDataUrl] = await Promise.all([
 loadUrlAsDataURL(COMPANY_INFO.logo),
 photoSourcePromise,
 signatureSourcePromise
-  ]);
-  const logoDataUrl = await makeLogoBackgroundTransparent(logoDataUrlRaw);
-
-  /* ---- Letterhead header, redrawn on every page ---- */
-  function drawHeader() {
+]);
+const logoDataUrl = await makeLogoBackgroundTransparent(logoDataUrlRaw);
+function drawHeader() {
 pdf.setFillColor(...LIGHT);
 pdf.rect(0, 0, pageWidth, HEADER_BOTTOM, "F");
 pdf.setDrawColor(...PRIMARY);
 pdf.setLineWidth(0.7);
 pdf.line(0, HEADER_BOTTOM, pageWidth, HEADER_BOTTOM);
-
 pdf.setTextColor(...PRIMARY);
 pdf.setFont("helvetica","bold");
 pdf.setFontSize(16);
 pdf.text(COMPANY_INFO.name, marginX, 12);
-
 pdf.setFont("helvetica","normal");
 pdf.setFontSize(9);
 pdf.setTextColor(70,78,88);
 pdf.text(COMPANY_INFO.tagline, marginX, 18);
 pdf.text(COMPANY_INFO.address, marginX, 23);
-pdf.text(`Phone: ${COMPANY_INFO.phone}   |   Email: ${COMPANY_INFO.email}`, marginX, 28);
-
-// Company logo, top-right corner of the letterhead
+pdf.text(`Phone: ${COMPANY_INFO.phone} | Email: ${COMPANY_INFO.email}`, marginX, 28);
 const logoW = 28, logoH = 22, logoX = pageWidth - marginX - logoW, logoY = 5;
 if (logoDataUrl) {
-  try { pdf.addImage(logoDataUrl, detectImageFormat(logoDataUrl), logoX, logoY, logoW, logoH, undefined, "FAST"); }
-  catch(e) {
-pdf.setDrawColor(...PRIMARY); pdf.rect(logoX, logoY, logoW, logoH);
-  }
-} else {
-  pdf.setDrawColor(...PRIMARY); pdf.rect(logoX, logoY, logoW, logoH);
-}
-  }
-
-  function drawFooter(pageNum) {
+try { pdf.addImage(logoDataUrl, detectImageFormat(logoDataUrl), logoX, logoY, logoW, logoH, undefined, "FAST"); }
+catch(e) {pdf.setDrawColor(...PRIMARY); pdf.rect(logoX, logoY, logoW, logoH);}} else {pdf.setDrawColor(...PRIMARY); pdf.rect(logoX, logoY, logoW, logoH);}}
+function drawFooter(pageNum) {
 pdf.setDrawColor(...PRIMARY);
 pdf.setLineWidth(0.3);
 pdf.line(marginX, FOOTER_TOP, pageWidth - marginX, FOOTER_TOP);
@@ -2023,40 +1182,40 @@ pdf.setTextColor(...GREY);
 pdf.text(`Application ID: ${data.applicationId}`, marginX, FOOTER_TOP + 5);
 pdf.text(`Generated on ${new Date().toLocaleString()}`, pageWidth/2, FOOTER_TOP + 5, {align:"center"});
 pdf.text(`Page ${pageNum}`, pageWidth - marginX, FOOTER_TOP + 5, {align:"right"});
-  }
+}
 
-  let y = CONTENT_TOP;
-  const ensureSpace = (needed) => {
+let y = CONTENT_TOP;
+const ensureSpace = (needed) => {
 if (y + needed > FOOTER_TOP - 2) { pdf.addPage(); drawHeader(); y = CONTENT_TOP; }
-  };
+};
 
-  drawHeader();
+drawHeader();
 
-  /* ---- Title bar + applicant photo box (first page) ---- */
-  pdf.setFont("helvetica","bold");
-  pdf.setFontSize(14);
-  pdf.setTextColor(...PRIMARY);
-  pdf.text("EMPLOYEE APPLICATION FORM", marginX, y + 2);
+/* ---- Title bar + applicant photo box (first page) ---- */
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(14);
+pdf.setTextColor(...PRIMARY);
+pdf.text("EMPLOYEE APPLICATION FORM", marginX, y + 2);
 
-  const photoBoxW = 30, photoBoxH = 36;
-  const photoBoxX = pageWidth - marginX - photoBoxW, photoBoxY = y - 2;
-  await drawFittedImage(pdf, photoDataUrl, photoBoxX, photoBoxY, photoBoxW, photoBoxH);
-  pdf.setFont("helvetica","normal");
-  pdf.setFontSize(7.5);
-  pdf.setTextColor(...GREY);
-  pdf.text("Applicant Photo", photoBoxX + photoBoxW/2, photoBoxY + photoBoxH + 4, {align:"center"});
+const photoBoxW = 30, photoBoxH = 36;
+const photoBoxX = pageWidth - marginX - photoBoxW, photoBoxY = y - 2;
+await drawFittedImage(pdf, photoDataUrl, photoBoxX, photoBoxY, photoBoxW, photoBoxH);
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(7.5);
+pdf.setTextColor(...GREY);
+pdf.text("Applicant Photo", photoBoxX + photoBoxW/2, photoBoxY + photoBoxH + 4, {align:"center"});
 
-  pdf.setFont("helvetica","normal");
-  pdf.setFontSize(9);
-  pdf.setTextColor(...TEXT);
-  pdf.text(`Application ID: ${data.applicationId}, Date: ${new Date().toLocaleDateString()}`, marginX, y + 9);
-  pdf.text(`Vertical: ${data.vertical || "-"}, Department: ${data.department || "-"}, Designation: ${data.designation || "-"}`, marginX, y + 15);
-  pdf.text(`Division: ${data.division || "-"}, Location: ${data.Location || "-"}`, marginX, y + 21);
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(9);
+pdf.setTextColor(...TEXT);
+pdf.text(`Application ID: ${data.applicationId}, Date: ${new Date().toLocaleDateString()}`, marginX, y + 9);
+pdf.text(`Vertical: ${data.vertical || "-"}, Department: ${data.department || "-"}, Designation: ${data.designation || "-"}`, marginX, y + 15);
+pdf.text(`Division: ${data.division || "-"}, Location: ${data.Location || "-"}`, marginX, y + 21);
 
-  y += 36;
+y += 36;
 
-  /* ---- Section heading bar ---- */
-  function sectionHeading(title) {
+/* ---- Section heading bar ---- */
+function sectionHeading(title) {
 ensureSpace(12);
 pdf.setFillColor(...LIGHT);
 pdf.setDrawColor(...PRIMARY);
@@ -2067,72 +1226,73 @@ pdf.setFont("helvetica","bold");
 pdf.setFontSize(10.5);
 pdf.text(title, marginX + 2, y + 5);
 y += 10;
-  }
+}
 
-  /* ---- Label/value table for a group of simple fields ---- */
-  function keyValueTable(pairs) {
+/* ---- Label/value table for a group of simple fields ---- */
+function keyValueTable(pairs) {
 const body = pairs.map(([label,key]) => [label, (data[key] ?? "").toString().trim() || "-"]);
 pdf.autoTable({
-  startY: y,
-  margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
-  theme: "grid",
-  tableWidth: contentWidth,
-  styles: {fontSize: 8.5, cellPadding: 2.2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
-  columnStyles: {0:{fontStyle:"bold", cellWidth: 52, fillColor:[248,250,252]}, 1:{cellWidth: contentWidth-52}},
-  body,
-  didDrawPage: () => { drawHeader(); }
+startY: y,
+margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
+theme: "grid",
+tableWidth: contentWidth,
+styles: {fontSize: 8.5, cellPadding: 2.2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
+columnStyles: {0:{fontStyle:"bold", cellWidth: 52, fillColor:[248,250,252]}, 1:{cellWidth: contentWidth-52}},
+body,
+didDrawPage: () => { drawHeader(); }
 });
 y = pdf.lastAutoTable.finalY + 8;
-  }
+}
 
-  /* ---- Full-width table with real column headers, for repeating groups ---- */
-  function gridTable(head, keys, colStyles) {
+/* ---- Full-width table with real column headers, for repeating groups ---- */
+function gridTable(head, keys, colStyles) {
 const rowCount = Math.max(0, ...keys.map(k => (data[k]||[]).length));
 if (rowCount === 0) { keyValueTable([["-", "__none__"]]); return; }
 const body = [];
 for (let i=0;i<rowCount;i++) body.push(keys.map(k => (data[k]||[])[i] || "-"));
 pdf.autoTable({
-  startY: y,
-  margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
-  theme: "grid",
-  tableWidth: contentWidth,
-  styles: {fontSize: 7.5, cellPadding: 2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
-  headStyles: {fillColor: PRIMARY, textColor: 255, fontStyle:"bold", fontSize: 7.8},
-  columnStyles: colStyles || {},
-  head: [head],
-  body,
-  didDrawPage: () => { drawHeader(); }
+startY: y,
+margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
+theme: "grid",
+tableWidth: contentWidth,
+styles: {fontSize: 7.5, cellPadding: 2, textColor: TEXT, lineColor:[217,225,234], lineWidth:0.15, overflow:"linebreak"},
+headStyles: {fillColor: PRIMARY, textColor: 255, fontStyle:"bold", fontSize: 7.8},
+columnStyles: colStyles || {},
+head: [head],
+body,
+didDrawPage: () => { drawHeader(); }
 });
 y = pdf.lastAutoTable.finalY + 8;
-  }
+}
 
-  sectionHeading("1-2. Application & Personal Details");
-  keyValueTable([
+sectionHeading("1-2. Application & Personal Details");
+keyValueTable([
 [FIELD_LABELS.vertical,"vertical"], [FIELD_LABELS.department,"department"], [FIELD_LABELS.designation,"designation"], [FIELD_LABELS.division,"division"], [FIELD_LABELS.Location,"Location"], [FIELD_LABELS.source,"source"],
+...(data.source === "Employee Reference" ? [[FIELD_LABELS.refEmployeeId,"refEmployeeId"], [FIELD_LABELS.refEmployeeName,"refEmployeeName"], [FIELD_LABELS.refEmployeeContact,"refEmployeeContact"]] : []),
 [FIELD_LABELS.fullName,"fullName"], [FIELD_LABELS.gender,"gender"], [FIELD_LABELS.aadhaar,"aadhaar"], [FIELD_LABELS.dob1,"dob1"], [FIELD_LABELS.dob2,"dob2"],
 [FIELD_LABELS.mobile,"mobile"], [FIELD_LABELS.email,"email"], [FIELD_LABELS.pan,"pan"],
 [FIELD_LABELS.caste,"caste"], [FIELD_LABELS.subCaste,"subCaste"], [FIELD_LABELS.bloodGroup,"bloodGroup"],
 [FIELD_LABELS.maritalStatus,"maritalStatus"], [FIELD_LABELS.fatherName,"fatherName"], [FIELD_LABELS.fatherOccupation,"fatherOccupation"], [FIELD_LABELS.fatherBirthPlace,"fatherBirthPlace"],
 [FIELD_LABELS.husbandName,"husbandName"], [FIELD_LABELS.husbandOccupation,"husbandOccupation"], [FIELD_LABELS.husbandBirthPlace,"husbandBirthPlace"]
-  ]);
+]);
 
-  sectionHeading("3. Address Details");
-  keyValueTable([[FIELD_LABELS.presentAddress,"presentAddress"], [FIELD_LABELS.permanentAddress,"permanentAddress"]]);
+sectionHeading("3. Address Details");
+keyValueTable([[FIELD_LABELS.presentAddress,"presentAddress"], [FIELD_LABELS.permanentAddress,"permanentAddress"]]);
 
-  sectionHeading("4. Bank & Statutory Details");
-  keyValueTable([
+sectionHeading("4. Bank & Statutory Details");
+keyValueTable([
 [FIELD_LABELS.bankName,"bankName"], [FIELD_LABELS.accountNumber,"accountNumber"], [FIELD_LABELS.ifsc,"ifsc"],
 [FIELD_LABELS.bankBranch,"bankBranch"], [FIELD_LABELS.uan,"uan"], [FIELD_LABELS.esic,"esic"]
-  ]);
+]);
 
-  sectionHeading("5. About You / Career Information");
-  keyValueTable([
+sectionHeading("5. About You / Career Information");
+keyValueTable([
 [FIELD_LABELS.aboutYou,"aboutYou"], [FIELD_LABELS.achievement,"achievement"],
 [FIELD_LABELS.activities,"activities"], [FIELD_LABELS.goals,"goals"]
-  ]);
+]);
 
-  sectionHeading("6. References");
-  pdf.autoTable({
+sectionHeading("6. References");
+pdf.autoTable({
 startY: y,
 margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
 theme: "grid",
@@ -2142,37 +1302,33 @@ headStyles: {fillColor: PRIMARY, textColor: 255, fontStyle:"bold", fontSize: 8},
 columnStyles: {0:{cellWidth:24}, 1:{cellWidth:38}, 2:{cellWidth:46}, 3:{cellWidth:40}, 4:{cellWidth:38}},
 head: [["Reference","Name","Organisation","Designation","Mobile"]],
 body: [
-  ["Reference 1", data.ref1Name||"-", data.ref1Org||"-", data.ref1Designation||"-", data.ref1Mobile||"-"],
-  ["Reference 2", data.ref2Name||"-", data.ref2Org||"-", data.ref2Designation||"-", data.ref2Mobile||"-"]
+["Reference 1", data.ref1Name||"-", data.ref1Org||"-", data.ref1Designation||"-", data.ref1Mobile||"-"],
+["Reference 2", data.ref2Name||"-", data.ref2Org||"-", data.ref2Designation||"-", data.ref2Mobile||"-"]
 ],
 didDrawPage: () => { drawHeader(); }
-  });
-  y = pdf.lastAutoTable.finalY + 8;
-
-  sectionHeading("7. Educational Qualifications");
-  gridTable(
+});
+y = pdf.lastAutoTable.finalY + 8;
+sectionHeading("7. Educational Qualifications");
+gridTable(
 ["Institution","Course / Degree","Year","Grade","Marks %"],
 ["education_institute","education_course","education_year","education_grade","education_marks"],
 {0:{cellWidth:65},1:{cellWidth:48},2:{cellWidth:24},3:{cellWidth:24},4:{cellWidth:25}}
-  );
-
-  sectionHeading("8. Family Details");
-  gridTable(
+);
+sectionHeading("8. Family Details");
+gridTable(
 ["Name","Date of Birth","Relation","Aadhaar","Mobile","Emergency Contact"],
 ["family_name","family_dob","family_relation","family_aadhaar","family_contact","family_emergency"],
 {0:{cellWidth:42},1:{cellWidth:26},2:{cellWidth:26},3:{cellWidth:32},4:{cellWidth:24},5:{cellWidth:36}}
-  );
-
-  sectionHeading("9. Previous Employment Details");
-  gridTable(
+);
+sectionHeading("9. Previous Employment Details");
+gridTable(
 ["Organisation","Designation","Joining","Relieving","Worked","S/Salary","E/Salary","HOD","HOD Contact","Reason"],
 ["employment_org","employment_designation","employment_joining","employment_relieving","employment_worked",
  "employment_joining_salary","employment_relieving_salary","employment_hod","employment_hod_contact","employment_reason"],
 {0:{cellWidth:26},1:{cellWidth:22},2:{cellWidth:18},3:{cellWidth:18},4:{cellWidth:16},5:{cellWidth:16},6:{cellWidth:16},7:{cellWidth:18},8:{cellWidth:18},9:{cellWidth:18}}
-  );
-
-  sectionHeading("10. Documents Submitted");
-  pdf.autoTable({
+);
+sectionHeading("10. Documents Submitted");
+pdf.autoTable({
 startY: y,
 margin: {left: marginX, right: marginX, top: CONTENT_TOP, bottom: 20},
 theme: "grid",
@@ -2183,210 +1339,154 @@ head: [["Document","Submitted"]],
 body: DOC_LABELS.map(([id,label]) => [label, document.getElementById(id).checked ? "Yes" : "No"]),
 columnStyles: {0:{cellWidth: contentWidth-40}, 1:{cellWidth:40, halign:"center"}},
 didDrawPage: () => { drawHeader(); }
-  });
-  y = pdf.lastAutoTable.finalY + 8;
-
-  sectionHeading("12. Last Salary Drawn");
-  keyValueTable([
+});
+y = pdf.lastAutoTable.finalY + 8;
+sectionHeading("12. Last Salary Drawn");
+keyValueTable([
 [FIELD_LABELS.last_basic,"last_basic"], [FIELD_LABELS.last_hra,"last_hra"], [FIELD_LABELS.last_cea,"last_cea"],
 [FIELD_LABELS.last_wa,"last_wa"], [FIELD_LABELS.last_conveyance,"last_conveyance"], [FIELD_LABELS.last_lta,"last_lta"],
 [FIELD_LABELS.last_medical,"last_medical"], [FIELD_LABELS.last_bonus,"last_bonus"], [FIELD_LABELS.last_incentive,"last_incentive"],
 [FIELD_LABELS.last_others,"last_others"], [FIELD_LABELS.last_pf,"last_pf"], [FIELD_LABELS.last_esic,"last_esic"],
 [FIELD_LABELS.last_gross,"last_gross"], [FIELD_LABELS.last_deductions,"last_deductions"], [FIELD_LABELS.last_net,"last_net"]
-  ]);
-
-  /* ---- Declaration, signature and office-use block ---- */
-  sectionHeading("13. Declaration & Signature");
-  ensureSpace(45);
-  pdf.setFont("helvetica","normal");
-  pdf.setFontSize(8.5);
-  pdf.setTextColor(...TEXT);
-  const declLines = pdf.splitTextToSize(
+]);
+sectionHeading("13. Declaration & Signature");
+ensureSpace(45);
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(8.5);
+pdf.setTextColor(...TEXT);
+const declLines = pdf.splitTextToSize(
 "I hereby declare that the information provided in this application is true and correct to the best of my knowledge and belief. I understand that any false information may result in rejection of my application or termination of employment.",
 contentWidth
-  );
-  pdf.text(declLines, marginX, y);
-  y += declLines.length*4.2 + 6;
+);
+pdf.text(declLines, marginX, y);
+y += declLines.length*4.2 + 6;
 
-  if (data.drivingDeclaration) {
+if (data.drivingDeclaration) {
 ensureSpace(40);
 const drivingDeclLines = pdf.splitTextToSize(
-  "I hereby declare that I do not possess a valid Driving Licence. If any accident, damage to Company property, financial loss, physical injury, or any other loss occurs as a result of my driving or operating a Two-Wheeler or Four-Wheeler, I shall be solely responsible for the consequences arising from such incident. I understand that the Company shall not be held responsible or liable for any loss, damage, injury, compensation, or legal consequences arising due to my unauthorized driving. I shall not seek or claim any financial, legal, or other intervention from the Company in connection with such incidents. Further, I confirm that neither I nor my family members shall hold the Company responsible or create any claim, dispute, or demand against the Company arising from such incidents. I am signing this declaration voluntarily and with full understanding of its contents and consequences.",
-  contentWidth
+"I hereby declare that I do not possess a valid Driving Licence. If any accident, damage to Company property, financial loss, physical injury, or any other loss occurs as a result of my driving or operating a Two-Wheeler or Four-Wheeler, I shall be solely responsible for the consequences arising from such incident. I understand that the Company shall not be held responsible or liable for any loss, damage, injury, compensation, or legal consequences arising due to my unauthorized driving. I shall not seek or claim any financial, legal, or other intervention from the Company in connection with such incidents. Further, I confirm that neither I nor my family members shall hold the Company responsible or create any claim, dispute, or demand against the Company arising from such incidents. I am signing this declaration voluntarily and with full understanding of its contents and consequences.",
+contentWidth
 );
 pdf.text(drivingDeclLines, marginX, y);
 y += drivingDeclLines.length*4.2 + 6;
-  }
+}
 
-  ensureSpace(46);
-  const sigBoxW = 60, sigBoxH = 26;
-  await drawFittedImage(pdf, signatureDataUrl, marginX, y, sigBoxW, sigBoxH);
-  pdf.setFontSize(8); pdf.setTextColor(...GREY);
-  pdf.text("Applicant Signature", marginX, y + sigBoxH + 5);
-  pdf.text(data.fullName || "", marginX, y + sigBoxH + 10);
-  pdf.text(`Date: ${new Date().toLocaleDateString()}`, marginX, y + sigBoxH + 15);
+ensureSpace(46);
+const sigBoxW = 60, sigBoxH = 26;
+await drawFittedImage(pdf, signatureDataUrl, marginX, y, sigBoxW, sigBoxH);
+pdf.setFontSize(8); pdf.setTextColor(...GREY);
+pdf.text("Applicant Signature", marginX, y + sigBoxH + 5);
+pdf.text(data.fullName || "", marginX, y + sigBoxH + 10);
+pdf.text(`Date: ${new Date().toLocaleDateString()}`, marginX, y + sigBoxH + 15);
 
-  const officeBoxX = pageWidth - marginX - sigBoxW;
-  pdf.setDrawColor(150,150,150); pdf.setLineWidth(0.3);
-  pdf.rect(officeBoxX, y, sigBoxW, sigBoxH);
-  pdf.text("For Office Use Only", officeBoxX, y + sigBoxH + 5);
-  pdf.text("Authorised Signatory", officeBoxX, y + sigBoxH + 10);
+const officeBoxX = pageWidth - marginX - sigBoxW;
+pdf.setDrawColor(150,150,150); pdf.setLineWidth(0.3);
+pdf.rect(officeBoxX, y, sigBoxW, sigBoxH);
+pdf.text("For Office Use Only", officeBoxX, y + sigBoxH + 5);
+pdf.text("Authorised Signatory", officeBoxX, y + sigBoxH + 10);
 
-  y += sigBoxH + 20;
+y += sigBoxH + 20;
 
-  /* ---- Finalise: stamp page numbers on every page ---- */
-  const totalPages = pdf.internal.getNumberOfPages();
-  for (let i=1;i<=totalPages;i++) { pdf.setPage(i); drawFooter(i); }
+/* ---- Finalise: stamp page numbers on every page ---- */
+const totalPages = pdf.internal.getNumberOfPages();
+for (let i=1;i<=totalPages;i++) { pdf.setPage(i); drawFooter(i); }
 
-  pdf.save(`Employee_Application_${(data.fullName || "Applicant").replace(/\s+/g,"_")}_${data.applicationId}.pdf`);
+pdf.save(`Employee_Application_${(data.fullName || "Applicant").replace(/\s+/g,"_")}_${data.applicationId}.pdf`);
 }
 
 document.getElementById("applicationForm").addEventListener("submit", async function(event) {
-  event.preventDefault();
-  const form = this;
-  if (!form.checkValidity()) {
+event.preventDefault();
+const form = this;
+if (!form.checkValidity()) {
 event.stopPropagation();
 form.classList.add("was-validated");
 const firstInvalid = form.querySelector(":invalid");
 if (firstInvalid) { firstInvalid.scrollIntoView({behavior:"smooth",block:"center"}); firstInvalid.focus(); }
 return;
-  }
+}
 
-  const aadhaar = form.querySelector('[name="aadhaar"]').value;
-  if (!/^\d{12}$/.test(aadhaar)) { alert("Please enter a valid 12-digit Aadhaar Number."); return; }
-  const mobile = form.querySelector('[name="mobile"]').value;
-  if (!/^[6-9]\d{9}$/.test(mobile)) { alert("Please enter a valid 10-digit mobile number."); return; }
+const sourceValue = form.querySelector('[name="source"]').value;
+if (sourceValue === "Employee Reference" && !refFieldsFilled()) {
+alert("Please fill in the Employee Reference details (Employee ID, Employee Name, and Contact Number).");
+const m = getRefModal();
+if (m) m.show();
+document.getElementById("refModalError").classList.remove("d-none");
+return;
+}
 
-  const pan = form.querySelector('[name="pan"]').value.trim();
-  if (pan && !/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan)) { alert("Please enter a valid PAN Number."); return; }
-  const ifsc = form.querySelector('[name="ifsc"]').value.trim();
-  if (ifsc && !/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)) { alert("Please enter a valid IFSC Number."); return; }
+const aadhaar = form.querySelector('[name="aadhaar"]').value;
+if (!/^\d{12}$/.test(aadhaar)) { alert("Please enter a valid 12-digit Aadhaar Number."); return; }
+const mobile = form.querySelector('[name="mobile"]').value;
+if (!/^[6-9]\d{9}$/.test(mobile)) { alert("Please enter a valid 10-digit mobile number."); return; }
 
-  calculateLastSalary();
-  const submitButton = form.querySelector('button[type="submit"]');
-  const oldText = submitButton.innerHTML;
-  submitButton.disabled = true;
-  submitButton.innerHTML = "Submitting... / సమర్పిస్తోంది...";
+const panField = form.querySelector('[name="pan"]');
+const pan = panField.value.trim();
+if (pan && !/^[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z]$/.test(pan)) {
+alert("Please enter a valid PAN Number (format: ABCPD1234E) as per Income Tax rules.");
+panField.classList.add("is-invalid");
+panField.focus();
+return;
+}
+const ifscField = form.querySelector('[name="ifsc"]');
+const ifsc = ifscField.value.trim();
+if (ifsc && !/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)) {
+alert("Please enter a valid IFSC Number (format: SBIN0001234) as per RBI rules.");
+ifscField.classList.add("is-invalid");
+ifscField.focus();
+return;
+}
 
-  try {
+calculateLastSalary();
+const submitButton = form.querySelector('button[type="submit"]');
+const oldText = submitButton.innerHTML;
+submitButton.disabled = true;
+submitButton.innerHTML = "Submitting... / సమర్పిస్తోంది...";
+
+try {
 const payload = formDataToObject(form);
 payload.action = "submitApplication";
 if (backendReady()) {
-  submitButton.innerHTML = "Uploading files... / ఫైళ్లను అప్‌లోడ్ చేస్తోంది...";
-  payload.files = await collectFilesForUpload(form);
-  submitButton.innerHTML = "Submitting... / సమర్పిస్తోంది...";
-  const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+submitButton.innerHTML = "Uploading files... / ఫైళ్లను అప్‌లోడ్ చేస్తోంది...";
+payload.files = await collectFilesForUpload(form);
+submitButton.innerHTML = "Submitting... / సమర్పిస్తోంది...";
+const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
 method:"POST",
 body: JSON.stringify(payload),
 headers:{"Content-Type":"text/plain;charset=utf-8"}
-  });
-  if (!response.ok) throw new Error("Unable to save application.");
-  const result = await response.json();
-  if (!result || !result.success) throw new Error((result && result.error) || "Unable to save application.");
-  rememberAadhaarInSession(payload.aadhaar);
+});
+if (!response.ok) throw new Error("Unable to save application.");
+const result = await response.json();
+if (!result || !result.success) throw new Error((result && result.error) || "Unable to save application.");
+rememberAadhaarInSession(payload.aadhaar);
 }
 await generateApplicationPDF(form);
 const success = document.getElementById("successMessage");
 success.classList.remove("d-none");
 success.innerHTML = "<strong>Application submitted successfully.</strong><br>The application has been saved and the PDF has been generated automatically.";
 window.scrollTo({top:document.body.scrollHeight, behavior:"smooth"});
-  } catch(error) {
+} catch(error) {
 console.error(error);
-alert("Submission could not be completed. Please check the Google Apps Script API URL and deployment permissions.");
-  } finally {
+alert("You can't edit after submitting details, Contact HR for modifications if any ?.");
+} finally {
 submitButton.disabled = false;
 submitButton.innerHTML = oldText;
-  }
+}
 });
-
-/* =========================================================
- RESET
-========================================================= */
-
-document
-.getElementById("applicationForm")
-.addEventListener(
-"reset",
-function() {
-
-setTimeout(
-function() {
-
-
-document
-.getElementById(
-"successMessage"
-)
-.classList.add(
-"d-none"
-);
-
-
-document
-.getElementById(
-"photoPreview"
-)
-.style.display =
-"none";
-
-
-document
-.getElementById(
-"photoText"
-)
-.style.display =
-"block";
-
-
-document
-.getElementById(
-"signaturePreview"
-)
-.style.display =
-"none";
-
-
-document
-.getElementById(
-"signatureText"
-)
-.style.display =
-"block";
-
-
+document.getElementById("applicationForm").addEventListener("reset", function() {
+setTimeout(function() {
+document.getElementById("successMessage").classList.add("d-none");
+document.getElementById("photoPreview").style.display = "none";
+document.getElementById("photoText").style.display = "block";
+document.getElementById("signaturePreview").style.display = "none";
+document.getElementById("signatureText").style.display = "block";
 setExistingFilePreview(document.getElementById("photo"), document.getElementById("photoPreview"), document.getElementById("photoText"), null);
 setExistingFilePreview(document.getElementById("signature"), document.getElementById("signaturePreview"), document.getElementById("signatureText"), null);
-
-
-document
-.querySelectorAll(
-".compression-status"
-)
-.forEach(
-function(el) {
-
-el.innerHTML = "";
-
-});
-
-
-document
-.getElementById(
-"applicationForm"
-)
-.classList.remove(
-"was-validated"
-);
-
-
+document.querySelectorAll(".compression-status").forEach(function(el) { el.innerHTML = ""; });
+document.getElementById("applicationForm").classList.remove("was-validated");
 updateDrivingDeclaration();
 hideFormNotice();
-
-
-},
-50
-);
-
+clearRefFields();
+}, 50);
 });
 
 </script>
