@@ -20,7 +20,7 @@ body {background: radial-gradient(1200px 600px at 10% -10%, #e7f0ff 0%, transpar
 .application-card {background: #fff;border-radius: 16px;box-shadow: 0 10px 40px rgba(23,54,93,.12);overflow: hidden;animation: cardEnter .6s cubic-bezier(.22,1,.36,1);}
 @keyframes cardEnter {from {opacity: 0;transform: translateY(22px) scale(.99);} to {opacity: 1;transform: translateY(0) scale(1);}}
 @keyframes fadeInUp {from {opacity: 0;transform: translateY(14px);} to {opacity: 1;transform: translateY(0);}}
-.form-header {background:linear-gradient(180deg,#FF9933 0%,#FF9933 30%,#FFFFFF 42%,#FFFFFF 58%,#138808 70%,#138808 100%);background-size: 100% 260%;animation: gradientScroll 25s ease infinite;color: var(--primary);padding: 14px 22px;display: flex;align-items: center;gap: 20px;border-bottom: 3px solid #000080;position: relative;}
+.form-header {background:linear-gradient(180deg,#FF9933 0%,#FF9933 30%,#FFFFFF 42%,#FFFFFF 58%,#138808 70%,#138808 100%);background-size: 100% 260%;animation: gradientScroll 25s ease infinite;color: var(--primary);padding: 14px 22px;display: flex;align-items: center;gap: 20px;border-bottom: 3px solid #000080;position: sticky;}
 @keyframes gradientScroll {0%{background-position:0% 0%;}50%{background-position:0% 100%;}100%{background-position:0% 0%;}}
 .header-logo {flex: 0 0 auto;width: 120px;height: 70px;display: flex;align-items: center;justify-content: center;background:transparent;border-radius: 10px;padding: 5px;transition: transform .3s ease;}
 .header-logo:hover {transform: translateY(-2px) scale(1.03);}
