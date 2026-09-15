@@ -15,12 +15,12 @@
 <style>
 :root {--primary: #17365d;--secondary: #0d6efd;--accent: #38bdf8;--light-bg: #eef3fb;--border: #d9e1ea;--success:#198754;--danger:#dc3545;}
 html {overflow-x: hidden;scroll-behavior: smooth;}
-body {background: radial-gradient(1200px 600px at 10% -10%, #e7f0ff 0%, transparent 60%),radial-gradient(1000px 600px at 110% 10%, #eaf7ff 0%, transparent 55%),var(--light-bg);font-family: "Poppins","Segoe UI", Arial, sans-serif;color: #263238;overflow-x: hidden;}
-.container-main {margin: 25px auto;}
-.application-card {background: #fff;border-radius: 16px;box-shadow: 0 10px 40px rgba(23,54,93,.12);overflow: hidden;animation: cardEnter .6s cubic-bezier(.22,1,.36,1);}
-@keyframes cardEnter {from {opacity: 0;transform: translateY(22px) scale(.99);} to {opacity: 1;transform: translateY(0) scale(1);}}
-@keyframes fadeInUp {from {opacity: 0;transform: translateY(14px);} to {opacity: 1;transform: translateY(0);}}
-.form-header {background:linear-gradient(180deg,#FF9933 0%,#FF9933 30%,#FFFFFF 42%,#FFFFFF 58%,#138808 70%,#138808 100%);background-size: 100% 260%;animation: gradientScroll 25s ease infinite;color: var(--primary);padding: 14px 22px;display: flex;align-items: center;gap: 20px;border-bottom: 3px solid #000080;position: sticky;}
+body {background: radial-gradient(1200px 600px at 10% -10%, #e7f0ff 0%, transparent 60%),radial-gradient(1000px 600px at 110% 10%, #eaf7ff 0%, transparent 55%),var(--light-bg);font-family: "Poppins","Segoe UI", Arial, sans-serif;color: #263238;}
+.container-float {margin: 2px;}
+.application-card {background: #fff;border-radius: 16px;box-shadow: 0 10px 40px rgba(23,54,93,.12);animation: cardEnter .6s cubic-bezier(.22,1,.36,1);}
+.form-header {background: linear-gradient(180deg,#FF9933 0%,#FF9933 15%,#FFFFFF 38%,#FFFFFF 58%,#138808 70%,#138808 100%);
+background-size: 100% 260%;animation: gradientScroll 25s ease infinite;color: var(--primary);padding: 14px 22px;display: flex;align-items: center;gap: 2px;border-bottom: 3px solid #000080;
+position: sticky;top: 0;z-index: 1000;}
 @keyframes gradientScroll {0%{background-position:0% 0%;}50%{background-position:0% 100%;}100%{background-position:0% 0%;}}
 .header-logo {flex: 0 0 auto;width: 120px;height: 70px;display: flex;align-items: center;justify-content: center;background:transparent;border-radius: 10px;padding: 5px;transition: transform .3s ease;}
 .header-logo:hover {transform: translateY(-2px) scale(1.03);}
@@ -28,7 +28,7 @@ body {background: radial-gradient(1200px 600px at 10% -10%, #e7f0ff 0%, transpar
 .header-content {flex: 1 1 auto;min-width: 0;}
 .header-content h2 {margin: 0;font-weight: 800;font-size: 26px;overflow-wrap: break-word;letter-spacing: .5px;text-shadow: 0 1px 12px rgba(255,255,255,.35); color: #FFD700;}
 .header-content p {margin: 5px 0 0;opacity: .92;font-size: 15px;overflow-wrap: break-word; color: #FFD700;}
-.section-title {background: linear-gradient(90deg,#edf3f9,#f8fbff);border-left: 5px solid var(--secondary);padding: 10px 14px;margin: 20px 0 15px;font-size: 17px;font-weight: 700;color: var(--primary);border-radius: 0 8px 8px 0;transition: transform .2s ease, box-shadow .2s ease, background .2s ease;animation: fadeInUp .5s ease;}
+.section-title {background: linear-gradient(90deg,#0c7ff2,#f8fbff);border-left: 5px solid #213f70;padding: 10px 14px;margin: 2px 0 1px;font-size: 17px;font-weight: 700;color: var(--primary);border-radius: 0 8px 8px 0;transition: transform .2s ease, box-shadow .2s ease, background .2s ease;animation: fadeInUp .5s ease;}
 .section-title:hover {transform: translateX(4px);box-shadow: 0 4px 14px rgba(23,54,93,.1);background: linear-gradient(90deg,#e3edfa,#f2f8ff);}
 .form-label {font-weight: 600;font-size: 14px;line-height: 1.25;margin-bottom: 2px;}
 .form-label .te {font-weight: 500;}
@@ -68,14 +68,13 @@ body {background: radial-gradient(1200px 600px at 10% -10%, #e7f0ff 0%, transpar
 .footer .sep {margin: 0 8px;color: #c3cedb;}
 .upload-section {width: 300px;max-width: 100%;text-align: center;}
 .photo-box,.signature-box {width: 200px;max-width: 100%;height: 180px;margin: 0 auto 10px auto;border: 2px dashed #adb5bd;border-radius: 8px;display: flex;align-items: center;justify-content: center;overflow: hidden;background: #f8f9fa;}
-.photo-box {height: 300px;}
-.signature-box {height: 300px;}
+.photo-box,.signature-box  {height: 300px;}
 .photo-box img {width: 100%; height: 100%; object-fit: cover;}
 .signature-box img {width: 100%;height: 100%;object-fit: contain;}
 .upload-input {width: 300px !important; max-width: 100%; margin: 0 auto;}
 .upload-section .compression-status {width: 300px;max-width: 100%;margin: 5px auto 0;}
 @media (max-width: 767px) {.upload-section {width: 100%;}.upload-input,.upload-section .compression-status {width: 100% !important;}.photo-box {width: 130px !important;height: 168px !important;}.signature-box {width: 100% !important;max-width: 260px;height: 100px !important;}}
-@media(max-width:767px) {.container-main {margin: 0;max-width: 100%;}.application-card {border-radius: 0;}.form-header {padding: 10px 8px;gap: 6px;flex-wrap: nowrap;}.header-logo {width: 46px;height: 42px;padding: 2px;}.header-content {min-width: 0;padding: 0 2px;}.header-content h2 {font-size: 14px;line-height: 1.2;}.header-content p {font-size: 9.5px;line-height: 1.3;}}
+@media(max-width:767px) {.container-float {margin: 0;max-width: 100%;}.application-card {border-radius: 0;}.form-header {padding: 10px 8px;gap: 6px;flex-wrap: nowrap;}.header-logo {width: 46px;height: 42px;padding: 2px;}.header-content {min-width: 0;padding: 0 2px;}.header-content h2 {font-size: 14px;line-height: 1.2;}.header-content p {font-size: 9.5px;line-height: 1.3;}}
 @media (max-width: 360px) {.form-header {padding: 8px 6px;gap: 4px;}.header-logo {width: 38px;height: 36px;}.header-content h2 {font-size: 12.5px;}.header-content p {font-size: 9px;}}
 @media (max-width: 767px) {.submit-area {display: flex;flex-direction: column;align-items: stretch;gap: 10px;padding: 16px;}.submit-area button {width: 100%;margin-left: 0 !important;margin-right: 0 !important;padding-left: 12px;padding-right: 12px;white-space: normal;}}
 </style>
